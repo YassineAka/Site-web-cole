@@ -3,13 +3,13 @@ namespace App\Http\Model;
 class Teacher{
     public $id;
     public $name;
-    public $fisrtName;
+    public $firstName;
 
-    public function __construct($id,$name,$fisrtName)
+    public function __construct($id,$name,$firstName)
     {
             $this->id = $id;
             $this->name = $name;
-            $this->fisrtName = $fisrtName;
+            $this->firstName = $firstName;
     }
 }
 

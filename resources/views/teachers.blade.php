@@ -6,7 +6,7 @@
 <h1>List Of Teachers</h1>
     <thead>
         <tr>
-            <th>Acro</th>
+            <th>Acronyme</th>
             <th>Name</th>
             <th>Fisrt Name</th>
 
@@ -23,6 +23,5 @@
         @endforeach
     </tbody>
 </table>
-<p><a href="{{ url('') }}">Return to home</a></p>
 
 @endsection

@@ -24,7 +24,6 @@ CREATE TABLE Teacher (
 
 /* Remplissage des tables */
 
-
 INSERT INTO Teacher VALUES ('ABS','Absil','Romain');
 INSERT INTO Teacher VALUES ('MAP','Applaincourt','Michel');
 INSERT INTO Teacher VALUES ('MBA','Bastreghi','Monica');
