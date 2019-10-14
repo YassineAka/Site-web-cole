@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Rest@index');
+
+Route::get('/teachers','Rest@teachers');

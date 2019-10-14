@@ -1,0 +1,62 @@
+/* ============================================
+ * DDL de création de la BD + valeurs de départ
+ * ============================================
+ */
+ 
+/* Suppression des tables si BD existe deja */
+
+
+DROP TABLE IF EXISTS Teacher;
+
+/* Creation des tables */
+
+
+
+CREATE TABLE Teacher (
+    id      VARCHAR(3) NOT NULL,
+    name    VARCHAR(20) NOT NULL,
+	firstName    VARCHAR(20) NOT NULL,
+
+     CONSTRAINT TeacherPK PRIMARY KEY (id)
+);
+
+
+
+/* Remplissage des tables */
+
+
+INSERT INTO Teacher VALUES ('ABS','Absil','Romain');
+INSERT INTO Teacher VALUES ('MAP','Applaincourt','Michel');
+INSERT INTO Teacher VALUES ('MBA','Bastreghi','Monica');
+INSERT INTO Teacher VALUES ('BEJ','Beleho','Jonas');
+INSERT INTO Teacher VALUES ('PBT','Bettens','Pierre');
+INSERT INTO Teacher VALUES ('BIS','Bischop','Patrick');
+INSERT INTO Teacher VALUES ('DBO','Boigelot','Denis');
+INSERT INTO Teacher VALUES ('MCD','Codutti','Marco');
+INSERT INTO Teacher VALUES ('CUV','Cuvelier','Geneviève');
+INSERT INTO Teacher VALUES ('NDM','De Montigny','Nathalie');
+INSERT INTO Teacher VALUES ('JDS','Dossogne','Jérôme');
+INSERT INTO Teacher VALUES ('SDR','Drobisz','Sébastien');
+INSERT INTO Teacher VALUES ('BFE','Fetai','Besa');
+INSERT INTO Teacher VALUES ('EGR','Georges','Eric');
+INSERT INTO Teacher VALUES ('MHI','Hadjili','Mohamed');
+INSERT INTO Teacher VALUES ('HAL','Hallal','Amine');
+INSERT INTO Teacher VALUES ('Jonathan','Lechien','Jonathan');
+INSERT INTO Teacher VALUES ('CLG','Leignel','Christine');
+INSERT INTO Teacher VALUES ('LMA','Martinez','Sanchez Luis');
+INSERT INTO Teacher VALUES ('RMA','Mathieu','Rudy');
+INSERT INTO Teacher VALUES ('JMM','Mattens','Jean-Michel');
+INSERT INTO Teacher VALUES ('PMA','Matsos','Pantelis');
+INSERT INTO Teacher VALUES ('DNA','Nabet','David');
+INSERT INTO Teacher VALUES ('APA','Paquot','Arthur');
+INSERT INTO Teacher VALUES ('XPA','Paulus','Xavier');
+INSERT INTO Teacher VALUES ('NPX','Pettiaux','Nicolas');
+INSERT INTO Teacher VALUES ('SRE','Rexhep','Selim');
+INSERT INTO Teacher VALUES ('NRI','Richard','Nicolas');
+INSERT INTO Teacher VALUES ('ARO','Rousseau','Anne');
+INSERT INTO Teacher VALUES ('SRV','Servais','Frédéric');
+INSERT INTO Teacher VALUES ('TSE','Severs','Thierry');
+INSERT INTO Teacher VALUES ('JSS','Stoffen','Jean-Sébastien');
+INSERT INTO Teacher VALUES ('GVA','Van Assche','Gilles');
+INSERT INTO Teacher VALUES ('NVS','Vansteenkiste','Nicolas');
+INSERT INTO Teacher VALUES ('MWA','Wahid','Moussa');
