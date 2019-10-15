@@ -5,14 +5,13 @@
  
 /* Suppression des tables si BD existe deja */
 
+DROP TABLE IF EXISTS course;
 
-DROP TABLE IF EXISTS Teacher;
+DROP TABLE IF EXISTS teacher;
 
 /* Creation des tables */
 
-
-
-CREATE TABLE Teacher (
+CREATE TABLE teacher (
     id      VARCHAR(3) NOT NULL,
     name    VARCHAR(20) NOT NULL,
 	firstName    VARCHAR(20) NOT NULL,
@@ -20,42 +19,54 @@ CREATE TABLE Teacher (
      CONSTRAINT TeacherPK PRIMARY KEY (id)
 );
 
+CREATE TABLE course (
+     id      VARCHAR(7) NOT NULL,
+     title   VARCHAR(50) NOT NULL,
+     CONSTRAINT CoursePK PRIMARY KEY (id)
+);
+
 
 
 /* Remplissage des tables */
 
-INSERT INTO Teacher VALUES ('ABS','Absil','Romain');
-INSERT INTO Teacher VALUES ('MAP','Applaincourt','Michel');
-INSERT INTO Teacher VALUES ('MBA','Bastreghi','Monica');
-INSERT INTO Teacher VALUES ('BEJ','Beleho','Jonas');
-INSERT INTO Teacher VALUES ('PBT','Bettens','Pierre');
-INSERT INTO Teacher VALUES ('BIS','Bischop','Patrick');
-INSERT INTO Teacher VALUES ('DBO','Boigelot','Denis');
-INSERT INTO Teacher VALUES ('MCD','Codutti','Marco');
-INSERT INTO Teacher VALUES ('CUV','Cuvelier','Geneviève');
-INSERT INTO Teacher VALUES ('NDM','De Montigny','Nathalie');
-INSERT INTO Teacher VALUES ('JDS','Dossogne','Jérôme');
-INSERT INTO Teacher VALUES ('SDR','Drobisz','Sébastien');
-INSERT INTO Teacher VALUES ('BFE','Fetai','Besa');
-INSERT INTO Teacher VALUES ('EGR','Georges','Eric');
-INSERT INTO Teacher VALUES ('MHI','Hadjili','Mohamed');
-INSERT INTO Teacher VALUES ('HAL','Hallal','Amine');
-INSERT INTO Teacher VALUES ('Jonathan','Lechien','Jonathan');
-INSERT INTO Teacher VALUES ('CLG','Leignel','Christine');
-INSERT INTO Teacher VALUES ('LMA','Martinez','Sanchez Luis');
-INSERT INTO Teacher VALUES ('RMA','Mathieu','Rudy');
-INSERT INTO Teacher VALUES ('JMM','Mattens','Jean-Michel');
-INSERT INTO Teacher VALUES ('PMA','Matsos','Pantelis');
-INSERT INTO Teacher VALUES ('DNA','Nabet','David');
-INSERT INTO Teacher VALUES ('APA','Paquot','Arthur');
-INSERT INTO Teacher VALUES ('XPA','Paulus','Xavier');
-INSERT INTO Teacher VALUES ('NPX','Pettiaux','Nicolas');
-INSERT INTO Teacher VALUES ('SRE','Rexhep','Selim');
-INSERT INTO Teacher VALUES ('NRI','Richard','Nicolas');
-INSERT INTO Teacher VALUES ('ARO','Rousseau','Anne');
-INSERT INTO Teacher VALUES ('SRV','Servais','Frédéric');
-INSERT INTO Teacher VALUES ('TSE','Severs','Thierry');
-INSERT INTO Teacher VALUES ('JSS','Stoffen','Jean-Sébastien');
-INSERT INTO Teacher VALUES ('GVA','Van Assche','Gilles');
-INSERT INTO Teacher VALUES ('NVS','Vansteenkiste','Nicolas');
-INSERT INTO Teacher VALUES ('MWA','Wahid','Moussa');
+INSERT INTO teacher VALUES ('ABS','Absil','Romain');
+INSERT INTO teacher VALUES ('MAP','Applaincourt','Michel');
+INSERT INTO teacher VALUES ('MBA','Bastreghi','Monica');
+INSERT INTO teacher VALUES ('BEJ','Beleho','Jonas');
+INSERT INTO teacher VALUES ('PBT','Bettens','Pierre');
+INSERT INTO teacher VALUES ('BIS','Bischop','Patrick');
+INSERT INTO teacher VALUES ('DBO','Boigelot','Denis');
+INSERT INTO teacher VALUES ('MCD','Codutti','Marco');
+INSERT INTO teacher VALUES ('CUV','Cuvelier','Geneviève');
+INSERT INTO teacher VALUES ('NDM','De Montigny','Nathalie');
+INSERT INTO teacher VALUES ('JDS','Dossogne','Jérôme');
+INSERT INTO teacher VALUES ('SDR','Drobisz','Sébastien');
+INSERT INTO teacher VALUES ('BFE','Fetai','Besa');
+INSERT INTO teacher VALUES ('EGR','Georges','Eric');
+INSERT INTO teacher VALUES ('MHI','Hadjili','Mohamed');
+INSERT INTO teacher VALUES ('HAL','Hallal','Amine');
+INSERT INTO teacher VALUES ('Jonathan','Lechien','Jonathan');
+INSERT INTO teacher VALUES ('CLG','Leignel','Christine');
+INSERT INTO teacher VALUES ('LMA','Martinez','Sanchez Luis');
+INSERT INTO teacher VALUES ('RMA','Mathieu','Rudy');
+INSERT INTO teacher VALUES ('JMM','Mattens','Jean-Michel');
+INSERT INTO teacher VALUES ('PMA','Matsos','Pantelis');
+INSERT INTO teacher VALUES ('DNA','Nabet','David');
+INSERT INTO teacher VALUES ('APA','Paquot','Arthur');
+INSERT INTO teacher VALUES ('XPA','Paulus','Xavier');
+INSERT INTO teacher VALUES ('NPX','Pettiaux','Nicolas');
+INSERT INTO teacher VALUES ('SRE','Rexhep','Selim');
+INSERT INTO teacher VALUES ('NRI','Richard','Nicolas');
+INSERT INTO teacher VALUES ('ARO','Rousseau','Anne');
+INSERT INTO teacher VALUES ('SRV','Servais','Frédéric');
+INSERT INTO teacher VALUES ('TSE','Severs','Thierry');
+INSERT INTO teacher VALUES ('JSS','Stoffen','Jean-Sébastien');
+INSERT INTO teacher VALUES ('GVA','Van Assche','Gilles');
+INSERT INTO teacher VALUES ('NVS','Vansteenkiste','Nicolas');
+INSERT INTO teacher VALUES ('MWA','Wahid','Moussa');
+
+
+INSERT INTO course VALUES ('WEBG5','Développement web III');
+INSERT INTO course VALUES ('WEBG4','Développement web II');
+INSERT INTO course VALUES ('SYSG5','Système exploitation III');
+INSERT INTO course VALUES ('PRJG5','Gestion de projet');

@@ -16,6 +16,12 @@ class Rest extends Controller {
      return view('teachers',array('listTeachers' => $teachers));
     }
 
-}
+    function courses() {
+        $courses = Model::getAllCourses();
+        return view('courses',compact('courses'));
+    }
   
+  
+
+}
 ?>

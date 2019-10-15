@@ -14,3 +14,5 @@
 Route::get('/','Rest@index');
 
 Route::get('/teachers','Rest@teachers');
+
+Route::get('/courses','Rest@courses');
