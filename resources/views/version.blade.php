@@ -13,7 +13,7 @@
 </tr>
 <tr>
     <td> {{$version[2]}}</td>
-    <td> </td>
+    <td> {{$version[1]}}</td>
     <td>{{$version[3]}}</td>
 </tr>
 
