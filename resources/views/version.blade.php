@@ -3,7 +3,7 @@
 @section('content')
 
 <h1> Version du dernier commit.</h1>
-<table>
+<table border=1>
 {{$version[0]}}
 {{$version[2]}}
 <tr>
