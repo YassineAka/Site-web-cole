@@ -28,7 +28,8 @@ class Model
      * this function give you the date of the last commit.
      */
     public static function getVersion(){
-        shell_exec("");
+        $result = shell_exec("git log -1");
+        return $result;
     }
 
 

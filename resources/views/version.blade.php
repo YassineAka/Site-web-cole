@@ -4,4 +4,6 @@
 
 <h1> Version du dernier commit.</h1>
 
+{{$version}}
+
 @endsection
