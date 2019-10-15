@@ -31,5 +31,4 @@ class DuskTests extends DuskTestCase
                    ->assertPathIs('/~g42933/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
                });
    }
-
 }
