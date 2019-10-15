@@ -17,7 +17,7 @@ class Rest extends Controller {
     }
     function version(){
         $version=Model::getVersion();
-        return view('version',$version);
+        return view('version',array('version'=>$version));
     }
 
 }
