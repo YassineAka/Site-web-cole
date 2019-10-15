@@ -2,9 +2,8 @@
  
 namespace App\Http\Model;
  
-use Illuminate\Database\Eloquent\Model;
  
-class Course extends Model
+class Course 
 {
   private $id;
   private $title;
