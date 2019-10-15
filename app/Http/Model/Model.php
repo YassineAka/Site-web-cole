@@ -12,7 +12,7 @@ class Model
     public static function getAllTeachers()
     {
         //$pdo = new PDO("mysql:host=mysql-mohssine.alwaysdata.net;dbname=mohssine_test;charset=utf8", "mohssine", "catalan1070", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
 
         $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
                      From teacher ";        
