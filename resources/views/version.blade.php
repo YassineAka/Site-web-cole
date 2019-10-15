@@ -2,7 +2,7 @@
 @section('title','Home')
 @section('content')
 
-<h1> Version du dernier commit.</h1>
+<h1> Version du dernier commitageeee.</h1>
 
 {{$version}}
 
