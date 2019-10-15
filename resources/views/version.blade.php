@@ -3,7 +3,7 @@
 @section('content')
 
 <h1> Version du dernier commit.</h1>
-<table border=1>
+<table border=1 style="margin-left:15%">
 
 <tr>
     <th>Author</th>
