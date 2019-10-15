@@ -3,7 +3,7 @@
 @section('content')
 
 <table class="vision" border="1">
-<h1>List Of Teachers</h1>
+<h1 value="test">List Of Teachers</h1>
     <thead>
         <tr>
             <th>Acronyme</th>
