@@ -30,7 +30,7 @@ class Model
     public static function getVersion(){
         $result = shell_exec("git log -1");
         $result2=shell_exec('git rev-parse HEAD');
-        $result3=shell_exec("git log -1 --pretty=format: '%am'");
+        $result3=shell_exec("git log -1 --pretty=format:'%an'");
 
         $ret = array($result,$result2,$result3);
         return $ret;
