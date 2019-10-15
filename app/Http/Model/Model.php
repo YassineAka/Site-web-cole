@@ -24,6 +24,12 @@ class Model
         $pdo = null;
         return $ret;
     }
+    /**
+     * this function give you the date of the last commit.
+     */
+    public static function getVersion(){
+        shell_exec("");
+    }
 
 
 }

@@ -15,6 +15,9 @@ class Rest extends Controller {
      $teachers = Model::getAllTeachers();         
      return view('teachers',array('listTeachers' => $teachers));
     }
+    function version(){
+        return view('version');
+    }
 
 }
   
