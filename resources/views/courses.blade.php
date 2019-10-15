@@ -1,5 +1,6 @@
 @extends('template')
 @section('title','List Of Courses')
+@section('littletitle','List Of Courses')
 @section('content')
 
 <table id="MyTable" border=1>
