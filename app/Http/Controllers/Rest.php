@@ -29,7 +29,7 @@ class Rest extends Controller {
         $nom=$_GET['nom'];
         $prenom=$_GET['prenom'];
         Model::inscriptionProf($id,$nom,$prenom);
-        return $this->teachers();
+        
     }
   
 

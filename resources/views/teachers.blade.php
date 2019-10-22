@@ -27,7 +27,7 @@
 </div>
 <div class="col">
 
-    <form method="GET" action="{{action('Rest@inscription')}}" style="border:1px solid #ccc;padding:2%;margin-right:5%;">
+    <form style="border:1px solid #ccc;padding:2%;margin-right:5%;">
         <h1>Inscription</h1>
         <p>Veuillez entrer les cordonnées du professeur a ajouté dans le formulaire ci-joint.</p>
         <div class="form-group">
@@ -46,30 +46,35 @@
     </form>
 </div>
 </div>
-
-
-<script>    
-    if(typeof window.history.pushState == 'function') {
-        window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
-    }
-</script>  
 <script>
     $(document).ready(function(){
-            $(".inscription" ).click(function(){
+            $(".inscription").click(function(){
                 let id = document.getElementById('id').value;
                 let nom = document.getElementById('nom').value;
                 let prenom = document.getElementById('prenom').value;
 
-                if(pseudo != ''){
+                
                     
                     alert(" ,votre inscription a bien été enregistrée !");
-               });
+               );
  
  
                 }
                 
-            })
-        
-    })
+            });
+  
 </script>
+method="GET" action="{{action('Rest@inscription')}}" 
+
+
+<div id="answer"></div> 
+ <script>
+  $(document).ready(function(){
+       $("button").click(function(){ 
+            $.get("addStudent?id=&nom=&prenom="+, function(data, status){ 
+                $("#answer").html(data);
+            }); 
+        }); 
+    }); */
+                     </script>
 @endsection
