@@ -24,7 +24,9 @@ class Rest extends Controller {
         $courses = Model::getAllCourses();
         return view('courses',compact('courses'));
     }
-  
+    function add($id,$name){
+        return Model::add($id,$name);
+    }
   
 
 }

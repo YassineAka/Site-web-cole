@@ -51,7 +51,22 @@ class Model
         $pdo = NULL;
         return $tabcours;
      }
-      
+     public static function add( $id,$name)                                                                                                                            
+     {                                                                                                                                                                 
+             $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
+             $requetes = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
+             $result = $pdo->query($requetes);                                                                                                                         
+             if ($result->rowCount() < 1) {                                                                                                                            
+                 $addSudent = "INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";                                                                                
+                 $pdo->query($addSudent);                                                                                                                              
+                 return "Successful Addition!";                                                                                                                        
+             } else {                                                                                                                                                  
+                 return "The matricule is already assigned";                                                                                                           
+             }                                                                                                                                                         
+                                                                                                                                                                       
+             $pdo = null;                                                                                                                                              
+                                                                                                                                                                    
+     }
      
 
 
