@@ -21,14 +21,15 @@
 
     <!-- Styles -->
     <style>
-      ul {
+      ul:not(#listMissions) {
         list-style-type: none;
         margin: 0;
         padding: 0;
         overflow: hidden;
         background-color: #333;
       }
-
+      
+    
       li {
         float: left;
       }
@@ -110,7 +111,9 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ url('courses') }}">List Of Courses</a>
   </li>
-
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
+  </li>
 </ul>
   <h1> @yield('littletitle')</h1>
   <main>

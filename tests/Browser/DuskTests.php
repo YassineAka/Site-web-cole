@@ -16,19 +16,29 @@ class DuskTests extends DuskTestCase
    public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
-           $browser->visit('/conflit/Projet-Attributions-Groupe-LesCerveaux/public/')
+           $browser->visit('Projet-Attributions-Groupe-LesCerveaux/public/')
            ->assertSee('Home')
            ->assertSee('List Of Teachers');
        });
        
    }
 
-   public function testGoToServiceStudents()
+   public function testGoToServiceTeachers()
    {
        $this->browse(function (Browser $browser) {
-           $browser->visit('/conflit/Projet-Attributions-Groupe-LesCerveaux/public/')
+           $browser->visit('Projet-Attributions-Groupe-LesCerveaux/public/')
                     ->clickLink("List Of Teachers")
-                   ->assertPathIs('/conflit/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
+                   ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
                });
    }
+
+   public function testGoToServiceMissions()
+   {
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
+                    ->clickLink("List Of Missions")
+                   ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/missions');
+               });
+   }
+   
 }

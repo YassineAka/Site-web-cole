@@ -27,9 +27,9 @@ class Rest extends Controller {
   
     function missions() {
         $missions = Model::getAllMissions();
-        return view('missions',compact('missions'));
+        $cat=Model::getCategorie();
+        $cat = array_unique($cat);
+        return view('missions',compact('missions','cat'));
     }
-  
-
 }
 ?>

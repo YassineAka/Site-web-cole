@@ -15,7 +15,7 @@ class Mission
       $this->nbHours = $nbHours;
       $this->cat = $cat;
   }
- 
+
   public function __toString() {
       return "($this->title,$this->nbHours,$this->cat)";
   }
