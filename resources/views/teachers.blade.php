@@ -2,22 +2,26 @@
 @section('title','List Of Teachers')
 @section('content')
 <div class="row">
-    <div class="col"> 
-        <table class="vision" border="1" id="tableau">
+    <div class="col"style="margin-left: 2%;"> 
+        <table class="table table-striped table-hover" id="tableau" >
             <h1>List Of Teachers</h1>
             <thead>
                 <tr>
-                    <th>Acronyme</th>
-                    <th>Name</th>
-                    <th>Fisrt Name</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Acronyme</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Fisrt Name</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($listTeachers as $teacher)
-                <tr id="{{$teacher->id}}">
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td> {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
+                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
 
                 </tr>
                 @endforeach
