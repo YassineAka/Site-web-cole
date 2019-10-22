@@ -107,6 +107,9 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ url('teachers') }}">List Of Teachers</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url('courses') }}">List Of Courses</a>
+  </li>
 
 </ul>
   <h1> @yield('littletitle')</h1>

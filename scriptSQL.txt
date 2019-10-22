@@ -5,19 +5,29 @@
  
 /* Suppression des tables si BD existe deja */
 
+DROP TABLE IF EXISTS course;
 
 DROP TABLE IF EXISTS teacher;
 
 /* Creation des tables */
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> master
 CREATE TABLE teacher (
     id      VARCHAR(3) NOT NULL,
     name    VARCHAR(20) NOT NULL,
 	firstName    VARCHAR(20) NOT NULL,
 
      CONSTRAINT teacherPK PRIMARY KEY (id)
+);
+
+CREATE TABLE course (
+     id      VARCHAR(7) NOT NULL,
+     title   VARCHAR(50) NOT NULL,
+     CONSTRAINT CoursePK PRIMARY KEY (id)
 );
 
 
@@ -40,7 +50,11 @@ INSERT INTO teacher VALUES ('BFE','Fetai','Besa');
 INSERT INTO teacher VALUES ('EGR','Georges','Eric');
 INSERT INTO teacher VALUES ('MHI','Hadjili','Mohamed');
 INSERT INTO teacher VALUES ('HAL','Hallal','Amine');
+<<<<<<< HEAD
+INSERT INTO teacher VALUES ('Jonathan','Lechien','Jonathan');
+=======
 INSERT INTO teacher VALUES ('JLC','Lechien','Jonathan');
+>>>>>>> master
 INSERT INTO teacher VALUES ('CLG','Leignel','Christine');
 INSERT INTO teacher VALUES ('LMA','Martinez','Sanchez Luis');
 INSERT INTO teacher VALUES ('RMA','Mathieu','Rudy');
@@ -59,3 +73,12 @@ INSERT INTO teacher VALUES ('JSS','Stoffen','Jean-Sébastien');
 INSERT INTO teacher VALUES ('GVA','Van Assche','Gilles');
 INSERT INTO teacher VALUES ('NVS','Vansteenkiste','Nicolas');
 INSERT INTO teacher VALUES ('MWA','Wahid','Moussa');
+<<<<<<< HEAD
+
+
+INSERT INTO course VALUES ('WEBG5','Développement web III');
+INSERT INTO course VALUES ('WEBG4','Développement web II');
+INSERT INTO course VALUES ('SYSG5','Système exploitation III');
+INSERT INTO course VALUES ('PRJG5','Gestion de projet');
+=======
+>>>>>>> master

@@ -20,6 +20,12 @@ class Rest extends Controller {
         return view('version',array('version'=>$version));
     }
 
-}
+    function courses() {
+        $courses = Model::getAllCourses();
+        return view('courses',compact('courses'));
+    }
   
+  
+
+}
 ?>
