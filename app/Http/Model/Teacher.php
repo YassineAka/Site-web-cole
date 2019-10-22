@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Model;
-class Teacher{
+
+
+class Teacher {
     public $id;
     public $name;
     public $firstName;
