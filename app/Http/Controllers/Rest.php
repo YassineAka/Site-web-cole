@@ -30,7 +30,17 @@ class Rest extends Controller {
         $prenom=$_GET['prenom'];
         return Model::inscriptionProf($id,$nom,$prenom);
     }
+    function add($id,$name){
+        return Model::add($id,$name);
+    }
   
 
+  
+    function missions() {
+        $missions = Model::getAllMissions();
+        $cat=Model::getCategorie();
+        $cat = array_unique($cat);
+        return view('missions',compact('missions','cat'));
+    }
 }
 ?>
