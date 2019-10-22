@@ -66,7 +66,32 @@ class Model
                                                                                                                                                                     
      }
      
+     public static function getAllMissions() {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT mission.title, mission.nbHours,mission.cat
+                  FROM mission";
+    
+        $mission = $pdo->query($requetes);
+        $tabmissions = array ();
+        foreach ($mission as $row) {
+             array_push($tabmissions,new Mission($row["title"],$row["nbHours"],$row["cat"]));
+               }
+        $pdo = NULL;
+        return $tabmissions;
+     }
 
+     public static function getCategorie() {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT mission.cat
+        FROM mission";
 
+        $cate = $pdo->query($requetes);
+        $tabcat = array ();
+        foreach ($cate as $row) {
+            array_push($tabcat,new Categorie($row["cat"]));
+        }
+        $pdo = NULL;
+        return $tabcat;
+     }
 }
 ?>

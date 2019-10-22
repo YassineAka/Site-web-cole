@@ -42,4 +42,26 @@ class ModelTest extends TestCase
 
     }
 
+
+
+    public function testGetAllMissions()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT mission.title, mission.nbHours,mission.cat
+                  FROM mission";
+           
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllMissions()));
+    }
+    public function testGetCategorie()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT mission.cat
+        FROM mission";
+
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getCategorie()));
+    }
 }

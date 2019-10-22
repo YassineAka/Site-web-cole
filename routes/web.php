@@ -20,3 +20,4 @@ Route::get('/version','Rest@version');
 Route::get('/courses','Rest@courses');
 
 Route::get('/courses/add/{id}/{name}','Rest@add');
+Route::get('/missions','Rest@missions');
