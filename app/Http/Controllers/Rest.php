@@ -25,6 +25,10 @@ class Rest extends Controller {
         return view('courses',compact('courses'));
     }
   
+    function missions() {
+        $missions = Model::getAllMissions();
+        return view('missions',compact('missions'));
+    }
   
 
 }

@@ -17,3 +17,4 @@ Route::get('/teachers','Rest@teachers');
 
 Route::get('/version','Rest@version');
 Route::get('/courses','Rest@courses');
+Route::get('/missions','Rest@missions');
