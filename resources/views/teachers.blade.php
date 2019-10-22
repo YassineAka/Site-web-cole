@@ -1,8 +1,9 @@
 @extends('template')
 @section('title','List Of Teachers')
 @section('content')
-
-<table class="vision" border="1">
+<div class="row">
+    <div class="col"> 
+    <table class="vision" border="1">
 <h1 value="test">List Of Teachers</h1>
     <thead>
         <tr>
@@ -22,27 +23,31 @@
         </tr>
         @endforeach
     </tbody>
-</table id="formulaire">
-<form method="GET" action="{{action('Rest@inscription')}}" style="border:1px solid #ccc">
-  <div class="container">
-    <h1>Inscription</h1>
-    <p>Veuillez entrer les cordonnées du professeur a ajouté dans le formulaire ci-joint.</p>
-    <hr>
-    <label><b>Acronyme</b></label>
-    <input type="text" placeholder="Entrez votre acronyme" name="id" id="id" required>
+</table>
+</div>
+<div class="col">
 
-    <label><b>Nom</b></label>
-    <input type="text" placeholder="Entrez votre nom" name="nom" id="nom" required>
+    <form method="GET" action="{{action('Rest@inscription')}}" style="border:1px solid #ccc;padding:2%;margin-right:5%;">
+        <h1>Inscription</h1>
+        <p>Veuillez entrer les cordonnées du professeur a ajouté dans le formulaire ci-joint.</p>
+        <div class="form-group">
+            <label><b>Acronyme</b></label>
+            <input type="text" placeholder="Entrez votre acronyme" class="form-control" name="id" id="id" required>
+        </div>
+        <div class="form-group">
+            <label><b>Nom</b></label>
+            <input type="text" placeholder="Entrez votre nom" class="form-control" name="nom" id="nom" required>
+        </div>
+        <div class="form-group">
+            <label><b>Prenom</b></label>
+            <input type="text" placeholder="Entrez votre prénom"  class="form-control" name="prenom" id="prenom" required>
+        </div>
+        <button type="submit"class="inscription">Inscrire</button>
+    </form>
+</div>
+</div>
 
-    <label><b>Prenom</b></label>
-    <input type="text" placeholder="Entrez votre prénom" name="prenom" id="prenom" required>
- 
-    <div class="clearfix">
-      <button type="submit"class="inscription">Inscrire</button>
-    </div>
-  </div>
 
-</form>
 <script>    
     if(typeof window.history.pushState == 'function') {
         window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
@@ -57,7 +62,7 @@
 
                 if(pseudo != ''){
                     
-                    alert(pseudo+" ,votre inscription a bien été enregistrée !");
+                    alert(" ,votre inscription a bien été enregistrée !");
                });
  
  
