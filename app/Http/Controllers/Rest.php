@@ -12,8 +12,8 @@ class Rest extends Controller {
  
     function teachers()
     {
-     $teachers = Model::getAllTeachers();         
-     return view('teachers',array('listTeachers' => $teachers));
+        $teachers = Model::getAllTeachers();    
+        return view('teachers',array('listTeachers' => $teachers));
     }
     function version(){
         $version=Model::getVersion();
@@ -24,8 +24,26 @@ class Rest extends Controller {
         $courses = Model::getAllCourses();
         return view('courses',compact('courses'));
     }
-  
-  
+    function inscriptionProf(){
+        $id=$_GET['id'];
+        $nom=$_GET['nom'];
+        $prenom=$_GET['prenom'];
+        if(!empty($id) && !empty($nom) && !empty($prenom)){
+            return Model::inscriptionProf($id,$nom,$prenom);
+        }else{
+            return "false";
+        }
+    }
 
+    function add($id,$name){
+        return Model::add($id,$name);
+    }
+  
+    function missions() {
+        $missions = Model::getAllMissions();
+        $cat=Model::getCategorie();
+        $cat = array_unique($cat);
+        return view('missions',compact('missions','cat'));
+    }
 }
 ?>

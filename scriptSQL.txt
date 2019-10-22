@@ -9,6 +9,8 @@ DROP TABLE IF EXISTS course;
 
 DROP TABLE IF EXISTS teacher;
 
+DROP TABLE IF EXISTS mission;
+
 /* Creation des tables */
 
 
@@ -27,6 +29,13 @@ CREATE TABLE course (
      CONSTRAINT CoursePK PRIMARY KEY (id)
 );
 
+CREATE TABLE mission (
+     id      INT NOT NULL AUTO_INCREMENT,
+     title   VARCHAR(50) NOT NULL,
+     nbHours NUMERIC(2) NOT NULL,
+     cat     VARCHAR(50) NOT NULL,
+     CONSTRAINT missionPK PRIMARY KEY (id)
+);
 
 
 /* Remplissage des tables */
@@ -72,3 +81,13 @@ INSERT INTO course VALUES ('WEBG5','Développement web III');
 INSERT INTO course VALUES ('WEBG4','Développement web II');
 INSERT INTO course VALUES ('SYSG5','Système exploitation III');
 INSERT INTO course VALUES ('PRJG5','Gestion de projet');
+
+
+
+INSERT INTO `mission` (title,nbHours,cat) VALUES ('Trouver un stage Erasmus',10 ,'Stage');
+INSERT INTO `mission` (title,nbHours,cat) VALUES ('Trouver un stage Belgique',10 ,'Stage');
+INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Organiser une seance de remediation ',10 ,'Aide reussite');
+INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de compte',10 ,'Administration Git');
+INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de stokage',10 ,'Administration Git');
+INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de inscription',10 ,'Inscription');
+INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion des paiements',10 ,'Inscription');
