@@ -59,10 +59,8 @@ class Model
              if ($result->rowCount() < 1) {                                                                                                                            
                  $addSudent = "INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";                                                                                
                  $pdo->query($addSudent);                                                                                                                              
-                 return "Successful Addition!";                                                                                                                        
-             } else {                                                                                                                                                  
-                 return "The matricule is already assigned";                                                                                                           
-             }                                                                                                                                                         
+                                                                                                                                      
+             }                                                                                                                                                       
                                                                                                                                                                        
              $pdo = null;                                                                                                                                              
                                                                                                                                                                     
