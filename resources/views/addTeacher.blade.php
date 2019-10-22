@@ -1,29 +1,8 @@
 @extends('template')
-@section('title','List Of Teachers')
-@section('content')
-
-<table class="vision" border="1">
-<h1 value="test">List Of Teachers</h1>
-    <thead>
-        <tr>
-            <th>Acronyme</th>
-            <th>Name</th>
-            <th>Fisrt Name</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($listTeachers as $teacher)
-        <tr id="{{$teacher->id}}">
-            <td> {{$teacher->id}} </td>
-            <td> {{$teacher->name}}</td>
-            <td> {{$teacher->firstName}}</td>
-
-        </tr>
-        @endforeach
-    </tbody>
-</table id="formulaire">
-<form method="GET" action="{{action('Rest@inscription')}}" style="border:1px solid #ccc">
+ 
+@section('contenu')
+ 
+<form method="GET" action="{{action('Model@inscription')}}" style="border:1px solid #ccc">
   <div class="container">
     <h1>Inscription</h1>
     <p>Veuillez entrer les cordonnées du professeur a ajouté dans le formulaire ci-joint.</p>
@@ -41,7 +20,6 @@
       <button type="submit"class="inscription">Inscrire</button>
     </div>
   </div>
-
 </form>
 <script>    
     if(typeof window.history.pushState == 'function') {
@@ -68,3 +46,5 @@
     })
 </script>
 @endsection
+
+

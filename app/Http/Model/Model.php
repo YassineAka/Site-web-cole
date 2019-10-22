@@ -11,7 +11,6 @@ class Model
 
     public static function getAllTeachers()
     {
-        //$pdo = new PDO("mysql:host=mysql-mohssine.alwaysdata.net;dbname=mohssine_test;charset=utf8", "mohssine", "catalan1070", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
        // $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
 
@@ -40,7 +39,8 @@ class Model
     }
 
     public static function getAllCourses() {
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        // $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $requetes = "SELECT course.id, course.title
                     FROM course ";
         $cours = $pdo->query($requetes);
@@ -51,7 +51,13 @@ class Model
         $pdo = NULL;
         return $tabcours;
      }
-      
+    public static function inscriptionProf($id,$nom,$prenom){
+        // $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);  
+        $requetes = " INSERT INTO teacher VALUES ('$id','$nom','$prenom') ";
+        $pdo->query($requetes);
+        $pdo = NULL;
+    }
      
 
 

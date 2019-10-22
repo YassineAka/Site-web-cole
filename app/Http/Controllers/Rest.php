@@ -24,7 +24,14 @@ class Rest extends Controller {
         $courses = Model::getAllCourses();
         return view('courses',compact('courses'));
     }
-  
+    function inscription(){
+        $id=$_GET['id'];
+        $nom=$_GET['nom'];
+        $prenom=$_GET['prenom'];
+        Model::inscriptionProf($id,$nom,$prenom);
+        return $this->teachers();
+
+    }
   
 
 }
