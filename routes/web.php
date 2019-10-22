@@ -15,8 +15,5 @@ Route::get('/','Rest@index');
 
 Route::get('/teachers','Rest@teachers');
 
-<<<<<<< HEAD
 Route::get('/version','Rest@version');
-=======
 Route::get('/courses','Rest@courses');
->>>>>>> master
