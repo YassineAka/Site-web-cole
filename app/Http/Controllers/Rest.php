@@ -28,13 +28,16 @@ class Rest extends Controller {
         $id=$_GET['id'];
         $nom=$_GET['nom'];
         $prenom=$_GET['prenom'];
-        return Model::inscriptionProf($id,$nom,$prenom);
+        if(!empty($id) && !empty($nom) && !empty($prenom)){
+            return Model::inscriptionProf($id,$nom,$prenom);
+        }else{
+            return "false";
+        }
     }
+
     function add($id,$name){
         return Model::add($id,$name);
     }
-  
-
   
     function missions() {
         $missions = Model::getAllMissions();

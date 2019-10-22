@@ -30,24 +30,24 @@
     </div>
 
     <div class="col">
-        <div style="border:1px solid #ccc;padding:2%;margin-right:5%;" >
+        <div style="padding:2%;margin-right:5%;" >
             <h1>Inscription</h1>
-            <p>Veuillez entrer les cordonnées du professeur a ajouté dans le formulaire ci-joint.</p>
+            <p>Veuillez entrer les cordonnées du professeur à ajouter dans le formulaire ci-joint.</p>
             
             <div class="form-group" id="answer"></div>
             <div class="form-group">
                 <label><b>Acronyme</b></label>
-                <input type="text" placeholder="Entrez votre acronyme" class="form-control" name="id" id="id" required maxlength="3" size="3">
+                <input type="text" placeholder="Entrez votre acronyme..." class="form-control" name="id" id="id" required maxlength="3" size="3">
             </div>
             <div class="form-group">
                 <label><b>Nom</b></label>
-                <input type="text" placeholder="Entrez votre nom" class="form-control" name="nom" id="nom" required>
+                <input type="text" placeholder="Entrez votre nom..." class="form-control" name="nom" id="nom" required>
             </div>
             <div class="form-group">
                 <label><b>Prenom</b></label>
-                <input type="text" placeholder="Entrez votre prénom"  class="form-control" name="prenom" id="prenom" required>
+                <input type="text" placeholder="Entrez votre prénom..."  class="form-control" name="prenom" id="prenom" required>
             </div>
-            <button type="submit"class="inscription" id="inscription">Inscrire</button>
+            <button id="inscription"type="submit" class="btn btn-primary">Inscrire</button>
         </div>
     </div>
 </div>
@@ -57,7 +57,6 @@
             let id = $("#id").val();
             let nom = $("#nom").val();
             let prenom = $("#prenom").val();
-
             $.get("addTeacher?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
@@ -71,6 +70,7 @@
                     $("#answer").html(msg);
                 }
             }); 
+            
         }); 
     }); 
 </script>

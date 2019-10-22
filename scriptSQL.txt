@@ -9,6 +9,8 @@ DROP TABLE IF EXISTS course;
 
 DROP TABLE IF EXISTS teacher;
 
+DROP TABLE IF EXISTS mission;
+
 /* Creation des tables */
 
 
