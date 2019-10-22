@@ -52,11 +52,21 @@ class Model
         return $tabcours;
      }
     public static function inscriptionProf($id,$nom,$prenom){
-        // $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        // $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);  
-        $requetes = " INSERT INTO teacher VALUES ('$id','$nom','$prenom') ";
-        $pdo->query($requetes);
-        $pdo = NULL;
+        $sqlTeacher = "SELECT id FROM teacher WHERE id = '$id' ";
+        $listTeacher=$pdo->query($sqlTeacher);
+
+        if($listTeacher->rowCount() == 0){
+            $requetes = " INSERT INTO teacher VALUES ('$id','$nom','$prenom') ";
+            $pdo->query($requetes);
+            $pdo = NULL;
+            return "true";
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }
     }
      
 
