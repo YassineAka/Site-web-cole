@@ -114,6 +114,9 @@
   <li class="nav-item">
     <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
   </li>
+  <li class="nav-item">
+  <a class="nav-link" href="{{ url('version') }}">version</a>  </li>
+
 </ul>
   <h1> @yield('littletitle')</h1>
   <main>
