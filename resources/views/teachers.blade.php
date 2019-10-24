@@ -7,6 +7,7 @@
             <h1>List Of Teachers</h1>
             <thead>
                 <tr>
+                    <th scope="col">#</th>
                     <th scope="col">Acronyme</th>
                     <th scope="col">Name</th>
                     <th scope="col">Fisrt Name</th>
@@ -16,6 +17,7 @@
             <tbody>
                 @foreach($listTeachers as $teacher)
                 <tr>
+                    <th scope="row">{{ $loop->iteration }}</th>
                     <td> {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
