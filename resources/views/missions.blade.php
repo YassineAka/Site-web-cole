@@ -22,7 +22,7 @@
    </div>
 
    <div id ="styleForm" style="padding:2%;margin-right:5%;">
-      <h1>Inscription</h1>
+      <h1>Inscriptions</h1>
       <p>Veuillez entrer les cordonnées de la mission à ajouter dans le formulaire ci-joint.</p>
 
       <div class="form-group">
