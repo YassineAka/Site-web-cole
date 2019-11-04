@@ -14,17 +14,37 @@ class DuskTests extends DuskTestCase
     *
     * @return void
     */
-   /*public function testAcceuil()
+   
+    public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-           $browser->visit('Projet-Attributions-Groupe-LesCerveaux/public/')
-           ->assertSee('Home')
-           ->assertSee('List Of Teachers');
+            ->assertSee('Home');
        });
        
    }
 
+
+
+   public function testAddTeachersSuccesfull()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                    ->value('#id', 'MOA')
+                    ->pause(1000)
+                    ->value('#nom', 'LaSquale')
+                    ->pause(1000)
+                    ->value('#prenom', 'Moha')
+                    ->pause(1000)
+                    ->press('#inscription')
+                    ->pause(1000)
+                    ->assertSee("MOA");
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeIdTeacher="DELETE FROM teacher WHERE id='MOA'";
+        $pdo->query($removeIdTeacher);
+        $pdo = null;
+    }
    public function testGoToServiceTeachers()
    {
        $this->browse(function (Browser $browser) {
@@ -32,9 +52,10 @@ class DuskTests extends DuskTestCase
                     ->clickLink("List Of Teachers")
                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
                });
-   }*/
+   }
 
-   public function testAddStudentSuccesfull()
+
+   public function testAddCourseSuccesfull()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
@@ -47,14 +68,17 @@ class DuskTests extends DuskTestCase
                     ->assertSee("test");
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdStudent="DELETE FROM course WHERE id='test'";
-        $pdo->query($removeIdStudent);
+        $removeIdCourse="DELETE FROM course WHERE id='test'";
+        $pdo->query($removeIdCourse);
         $pdo = null;
     }
 
-           $browser->visit('Projet-Attributions-Groupe-LesCerveaux/public/')
-                    ->clickLink("List Of Teachers")
-                   ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
+    public function testGoToServiceCourse()
+   {
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
+                    ->clickLink("List Of Courses")
+                   ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/courses');
                });
    }
 
@@ -66,5 +90,26 @@ class DuskTests extends DuskTestCase
                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/missions');
                });
    }
+
+   public function testAddMissionSuccesfull()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')
+                    ->value('#title', 'ceciEstUnTest')
+                    ->pause(1000)
+                    ->value('#nbHours', '10')
+                    ->pause(1000)
+                    ->select('#selector', 'Inscription')
+                    ->pause(1000)
+                    ->press('#button')
+                    ->pause(1000)
+                    ->assertSee("ceciEstUnTest");
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeIdMission="DELETE FROM mission WHERE title='ceciEstUnTest'";
+        $pdo->query($removeIdMission);
+        $pdo = null;
+    }
+   } 
    
-}
+

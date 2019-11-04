@@ -101,6 +101,16 @@ class Model
         return $tabmissions;
      }
 
+     public static function addMission($title,$nbHours,$cat)                                                                                                                            
+     {                                                                                                                                                                 
+             $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                                                                                                                  
+                 $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";                                                                                
+                 $pdo->query($addMission);                                                                                                                              
+                                                                                                                                                                       
+             $pdo = null;                                                                                                                                              
+                                                                                                                                                                    
+     }
+
      public static function getCategorie() {
         //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);      
         $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);          

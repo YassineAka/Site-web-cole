@@ -29,6 +29,9 @@
         height: 100vh;
         margin: 0;
       }
+      #styleForm{
+        margin-left:1000px;
+      }
 
     </style>
   </head>
