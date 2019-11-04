@@ -35,8 +35,8 @@ class Rest extends Controller {
         }
     }
 
-    function add($id,$name){
-        return Model::add($id,$name);
+    function addCourse($id,$name){
+        return Model::addCourse($id,$name);
     }
   
     function missions() {
@@ -45,5 +45,9 @@ class Rest extends Controller {
         $cat = array_unique($cat);
         return view('missions',compact('missions','cat'));
     }
+    function addMission($title,$nbHours,$cat){
+        return Model::addMission($title,$nbHours,$cat);
+    }
+
 }
 ?>

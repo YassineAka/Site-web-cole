@@ -68,7 +68,7 @@ class Model
             return "false";
         }
     }
-     public static function add( $id,$name)                                                                                                                            
+     public static function addCourse($id,$name)                                                                                                                            
      {                                                                                                                                                                 
              $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
              $requetes = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
@@ -95,6 +95,16 @@ class Model
                }
         $pdo = NULL;
         return $tabmissions;
+     }
+
+     public static function addMission($title,$nbHours,$cat)                                                                                                                            
+     {                                                                                                                                                                 
+             $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                                                                                                                  
+                 $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";                                                                                
+                 $pdo->query($addMission);                                                                                                                              
+                                                                                                                                                                       
+             $pdo = null;                                                                                                                                              
+                                                                                                                                                                    
      }
 
      public static function getCategorie() {
