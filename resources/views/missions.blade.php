@@ -28,11 +28,11 @@
                 <input type="text"  id="title" class="form-control" placeholder="Title...">
             </div>
             <div class="form-group">
-                <label for="nbHours">Hours</label>
+                <label for="name">Hours</label>
                 <input type="number"  id="nbHours"class="form-control" placeholder="Hours...">
             </div>
             <div class="form-group">
-            <label for="cat">Catégorie</label><br/>
+            <label for="name">Catégorie</label><br/>
                <SELECT class="mission" name= "selector" id="selector" size="1">
                   @foreach ($cat as $categorie)
                      <OPTION value="{{$categorie->getCat()}}" > {{$categorie->getCat()}}

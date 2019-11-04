@@ -96,7 +96,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')
-                    ->value('#title', 'ceciEstUnTest')
+                    ->value('#title', 'hey')
                     ->pause(1000)
                     ->value('#nbHours', '10')
                     ->pause(1000)
@@ -104,10 +104,10 @@ class DuskTests extends DuskTestCase
                     ->pause(1000)
                     ->press('#btn')
                     ->pause(1000)
-                    ->assertSee("ceciEstUnTest");
+                    ->assertSee("hey");
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdMission="DELETE FROM mission WHERE title='ceciEstUnTest'";
+        $removeIdMission="DELETE FROM mission WHERE title='hey'";
         $pdo->query($removeIdMission);
         $pdo = null;
     }
