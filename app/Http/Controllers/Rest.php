@@ -48,6 +48,8 @@ class Rest extends Controller {
     function addMission($title,$nbHours,$cat){
         return Model::addMission($title,$nbHours,$cat);
     }
-
+    function deleteCourse($id){
+        return Model::deleteCourse($id);
+    }
 }
 ?>

@@ -18,7 +18,9 @@ class ModelTest extends TestCase
      */
     public function testGetAllTeachers()
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
         $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
                      From teacher ";        
         $result = $pdo->query($requetes);
@@ -26,7 +28,9 @@ class ModelTest extends TestCase
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
     }
     public function testAddTeacher(){
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
         $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
                      From teacher ";        
         $result = $pdo->query($requetes);
@@ -58,7 +62,9 @@ class ModelTest extends TestCase
 
     public function testGetAllMissions()
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
         $requetes = "SELECT mission.title, mission.nbHours,mission.cat
                   FROM mission";
            
@@ -68,7 +74,9 @@ class ModelTest extends TestCase
     }
     public function testGetCategorie()
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
         $requetes = "SELECT mission.cat
         FROM mission";
 
@@ -79,7 +87,9 @@ class ModelTest extends TestCase
 
     public function testAddMission()
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
         $title="Test";
         $nbHours="10";
         $cat="Inscription";
@@ -91,6 +101,20 @@ class ModelTest extends TestCase
         $pdo->query($removeIdMission);
         $pdo = null;
         $this->assertTrue($verif==1);
+
+    }
+    public function testDeleteCourse()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="Test";
+        $name="salut";
+        $addCourse="INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";
+        $pdo->query($addCourse);
+        Model::deleteCourse($id);
+        $requete="SELECT * FROM course WHERE id='$id'";
+        $result = $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
 
     }
 

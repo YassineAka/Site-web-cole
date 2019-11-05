@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col"style="margin-left: 2%;"> 
         <table class="table table-striped table-hover" id="MyTable">
-            <h1>List Of Courses</h1>
+            <h1>List Of Courses </h1>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -65,9 +65,25 @@
       location.reload();
       $("#MyTable").load( "courses #MyTable" );
     });
-            });
-            
+            });       
+
+    $(document).ready(function() {
+        let sigle;
+        $(".btn").click(function() {
+        sigle = $(this).val();
+        let url ="./courses/delete/"+sigle;
+        $.get(url, function(jsData, status) {});
+        location.reload();
+        $("#MyTable").load( "courses #MyTable" );
+
+
+    });
+        });    
+
+
+
 </script>
+
  
 
 
