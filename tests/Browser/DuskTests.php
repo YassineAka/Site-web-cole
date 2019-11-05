@@ -15,7 +15,7 @@ class DuskTests extends DuskTestCase
     * @return void
     */
    
-    /*public function testAcceuil()
+    public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
@@ -109,7 +109,7 @@ class DuskTests extends DuskTestCase
         $removeIdMission="DELETE FROM mission WHERE title='ceciEstUnTest'";
         $pdo->query($removeIdMission);
         $pdo = null;
-    }*/
+    }
     public function testDeleteCourseSuccesfull()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
