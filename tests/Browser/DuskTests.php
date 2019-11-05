@@ -117,9 +117,10 @@ class DuskTests extends DuskTestCase
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $id="XXX";
         $name="Test selenium";
+        $nbHours=45;
         $removeCourse="DELETE FROM course WHERE id='XXX'";
         $pdo->query($removeCourse);
-        $addCourse="INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";
+        $addCourse="INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";
         $pdo->query($addCourse);
         $pdo = null;
         $this->browse(function (Browser $browser) {

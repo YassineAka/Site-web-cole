@@ -22,7 +22,7 @@
                     <td class ="courses" id="{{$course->getId()}}">{{$course->getId()}}</td>
                     <td> {{$course->getTitle()}}</td>
                     <td> {{$course->getNbHours()}}</td>
-                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <td><button type="button" id="{{$course->getId()}}test" value="{{$course->getId()}}" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
                 </tr>
                 @endforeach
             </tbody>
