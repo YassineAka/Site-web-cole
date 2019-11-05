@@ -35,8 +35,8 @@ class Rest extends Controller {
         }
     }
 
-    function addCourse($id,$name){
-        return Model::addCourse($id,$name);
+    function addCourse($id,$name,$nbHours){
+        return Model::addCourse($id,$name,$nbHours);
     }
   
     function missions() {

@@ -41,12 +41,12 @@ class Model
     public static function getAllCourses() {
         $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
         //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $requetes = "SELECT course.id, course.title
+        $requetes = "SELECT course.id, course.title, course.nbHours
                     FROM course ";
         $cours = $pdo->query($requetes);
         $tabcours = array ();
         foreach ($cours as $row) {
-             array_push($tabcours,new Course($row["id"],$row["title"]));
+             array_push($tabcours,new Course($row["id"],$row["title"],$row["nbHours"]));
             }
         $pdo = NULL;
         return $tabcours;
@@ -68,15 +68,15 @@ class Model
             return "false";
         }
     }
-     public static function addCourse($id,$name)                                                                                                                            
-     {             
-            $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                       
-            //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
+     public static function addCourse($id,$name,$nbHours)                                                                                                                            
+     {                                                            
+            $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                        
+             //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
              $requetes = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
              $result = $pdo->query($requetes);                                                                                                                         
              if ($result->rowCount() < 1) {                                                                                                                            
-                 $addSudent = "INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";                                                                                
-                 $pdo->query($addSudent);                                                                                                                              
+                 $addCours = "INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";                                                                                
+                 $pdo->query($addCours);                                                                                                                              
                                                                                                                                       
              }                                                                                                                                                       
                                                                                                                                                                        

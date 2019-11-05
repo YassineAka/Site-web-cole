@@ -21,7 +21,7 @@ Route::get('/courses','Rest@courses');
 
 Route::get('/addTeacher','Rest@inscriptionProf');
 
-Route::get('/courses/add/{id}/{name}','Rest@addCourse');
+Route::get('/courses/add/{id}/{name}/{nbHours}','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');
 

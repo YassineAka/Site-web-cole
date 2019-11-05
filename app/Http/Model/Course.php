@@ -7,10 +7,12 @@ class Course
 {
   private $id;
   private $title;
+  private $nbHours;
 
-  public function __construct($newId,$newTitle) {
+  public function __construct($newId,$newTitle,$nbHours) {
       $this->id = $newId;
       $this->title = $newTitle;
+      $this->nbHours = $nbHours;
 
   }
  
@@ -20,6 +22,7 @@ class Course
  
   public function getId() {return $this->id;}
   public function getTitle() {return $this->title;}
+  public function getNbHours() {return $this->nbHours;}
      
 }
  

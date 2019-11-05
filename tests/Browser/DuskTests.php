@@ -55,13 +55,15 @@ class DuskTests extends DuskTestCase
    }
 
 
-   public function testAddCourseSuccesfull()
+   public function testAddCourse()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
                     ->value('#id', 'test')
                     ->pause(1000)
                     ->value('#name', 'title')
+                    ->pause(1000)
+                    ->value('#nbHours', '65')
                     ->pause(1000)
                     ->press('#btn')
                     ->pause(1000)
@@ -115,9 +117,10 @@ class DuskTests extends DuskTestCase
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $id="XXX";
         $name="Test selenium";
+        $nbHours=45;
         $removeCourse="DELETE FROM course WHERE id='XXX'";
         $pdo->query($removeCourse);
-        $addCourse="INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";
+        $addCourse="INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";
         $pdo->query($addCourse);
         $pdo = null;
         $this->browse(function (Browser $browser) {
