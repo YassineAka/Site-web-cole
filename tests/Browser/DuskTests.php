@@ -55,13 +55,15 @@ class DuskTests extends DuskTestCase
    }
 
 
-   public function testAddCourseSuccesfull()
+   public function testAddCourse()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
                     ->value('#id', 'test')
                     ->pause(1000)
                     ->value('#name', 'title')
+                    ->pause(1000)
+                    ->value('#nbHours', '65')
                     ->pause(1000)
                     ->press('#btn')
                     ->pause(1000)

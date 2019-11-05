@@ -42,18 +42,18 @@ class ModelTest extends TestCase
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         $id="Test";
-        $name="developpement"; //IdStudentTest 
-        $removeIdStudent="DELETE FROM course WHERE id='$id' AND title='$name'";
-        Model::addCourse($id,$name);
-        $requete="SELECT * FROM course WHERE id='$id' AND title='$name'";
+        $name="developpement"; 
+        $nbHours= 45;
+        $removeIdCours="DELETE FROM course WHERE id='$id' AND title='$name' AND nbHours ='$nbHours'";
+        Model::addCourse($id,$name,$nbHours);
+        $requete="SELECT * FROM course WHERE id='$id' AND title='$name' AND nbHours ='$nbHours'";
         $result = $pdo->query($requete);
         $verif = $result->rowCount();
-        $pdo->query($removeIdStudent);
+        $pdo->query($removeIdCours);
         $pdo = null;
         $this->assertTrue($verif==1);
 
     }
-
 
 
     public function testGetAllMissions()

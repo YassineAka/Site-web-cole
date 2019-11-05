@@ -20,8 +20,7 @@ class TestModelCourse extends TestCase
     public function testCourseExist()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
-        $requetes = "SELECT course.id, course.title
-        FROM course ";
+        $requetes = "SELECT course.id, course.title, course.nbHours FROM course ";
         $result = $pdo->query($requetes);
         $pdo = NULL;
         $this->assertSame($result->rowCount(),count(Model::getAllCourses()));
