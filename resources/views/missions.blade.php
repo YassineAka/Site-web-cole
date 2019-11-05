@@ -34,6 +34,7 @@
                         <td> {{$mission->getNbHours()}}</td>
                         <td><button type="button" class="btn btn-danger"> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
                      </tr>
+                     
                   @endif
                @endforeach
             </tbody>
