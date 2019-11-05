@@ -11,6 +11,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Sigle</th>
                     <th scope="col">Libellé</th>
+                    <th scope="col">Heures</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td class ="courses" id="{{$course->getId()}}">{{$course->getId()}}</td>
                     <td> {{$course->getTitle()}}</td>
+                    <td> {{$course->getNbHours()}}</td>
                     <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
                 </tr>
                 @endforeach
@@ -38,6 +40,10 @@
                 <label for="name">Title</label>
                 <input type="text"  id="name"class="form-control" placeholder="Title...">
             </div>
+            <div class="form-group">
+                <label for="nbHours">Hours</label>
+                <input type="number"  id="nbHours"class="form-control" placeholder="Hours...">
+            </div>
             
             <button id="btn"type="submit" class="btn btn-primary">Add</button>
 
@@ -49,8 +55,12 @@
   $(document).ready(function() {
     $("#btn").click(function() {
       let id = $("#id").val();
-      name = $("#name").val();
-      let url = "./courses/add/" + id + "/" + name;
+      let name = $("#name").val();
+      let nbHours = $("#nbHours").val();
+      console.log("bonjour");
+
+    console.log(nbHours);
+      let url = "./courses/add/" + id + "/" + name+ "/" + nbHours;
       $.get(url, function(jsData, status) {});
       location.reload();
       $("#MyTable").load( "courses #MyTable" );
