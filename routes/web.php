@@ -29,3 +29,5 @@ Route::get('/missions/add/{title}/{nbHours}/{cat}','Rest@addMission');
 
 Route::get('/courses/delete/{id}','Rest@deleteCourse');
 
+Route::get('/mission/delete/{id}','Rest@deleteMission');
+

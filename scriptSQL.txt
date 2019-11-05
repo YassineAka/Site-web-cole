@@ -16,10 +16,9 @@ DROP TABLE IF EXISTS mission;
 
 
 CREATE TABLE teacher (
-    id      VARCHAR(3) NOT NULL,
-    name    VARCHAR(20) NOT NULL,
+     id      VARCHAR(3) NOT NULL,
+     name    VARCHAR(20) NOT NULL,
 	firstName    VARCHAR(20) NOT NULL,
-
      CONSTRAINT teacherPK PRIMARY KEY (id)
 );
 
