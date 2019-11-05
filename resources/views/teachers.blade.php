@@ -16,14 +16,18 @@
             </thead>
             <tbody>
                 @foreach($listTeachers as $teacher)
+                <div class="akachar">
+                <div id="{{$teacher->id}}">
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td> {{$teacher->id}} </td>
-                    <td> {{$teacher->name}}</td>
-                    <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <th scope="row" value="{{ $loop->iteration }}">{{ $loop->iteration }}</th>
+                    <td class="info" value="{{$teacher->id}}"> {{$teacher->id}} </td>
+                    <td class="info" value="{{$teacher->id}}"> {{$teacher->name}}</td>
+                    <td class="info" value="{{$teacher->id}}"> {{$teacher->firstName}}</td>
+                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button> <button type="button" class="btn btn-secondary">⇨</button></td> 
 
                 </tr>
+                </div>
+                </div>
                 @endforeach
             </tbody>
         </table>
@@ -73,5 +77,24 @@
             
         }); 
     }); 
+
+
+
+
+    $(document).ready(function() {
+        
+        $(".akachar").click(function() {
+        let row = $(this.id);
+        console.log("bonjour");
+        console.log(row);
+        
+        /*let url ="./courses/delete/"+sigle;
+        $.get(url, function(jsData, status) {});
+        location.reload();
+        $("#MyTable").load( "courses #MyTable" );
+*/
+
+    });
+        });  
 </script>
 @endsection
