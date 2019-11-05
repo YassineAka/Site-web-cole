@@ -117,5 +117,21 @@ class ModelTest extends TestCase
         $this->assertTrue($result->rowCount()==0);
 
     }
+    public function testDeleteMission()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $title="salut";
+        $nbHours="3";
+        $cat = "Stage"
+        $addMission="INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $pdo->query($addMission);
+        Model::deleteCourse($id);
+        $this->assertTrue($result->rowCount()<=1);
+        $requete="SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours' AND cat='$cat' ";
+        $result = $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
+
+    }
 
 }

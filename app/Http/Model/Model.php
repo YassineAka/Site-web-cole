@@ -86,13 +86,13 @@ class Model
      public static function getAllMissions() {
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
-        $requetes = "SELECT mission.title, mission.nbHours,mission.cat
+        $requetes = "SELECT mission.id,mission.title, mission.nbHours,mission.cat
                   FROM mission";
     
         $mission = $pdo->query($requetes);
         $tabmissions = array ();
         foreach ($mission as $row) {
-             array_push($tabmissions,new Mission($row["title"],$row["nbHours"],$row["cat"]));
+             array_push($tabmissions,new Mission($row["id"],$row["title"],$row["nbHours"],$row["cat"]));
                }
         $pdo = NULL;
         return $tabmissions;

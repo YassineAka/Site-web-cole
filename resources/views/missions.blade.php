@@ -23,6 +23,7 @@
                   @if ($c->getCat()==$mission->getCat())
                      <tr>
                         <th scope="row"></th>
+                        <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
                         <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
