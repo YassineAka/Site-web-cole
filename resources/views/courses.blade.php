@@ -20,7 +20,7 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td class ="courses" id="{{$course->getId()}}">{{$course->getId()}}</td>
                     <td> {{$course->getTitle()}}</td>
-                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <td><button type="button" id="{{$course->getId()}}test" class="btn btn-danger" value="{{$course->getId()}}"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button></td>
                 </tr>
                 @endforeach
             </tbody>
@@ -55,9 +55,25 @@
       location.reload();
       $("#MyTable").load( "courses #MyTable" );
     });
-            });
-            
+            });       
+
+    $(document).ready(function() {
+        let sigle;
+        $(".btn").click(function() {
+        sigle = $(this).val();
+        let url ="./courses/delete/"+sigle;
+        $.get(url, function(jsData, status) {});
+        location.reload();
+        $("#MyTable").load( "courses #MyTable" );
+
+
+    });
+        });    
+
+
+
 </script>
+
  
 
 

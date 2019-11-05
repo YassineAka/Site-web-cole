@@ -120,5 +120,13 @@ class Model
         $pdo = NULL;
         return $tabcat;
      }
+
+     public static function deleteCourse($id){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes="DELETE FROM course WHERE id='$id'";
+        $courses = $pdo->query($requetes);
+        $pdo=null;
+    }
+
 }
 ?>

@@ -93,5 +93,19 @@ class ModelTest extends TestCase
         $this->assertTrue($verif==1);
 
     }
+    public function testDeleteCourse()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="Test";
+        $name="salut";
+        $addCourse="INSERT INTO course (`id`,`title`) VALUES ('$id','$name')";
+        $pdo->query($addCourse);
+        Model::deleteCourse($id);
+        $requete="SELECT * FROM course WHERE id='$id'";
+        $result = $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
+
+    }
 
 }
