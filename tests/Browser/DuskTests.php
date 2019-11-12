@@ -15,7 +15,7 @@ class DuskTests extends DuskTestCase
     *
     * @return void
     */
-   /*
+   
     public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
@@ -135,14 +135,14 @@ class DuskTests extends DuskTestCase
         });
        
     }
-    */
+    
 
 
     public function testGoToServiceGroup()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-                     ->clickLink("List of Groups")
+                     ->clickLink("List Of Groups")
                     ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/groupes');
                 });
     }
