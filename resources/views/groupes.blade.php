@@ -31,9 +31,9 @@
             </tbody>
         </table>
     </div>
-<div style="padding:2%;margin-right:5%;" >
     
-        <div class="col collapse multi-collapse" id="multiCollapseExample2">
+    <div class="col collapse multi-collapse" id="multiCollapseExample2">
+        <div style="padding:2%;">
             <div class="row">
                <div class="col-10">
                </div>
@@ -49,7 +49,7 @@
                 <input type="text"  id="id" class="form-control" placeholder="Name of Group...">
             </div>
             
-            <button id="btn"type="submit" class="btn btn-primary">Add</button>
+            <button id="inscription"type="submit" class="btn btn-primary">Add</button>
 
         </div>
     </div>
@@ -58,12 +58,12 @@
     
 <script>
   $(document).ready(function() {
-    $("#btn").click(function() {
+    $("#inscription").click(function() {
       let id = $("#id").val();
       let url = "./groupes/add/" + id ;
-      $.get(url, function(jsData, status) {});
-      location.reload();
-      $("#MyTable").load( "group #MyTable" );
+      $.get(url, function(data, status) {
+        $("#MyTable").load("groupes #MyTable" );
+      });
     });
 });       
  
