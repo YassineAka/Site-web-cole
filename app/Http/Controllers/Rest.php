@@ -34,6 +34,7 @@ class Rest extends Controller {
             return "false";
         }
     }
+    
 
     function addCourse(){
         $id=$_GET['id'];
