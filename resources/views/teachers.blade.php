@@ -27,8 +27,9 @@
                     <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
+                    <td ><button type="button" class="btn btn-danger" value="suppr"> 🗑</button> <button type="button" class="btn btn-secondary"value="modif" >✎</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
+
                </tr>
-               <td style="display:inline-block;"><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button> <button type="button" class="btn btn-secondary">⇨</button></td>
 
 
                
@@ -87,16 +88,20 @@
 
     $(document).ready(function() {
         
-        $(".akachar").click(function() {
-        let row = $(this.id);
-        console.log("bonjour");
-        console.log(row.selector);
-        
-        /*let url ="./courses/delete/"+sigle;
-        $.get(url, function(jsData, status) {});
-        location.reload();
-        $("#MyTable").load( "courses #MyTable" );
-*/
+        $(".btn").click(function() {
+        let value = $(this).val();
+        if(value=="info"){
+            console.log("info");
+            //let url = "./teacher/info/"+this.id;
+            $.get("./teacher/info/"+this.id, function (data, status) {});
+            $(location).attr('href', './teacher/info/'+this.id)
+
+        }else if(value=="suppr"){
+            console.log("suppr");
+        }else{
+            console.log("modif");
+        }
+
 
     });
         });  

@@ -51,5 +51,9 @@ class Rest extends Controller {
     function deleteCourse($id){
         return Model::deleteCourse($id);
     }
+    function showTeacher($id){
+        $teacher=Model::showTeacher($id);
+        return view('teacher',compact('teacher'));
+    }
 }
 ?>
