@@ -61,7 +61,7 @@ class Rest extends Controller {
         }else{
             return "false";
         }
-
+    }
     function groupes() {
         $listGroups = Model::getAllGroupes();
         return view('groupes',compact('listGroups'));
@@ -76,6 +76,5 @@ class Rest extends Controller {
         return Model::deleteProf($id);
     }
 
-    
 }
 ?>
