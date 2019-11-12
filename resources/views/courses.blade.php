@@ -76,20 +76,19 @@ $(document).ready(function() {
       let nbHours = $("#nbHours").val();
       $.get("courses/add?id="+id+"&name="+name+"&nbHours="+nbHours, function(data, status) {
         if(data == "true"){
-                    let msg = "<div class='alert alert-success' role='alert'>The course has been registered !</div>"
-                    $("#answer").html(msg);
-                    $("#id").val('');
-                    $("#name").val('');
-                    $("#nbHours").val('');
-                    $("#MyTable").load( "courses #MyTable" );
-                } else{
-                    let msg = "<div class='alert alert-danger' role='alert'>The course has not been registered !</div>"
-                    $("#answer").html(msg);
-                }
+            let msg = "<div class='alert alert-success' role='alert'>The course has been registered !</div>"
+            $("#answer").html(msg);
+            $("#id").val('');
+            $("#name").val('');
+            $("#nbHours").val('');
+            $("#MyTable").load( "courses #MyTable" );
+        } else{
+            let msg = "<div class='alert alert-danger' role='alert'>The course has not been registered !</div>"
+            $("#answer").html(msg);
+        }
       });
     });   
     $(".del").click(function() {
-        console.log("test");
         let sigle = $(this).val();
         let url ="./courses/delete/"+sigle;
         $.get(url, function(data, status) {

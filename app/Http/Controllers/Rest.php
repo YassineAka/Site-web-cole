@@ -52,8 +52,15 @@ class Rest extends Controller {
         $cat = array_unique($cat);
         return view('missions',compact('missions','cat'));
     }
-    function addMission($title,$nbHours,$cat){
-        return Model::addMission($title,$nbHours,$cat);
+    function addMission(){
+        $title=$_GET['title'];
+        $strCat=$_GET['strCat'];
+        $nbHours=$_GET['nbHours'];
+        if(!empty($title) && !empty($strCat) && !empty($nbHours)){
+            return Model::addMission($title,$nbHours,$strCat);
+        }else{
+            return "false";
+        }
     }
     function deleteCourse($id){
         return Model::deleteCourse($id);
