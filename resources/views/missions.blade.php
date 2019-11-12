@@ -33,7 +33,7 @@
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger bout">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
                   @endif
                @endforeach
             </tbody>
@@ -92,7 +92,7 @@
       });
    });
    $(document).ready(function(){ 
-        $(".btn").click(function() {
+        $(".bout").click(function() {
         let id = $(this).val();
         let url ="./mission/delete/"+id;
         $.get(url, function(jsData, status) {});
