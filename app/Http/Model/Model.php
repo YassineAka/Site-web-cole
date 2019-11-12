@@ -102,6 +102,19 @@ class Model
         return $tabmissions;
      }
 
+     public static function getAllGroupes() {
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $requetes = "SELECT groupe.id FROM groupe ";
+        $groupes = $pdo->query($requetes);
+        $tabgroupes = array ();
+        foreach ($groupes as $row) {
+             array_push($tabgroupes,new Groupe($row["id"]));
+            }
+        $pdo = NULL;
+        return $tabgroupes;
+     }
+
      public static function addMission($title,$nbHours,$cat)                                                                                                                            
      {                     
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   

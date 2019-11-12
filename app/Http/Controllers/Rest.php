@@ -61,6 +61,10 @@ class Rest extends Controller {
         }else{
             return "false";
         }
+
+    function groupes() {
+        $listGroups = Model::getAllGroupes();
+        return view('groupes',compact('listGroups'));
     }
     function deleteCourse($id){
         return Model::deleteCourse($id);

@@ -8,7 +8,7 @@
             <div class="col-9">
             </div>
             <div class="col">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un cours</button>
+                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un cours</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="MyTable">

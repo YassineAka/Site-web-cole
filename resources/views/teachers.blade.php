@@ -9,7 +9,7 @@
             <div class="col-9">
             </div>
             <div class="col">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
+                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="tableau" >

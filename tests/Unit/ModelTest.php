@@ -74,6 +74,23 @@ class ModelTest extends TestCase
         $pdo = null;
         $this->assertSame($result->rowCount(),count(Model::getAllMissions()));
     }
+
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function testGetAllGroups()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $requetes = "SELECT groupe.id FROM groupe ";
+        $result = $pdo->query($requetes);
+        $pdo = NULL;
+        $this->assertSame($result->rowCount(),count(Model::getAllGroupes()));
+    }
+
+
     public function testGetCategorie()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
@@ -160,5 +177,6 @@ class ModelTest extends TestCase
         $this->assertTrue($result->rowCount()==0);
 
     }
+
 
 }

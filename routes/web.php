@@ -33,3 +33,4 @@ Route::get('/mission/delete/{id}','Rest@deleteMission');
 
 Route::get('/teachers/delete/{id}','Rest@deleteProf');
 
+Route::get('/groupes','Rest@groupes');
