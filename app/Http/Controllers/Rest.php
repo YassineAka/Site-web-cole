@@ -59,5 +59,8 @@ class Rest extends Controller {
     function deleteMission($id){
         return Model::deleteMission($id);
     }
+    function addGroup($id){
+        return Model::addGroup($id);
+    }
 }
 ?>

@@ -154,5 +154,17 @@ class Model
         $pdo=null;
     }
 
+    public static function addGroup($id)                                                                                                                            
+    {                     
+       //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   
+                                                                                                                                           
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                                                                                                                  
+                $addGroup = "INSERT INTO groupe (`id`) VALUES ('$id')";                                                                                
+                $pdo->query($addGroup);                                                                                                                              
+                                                                                                                                                                      
+            $pdo = null;                                                                                                                                              
+                                                                                                                                                                   
+    }
+
 }
 ?>
