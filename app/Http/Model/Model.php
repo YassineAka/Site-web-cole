@@ -75,11 +75,15 @@ class Model
              $result = $pdo->query($requetes);                                                                                                                         
              if ($result->rowCount() < 1) {                                                                                                                            
                  $addCours = "INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";                                                                                
-                 $pdo->query($addCours);                                                                                                                              
+                 $pdo->query($addCours);
+                 $pdo = NULL;
+                 return "true";                                                                                                
                                                                                                                                       
-             }                                                                                                                                                       
-                                                                                                                                                                       
-             $pdo = null;                                                                                                                                              
+             }
+             else{
+                 $pdo = NULL;
+                 return "false";
+             }                                                                                                                                            
                                                                                                                                                                     
      }
      
@@ -115,12 +119,19 @@ class Model
      {                     
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   
                                                                                                                                             
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                                                                                                                  
-                 $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";                                                                                
-                 $pdo->query($addMission);                                                                                                                              
-                                                                                                                                                                       
-             $pdo = null;                                                                                                                                              
-                                                                                                                                                                    
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
+        $requetes = "SELECT * FROM mission WHERE title like '$title' ";                                                                                                      
+        $result = $pdo->query($requetes);
+        if ($result->rowCount() < 1) {                                                                                                                                                                                     
+            $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";                                                                                
+            $pdo->query($addMission); 
+            $pdo = NULL;
+            return "true";                                                                                                       
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }                                                                                                                                                           
      }
 
      public static function getCategorie() {
@@ -153,6 +164,15 @@ class Model
         $courses = $pdo->query($requetes);
         $pdo=null;
     }
+    public static function deleteProf($id){
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);   
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes="DELETE FROM teacher WHERE id='$id'";
+        $courses = $pdo->query($requetes);
+        $pdo=null;
+    }
+
+    
 
     public static function addGroup($id)                                                                                                                            
     {                     

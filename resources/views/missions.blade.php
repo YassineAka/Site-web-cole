@@ -4,8 +4,7 @@
 
 
    <div class="row">
-   
-    <div class="col"style="margin-left: 2%;"> 
+    <div class="col"style="margin-left: 2%;" id="listMissions"> 
         <div class="row">
             <div class="col-9">
             </div>
@@ -15,8 +14,8 @@
         </div> 
    
       @foreach ($cat as $c)
-         <table class="table table-striped table-hover" id="listMissions">
-               <h1 id="{{$c->getCat()}}"> {{$c->getCat()}}</h1>
+         <table class="table table-striped table-hover " >
+            <h1 id="{{$c->getCat()}}"> {{$c->getCat()}}</h1>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -33,7 +32,7 @@
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger bout">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
                   @endif
                @endforeach
             </tbody>
@@ -43,17 +42,18 @@
 
     <div class="col collapse multi-collapse" id="multiCollapseExample2">
       <div style="padding:2%;margin-right:5%;" >
-      
             <div class="row">
                <div class="col-10">
                </div>
                <div class="col">
                   <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
-                  </div>
+               </div>
             </div> 
 
             <h1>Inscription</h1>
             <p>Veuillez entrer les cordonnées de la mission à ajouter dans le formulaire ci-joint.</p>
+            
+            <div class="form-group" id="answer"></div>
             
             <div class="form-group">
                <label for="title">Title</label>
@@ -85,21 +85,27 @@
          let nbHours = $("#nbHours").val();
          let selector = document.getElementById("selector");
          let strCat = selector.options[selector.selectedIndex].value;
-         let url = "./missions/add/" + title + "/" + nbHours + "/" + strCat;
-         $.get(url, function (jsData, status) {});
-         location.reload();
-         $("#listMissions").load("missions #listMissions");
+         $.get("missions/add?title="+title+"&nbHours="+nbHours+"&strCat="+strCat, function (data, status) {
+            if(data == "true"){
+               let msg = "<div class='alert alert-success' role='alert'>The mission has been registered !</div>"
+               $("#answer").html(msg);
+               $("#title").val('');
+               $("#nbHours").val('');
+               $("#listMissions").load("missions #listMissions");
+            } else{
+               let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
+               $("#answer").html(msg);
+            }
+         });
       });
-   });
-   $(document).ready(function(){ 
-        $(".bout").click(function() {
-        let id = $(this).val();
-        let url ="./mission/delete/"+id;
-        $.get(url, function(jsData, status) {});
-        location.reload();
-        $("#listMissions").load("missions #listMissions");
-       });
-   });
+      $(".del").click(function() {
+         let id = $(this).val();
+         let url ="./mission/delete/"+id;
+         $.get(url, function(jsData, status) {
+            location.reload();
+         });
+      });
+   }); 
 </script>
 
 @endsection

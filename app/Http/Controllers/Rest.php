@@ -34,9 +34,17 @@ class Rest extends Controller {
             return "false";
         }
     }
+    
 
-    function addCourse($id,$name,$nbHours){
-        return Model::addCourse($id,$name,$nbHours);
+    function addCourse(){
+        $id=$_GET['id'];
+        $name=$_GET['name'];
+        $nbHours=$_GET['nbHours'];
+        if(!empty($id) && !empty($name) && !empty($nbHours)){
+            return Model::addCourse($id,$name,$nbHours);
+        }else{
+            return "false";
+        }
     }
   
     function missions() {
@@ -45,13 +53,19 @@ class Rest extends Controller {
         $cat = array_unique($cat);
         return view('missions',compact('missions','cat'));
     }
-
+    function addMission(){
+        $title=$_GET['title'];
+        $strCat=$_GET['strCat'];
+        $nbHours=$_GET['nbHours'];
+        if(!empty($title) && !empty($strCat) && !empty($nbHours)){
+            return Model::addMission($title,$nbHours,$strCat);
+        }else{
+            return "false";
+        }
+    }
     function groupes() {
         $listGroups = Model::getAllGroupes();
         return view('groupes',compact('listGroups'));
-    }
-    function addMission($title,$nbHours,$cat){
-        return Model::addMission($title,$nbHours,$cat);
     }
     function deleteCourse($id){
         return Model::deleteCourse($id);
@@ -62,5 +76,9 @@ class Rest extends Controller {
     function addGroup($id){
         return Model::addGroup($id);
     }
+    function deleteProf($id){
+        return Model::deleteProf($id);
+    }
+
 }
 ?>

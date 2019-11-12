@@ -135,6 +135,25 @@ class DuskTests extends DuskTestCase
         });
        
     }
+    public function testDeleteTeacherSuccesfull()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $id="XXX";
+        $nom="Test";
+        $prenom="selenium";
+        $removeTeacher="DELETE FROM teacher WHERE id='XXX'";
+        $pdo->query($removeTeacher);
+        $addTeacher="INSERT INTO teacher (`id`,`name`,`firstName`) VALUES ('$id','$nom','$prenom')";
+        $pdo->query($addTeacher);
+        $pdo = null;
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                    ->press('#XXXtest')
+                    ->pause(1000)
+                    ->assertDontSee("XXX");
+        });
+       
+    }
     
 
 
