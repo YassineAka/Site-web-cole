@@ -11,15 +11,17 @@ DROP TABLE IF EXISTS teacher;
 
 DROP TABLE IF EXISTS mission;
 
+DROP TABLE IF EXISTS groupe;
+
+
 /* Creation des tables */
 
 
 
 CREATE TABLE teacher (
-    id      VARCHAR(3) NOT NULL,
-    name    VARCHAR(20) NOT NULL,
+     id      VARCHAR(3) NOT NULL,
+     name    VARCHAR(20) NOT NULL,
 	firstName    VARCHAR(20) NOT NULL,
-
      CONSTRAINT teacherPK PRIMARY KEY (id)
 );
 
@@ -38,6 +40,10 @@ CREATE TABLE mission (
      CONSTRAINT missionPK PRIMARY KEY (id)
 );
 
+CREATE TABLE groupe (
+     id      VARCHAR(15) NOT NULL,
+     CONSTRAINT groupePK PRIMARY KEY (id)
+);
 
 /* Remplissage des tables */
 
@@ -92,3 +98,31 @@ INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de compte',10 ,'Admi
 INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de stokage',10 ,'Administration Git');
 INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion de inscription',10 ,'Inscription');
 INSERT INTO `mission` (title,nbHours,cat) VALUES  ('Gestion des paiements',10 ,'Inscription');
+
+
+
+
+INSERT INTO groupe VALUES ('A111');
+INSERT INTO groupe VALUES ('A112');
+INSERT INTO groupe VALUES ('A211');
+INSERT INTO groupe VALUES ('A212');
+INSERT INTO groupe VALUES ('B111');
+INSERT INTO groupe VALUES ('B112');
+INSERT INTO groupe VALUES ('B211');
+INSERT INTO groupe VALUES ('B212');
+INSERT INTO groupe VALUES ('C111');
+INSERT INTO groupe VALUES ('C112');
+INSERT INTO groupe VALUES ('C211');
+INSERT INTO groupe VALUES ('C212');
+INSERT INTO groupe VALUES ('D111');
+INSERT INTO groupe VALUES ('D112');
+INSERT INTO groupe VALUES ('D211');
+INSERT INTO groupe VALUES ('D212');
+INSERT INTO groupe VALUES ('E111');
+INSERT INTO groupe VALUES ('E112');
+INSERT INTO groupe VALUES ('E211');
+INSERT INTO groupe VALUES ('E212');
+INSERT INTO groupe VALUES ('F111');
+INSERT INTO groupe VALUES ('F112');
+INSERT INTO groupe VALUES ('F211');
+INSERT INTO groupe VALUES ('F212');

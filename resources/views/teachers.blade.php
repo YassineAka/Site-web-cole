@@ -7,8 +7,17 @@
 @extends('template')
 @section('title','List Of Teachers')
 @section('content')
+
+
 <div class="row">
     <div class="col"style="margin-left: 2%;"> 
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col">
+                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
+            </div>
+        </div>
         <table class="table table-striped table-hover" id="tableau" >
             <h1>List Of Teachers</h1>
             <thead>
@@ -27,7 +36,7 @@
                     <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td ><button type="button" class="btn btn-danger" value="suppr"> 🗑</button> <button type="button" class="btn btn-secondary"value="modif" >✎</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
+                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button><button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
 
                </tr>
 
@@ -38,8 +47,15 @@
         </table>
     </div>
 
-    <div class="col">
+    <div class="col collapse multi-collapse" id="multiCollapseExample2">
         <div style="padding:2%;margin-right:5%;" >
+            <div class="row">
+               <div class="col-10">
+               </div>
+               <div class="col">
+                  <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
+                  </div>
+            </div> 
             <h1>Inscription</h1>
             <p>Veuillez entrer les cordonnées du professeur à ajouter dans le formulaire ci-joint.</p>
             
@@ -66,7 +82,7 @@
             let id = $("#id").val();
             let nom = $("#nom").val();
             let prenom = $("#prenom").val();
-            $.get("addTeacher?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
+            $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
                     $("#answer").html(msg);
@@ -80,7 +96,14 @@
                 }
             }); 
             
-        }); 
+        });
+        $(".del").click(function() {
+         let id = $(this).val();
+         let url ="./teachers/delete/"+id;
+         $.get(url, function(jsData, status) {
+            location.reload();
+         });
+      });
     }); 
 
 
