@@ -30,7 +30,7 @@
                     <td> {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger"> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <td><button type="button" class="btn btn-danger del" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button></td>
 
                 </tr>
                 @endforeach
@@ -87,7 +87,14 @@
                 }
             }); 
             
-        }); 
+        });
+        $(".del").click(function() {
+         let id = $(this).val();
+         let url ="./teachers/delete/"+id;
+         $.get(url, function(jsData, status) {
+            location.reload();
+         });
+      });
     }); 
 </script>
 @endsection

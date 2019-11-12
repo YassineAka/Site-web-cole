@@ -31,3 +31,5 @@ Route::get('/courses/delete/{id}','Rest@deleteCourse');
 
 Route::get('/mission/delete/{id}','Rest@deleteMission');
 
+Route::get('/teachers/delete/{id}','Rest@deleteProf');
+
