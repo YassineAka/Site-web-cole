@@ -1,3 +1,9 @@
+
+
+
+
+
+
 @extends('template')
 @section('title','List Of Teachers')
 @section('content')
@@ -16,18 +22,16 @@
             </thead>
             <tbody>
                 @foreach($listTeachers as $teacher)
-                <div class="akachar">
-                <div id="{{$teacher->id}}">
-                <tr>
+                 <tr class="akachar" id="{{$teacher->id}}" >
                     <th scope="row" value="{{ $loop->iteration }}">{{ $loop->iteration }}</th>
-                    <td class="info" value="{{$teacher->id}}"> {{$teacher->id}} </td>
-                    <td class="info" value="{{$teacher->id}}"> {{$teacher->name}}</td>
-                    <td class="info" value="{{$teacher->id}}"> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button> <button type="button" class="btn btn-secondary">⇨</button></td> 
+                    <td>  {{$teacher->id}} </td>
+                    <td> {{$teacher->name}}</td>
+                    <td> {{$teacher->firstName}}</td>
+               </tr>
+               <td style="display:inline-block;"><button type="button" class="btn btn-danger"> 🗑</button> <button type="button" class="btn btn-secondary">✎</button> <button type="button" class="btn btn-secondary">⇨</button></td>
 
-                </tr>
-                </div>
-                </div>
+
+               
                 @endforeach
             </tbody>
         </table>
@@ -86,7 +90,7 @@
         $(".akachar").click(function() {
         let row = $(this.id);
         console.log("bonjour");
-        console.log(row);
+        console.log(row.selector);
         
         /*let url ="./courses/delete/"+sigle;
         $.get(url, function(jsData, status) {});
