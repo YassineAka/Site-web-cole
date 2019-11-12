@@ -9,12 +9,13 @@ use PDO;
 
 class DuskTests extends DuskTestCase
 {
-   /**
+    
+  /**
     * A Dusk test example.
     *
     * @return void
     */
-   
+   /*
     public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
@@ -30,6 +31,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                    ->press('#btnAdd')
                     ->value('#id', 'MOA')
                     ->pause(1000)
                     ->value('#nom', 'LaSquale')
@@ -45,7 +47,7 @@ class DuskTests extends DuskTestCase
         $pdo->query($removeIdTeacher);
         $pdo = null;
     }
-   public function testGoToServiceTeachers()
+  public function testGoToServiceTeachers()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
@@ -59,6 +61,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                    ->press('#btnAdd')
                     ->value('#id', 'test')
                     ->pause(1000)
                     ->value('#name', 'title')
@@ -96,7 +99,8 @@ class DuskTests extends DuskTestCase
    public function testAddMissionSuccesfull()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('#btnAdd')
                     ->value('#title', 'ceciEstUnTest')
                     ->pause(1000)
                     ->value('#nbHours', '10')
@@ -131,7 +135,17 @@ class DuskTests extends DuskTestCase
         });
        
     }
-    
-   } 
+    */
+
+
+    public function testGoToServiceGroup()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
+                     ->clickLink("List of Groups")
+                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/groupes');
+                });
+    }
+} 
    
 

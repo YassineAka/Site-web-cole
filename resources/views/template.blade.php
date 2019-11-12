@@ -56,7 +56,7 @@
             <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('groupes') }}">List of Groups</a>
+            <a class="nav-link" href="{{ url('groupes') }}">List Of Groups</a>
           </li>
 
           <li class="nav-item">
