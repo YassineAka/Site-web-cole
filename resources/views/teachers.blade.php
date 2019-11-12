@@ -73,7 +73,7 @@
             let id = $("#id").val();
             let nom = $("#nom").val();
             let prenom = $("#prenom").val();
-            $.get("addTeacher?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
+            $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
                     $("#answer").html(msg);

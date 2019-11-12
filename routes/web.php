@@ -19,9 +19,9 @@ Route::get('/version','Rest@version');
 
 Route::get('/courses','Rest@courses');
 
-Route::get('/addTeacher','Rest@inscriptionProf');
+Route::get('/teachers/add','Rest@inscriptionProf');
 
-Route::get('/courses/add/{id}/{name}/{nbHours}','Rest@addCourse');
+Route::get('/courses/add','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');
 

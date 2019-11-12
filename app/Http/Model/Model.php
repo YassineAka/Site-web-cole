@@ -75,11 +75,15 @@ class Model
              $result = $pdo->query($requetes);                                                                                                                         
              if ($result->rowCount() < 1) {                                                                                                                            
                  $addCours = "INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";                                                                                
-                 $pdo->query($addCours);                                                                                                                              
+                 $pdo->query($addCours);
+                 $pdo = NULL;
+                 return "true";                                                                                                
                                                                                                                                       
-             }                                                                                                                                                       
-                                                                                                                                                                       
-             $pdo = null;                                                                                                                                              
+             }
+             else{
+                 $pdo = NULL;
+                 return "false";
+             }                                                                                                                                            
                                                                                                                                                                     
      }
      

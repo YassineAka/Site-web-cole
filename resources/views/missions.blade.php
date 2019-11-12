@@ -4,7 +4,6 @@
 
 
    <div class="row">
-   
     <div class="col"style="margin-left: 2%;"> 
         <div class="row">
             <div class="col-9">
@@ -16,7 +15,7 @@
    
       @foreach ($cat as $c)
          <table class="table table-striped table-hover" id="listMissions">
-               <h1 id="{{$c->getCat()}}"> {{$c->getCat()}}</h1>
+            <h1 id="{{$c->getCat()}}"> {{$c->getCat()}}</h1>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -43,13 +42,12 @@
 
     <div class="col collapse multi-collapse" id="multiCollapseExample2">
       <div style="padding:2%;margin-right:5%;" >
-      
             <div class="row">
                <div class="col-10">
                </div>
                <div class="col">
                   <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
-                  </div>
+               </div>
             </div> 
 
             <h1>Inscription</h1>
@@ -87,19 +85,15 @@
          let strCat = selector.options[selector.selectedIndex].value;
          let url = "./missions/add/" + title + "/" + nbHours + "/" + strCat;
          $.get(url, function (jsData, status) {});
-         location.reload();
          $("#listMissions").load("missions #listMissions");
       });
-   });
-   $(document).ready(function(){ 
         $(".bout").click(function() {
         let id = $(this).val();
         let url ="./mission/delete/"+id;
         $.get(url, function(jsData, status) {});
         location.reload();
-        $("#listMissions").load("missions #listMissions");
        });
-   });
+   }); 
 </script>
 
 @endsection
