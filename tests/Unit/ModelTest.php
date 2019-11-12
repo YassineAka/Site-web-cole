@@ -35,9 +35,11 @@ class ModelTest extends TestCase
                      From teacher ";        
         $result = $pdo->query($requetes);
         $pdo = null;
-        $id="lol";
+        $id="pop";
+        
         $nom="rsp";
         $prenom="tkt";
+        Model::deleteProf($id);
         Model::inscriptionProf($id,$nom,$prenom);
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
         
@@ -122,12 +124,37 @@ class ModelTest extends TestCase
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         $title="salut";
         $nbHours="3";
-        $cat = "Stage"
-        $addMission="INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
-        $pdo->query($addMission);
-        Model::deleteCourse($id);
-        $this->assertTrue($result->rowCount()<=1);
-        $requete="SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours' AND cat='$cat' ";
+        $cat = "Stage";
+        $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $resultQ = $pdo->query($addMission);
+        $this->assertTrue($resultQ->rowCount()<=1);
+
+        $idMission = "SELECT * FROM mission WHERE title='$title'";
+        $idResult = $pdo->query($idMission);
+        $row = $idResult->fetch(); 
+        Model::deleteMission($row['id']);
+
+        $idMission = $row['id'];
+        $requete="SELECT * FROM mission WHERE id= $idMission ";
+        $result = $pdo->query($requete);
+        
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
+
+    }
+
+    
+    public function testDeleteTeacher()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="15";
+        $nom="rsp";
+        $prenom="tkt";
+        $addTeacher = " INSERT INTO teacher VALUES ('$id','$nom','$prenom') ";
+        $resultQ = $pdo->query($addTeacher);
+        Model::deleteProf($id);
+        $this->assertTrue($resultQ->rowCount()<=1);
+        $requete="SELECT * FROM teacher WHERE id='$id'";
         $result = $pdo->query($requete);
         $pdo = null;
         $this->assertTrue($result->rowCount()==0);
