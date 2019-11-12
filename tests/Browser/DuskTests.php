@@ -146,6 +146,25 @@ class DuskTests extends DuskTestCase
                     ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/groupes');
                 });
     }
+
+    
+   public function testAddGroup()
+   {
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                   ->press('#btnAdd')
+                   ->value('#id', 'test')
+                   ->pause(1000)
+                   ->press('#btn')
+                   ->pause(1000)
+                   ->assertSee("test");
+       });
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+       $removeIdCourse="DELETE FROM groupe WHERE id='test'";
+       $pdo->query($removeIdCourse);
+       $pdo = null;
+   }
+
 } 
    
 

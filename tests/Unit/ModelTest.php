@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Unit;
 use App\Http\Model\Model;
+use App\Http\Model\Mission;
 use PDO;
 use PDOStatement;
 use Tests\TestCase;
@@ -30,16 +31,21 @@ class ModelTest extends TestCase
     public function testAddTeacher(){
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
-
-        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
-                     From teacher ";        
-        $result = $pdo->query($requetes);
-        $pdo = null;
         $id="lol";
         $nom="rsp";
         $prenom="tkt";
+        $removeIdTeacher="DELETE FROM teacher WHERE id='$id' AND name='$nom' AND firstName ='$prenom'";
+        $pdo->query($removeIdTeacher);
         Model::inscriptionProf($id,$nom,$prenom);
-        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher WHERE id='$id' ";        
+        $result = $pdo->query($requetes);
+        $verif = $result->rowCount();
+        $pdo->query($removeIdTeacher);
+        $pdo = null;
+       
+        $this->assertTrue($verif==1);
         
     }
     public function testAddCourse()
@@ -59,7 +65,20 @@ class ModelTest extends TestCase
 
     }
 
+    public function testAddGroup()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="Test";
+        $removeIdGroup="DELETE FROM groupe WHERE id='$id'";
+        Model::addGroup($id);
+        $requete="SELECT * FROM groupe WHERE id='$id'";
+        $result = $pdo->query($requete);
+        $verif = $result->rowCount();
+        $pdo->query($removeIdGroup);
+        $pdo = null;
+        $this->assertTrue($verif==1);
 
+    }
     public function testGetAllMissions()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
@@ -120,6 +139,8 @@ class ModelTest extends TestCase
         $this->assertTrue($verif==1);
 
     }
+
+  
     public function testDeleteCourse()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
@@ -142,14 +163,31 @@ class ModelTest extends TestCase
         $cat = "Stage";
         $addMission="INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
         $pdo->query($addMission);
-        Model::deleteCourse($id);
-        $this->assertTrue($result->rowCount()<=1);
         $requete="SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours' AND cat='$cat' ";
         $result = $pdo->query($requete);
+        $tabIdMission = array ();
+        foreach ($result as $row) {
+            array_push($tabIdMission,new Mission($row["id"],$row["title"],$row["nbHours"],$row["cat"]));
+        }
+        //Mission miss = $tabIdMission[0];
+        Model::deleteMission($result->fetch());
+        $this->assertTrue($result->rowCount()>=1);
+       $requete="SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours' AND cat='$cat' ";
+        $result = $pdo->query($requete);
         $pdo = null;
-        $this->assertTrue($result->rowCount()==0);
+        //$this->assertTrue($result->rowCount()==0);
 
     }
+
+    public function testCourseExist()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $requetes = "SELECT course.id, course.title, course.nbHours FROM course ";
+        $result = $pdo->query($requetes);
+        $pdo = NULL;
+        $this->assertSame($result->rowCount(),count(Model::getAllCourses()));
+    }
+
 
 
 }
