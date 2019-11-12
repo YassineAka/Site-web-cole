@@ -9,12 +9,13 @@ use PDO;
 
 class DuskTests extends DuskTestCase
 {
-   /**
+    
+  /**
     * A Dusk test example.
     *
     * @return void
     */
-   
+  
     public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
@@ -30,6 +31,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                    ->press('#btnAdd')
                     ->value('#id', 'MOA')
                     ->pause(1000)
                     ->value('#nom', 'LaSquale')
@@ -45,7 +47,7 @@ class DuskTests extends DuskTestCase
         $pdo->query($removeIdTeacher);
         $pdo = null;
     }
-   public function testGoToServiceTeachers()
+  public function testGoToServiceTeachers()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
@@ -59,6 +61,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                    ->press('#btnAdd')
                     ->value('#id', 'test')
                     ->pause(1000)
                     ->value('#name', 'title')
@@ -96,7 +99,8 @@ class DuskTests extends DuskTestCase
    public function testAddMissionSuccesfull()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('#btnAdd')
                     ->value('#title', 'ceciEstUnTest')
                     ->pause(1000)
                     ->value('#nbHours', '10')
@@ -131,7 +135,55 @@ class DuskTests extends DuskTestCase
         });
        
     }
+    public function testDeleteTeacherSuccesfull()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $id="XXX";
+        $nom="Test";
+        $prenom="selenium";
+        $removeTeacher="DELETE FROM teacher WHERE id='XXX'";
+        $pdo->query($removeTeacher);
+        $addTeacher="INSERT INTO teacher (`id`,`name`,`firstName`) VALUES ('$id','$nom','$prenom')";
+        $pdo->query($addTeacher);
+        $pdo = null;
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                    ->press('#XXXtest')
+                    ->pause(1000)
+                    ->assertDontSee("XXX");
+        });
+       
+    }
     
-   } 
+
+
+    public function testGoToServiceGroup()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
+                     ->clickLink("List Of Groups")
+                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/groupes');
+                });
+    }
+
+    
+   public function testAddGroup()
+   {
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                   ->press('#btnAdd')
+                   ->value('#id', 'test')
+                   ->pause(1000)
+                   ->press('#btn')
+                   ->pause(2000)
+                   ->assertSee("test");
+       });
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+       $removeIdCourse="DELETE FROM groupe WHERE id='test'";
+       $pdo->query($removeIdCourse);
+       $pdo = null;
+   }
+
+} 
    
 

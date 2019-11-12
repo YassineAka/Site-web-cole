@@ -9,7 +9,7 @@
             <div class="col-9">
             </div>
             <div class="col">
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
+                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="tableau" >
@@ -30,7 +30,7 @@
                     <td> {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger"> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button></td>
 
                 </tr>
                 @endforeach
@@ -73,7 +73,7 @@
             let id = $("#id").val();
             let nom = $("#nom").val();
             let prenom = $("#prenom").val();
-            $.get("addTeacher?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
+            $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
                     $("#answer").html(msg);
@@ -87,7 +87,14 @@
                 }
             }); 
             
-        }); 
+        });
+        $(".del").click(function() {
+         let id = $(this).val();
+         let url ="./teachers/delete/"+id;
+         $.get(url, function(jsData, status) {
+            location.reload();
+         });
+      });
     }); 
 </script>
 @endsection
