@@ -35,5 +35,5 @@ Route::get('/teachers/delete/{id}','Rest@deleteProf');
 
 Route::get('/groupes','Rest@groupes');
 
-Route::get('/groupes/add/{id}','Rest@addGroup');
+Route::get('/groupes/add','Rest@addGroup');
 

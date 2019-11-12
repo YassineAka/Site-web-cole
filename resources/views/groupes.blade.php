@@ -44,6 +44,7 @@
             <h1>Inscription</h1>
             <p>Veuillez entrer les cordonnées du groupe à ajouter dans le formulaire ci-joint.</p>
             
+            <div class="form-group" id="answer"></div>
             <div class="form-group">
                 <label for="id">Name of group</label>
                 <input type="text"  id="id" class="form-control" placeholder="Name of Group...">
@@ -59,11 +60,18 @@
 <script>
   $(document).ready(function() {
     $("#inscription").click(function() {
-      let id = $("#id").val();
-      let url = "./groupes/add/" + id ;
-      $.get(url, function(data, status) {
-        $("#MyTable").load("groupes #MyTable" );
-      });
+        let id = $("#id").val();
+        $.get("groupes/add?id="+id, function(data, status) {
+            if(data == "true"){
+                let msg = "<div class='alert alert-success' role='alert'>The groupe has been registered !</div>"
+                $("#answer").html(msg);
+                $("#id").val('');
+                $("#MyTable").load( "groupes #MyTable" );
+            } else{
+                let msg = "<div class='alert alert-danger' role='alert'>The groupe has not been registered !</div>"
+                $("#answer").html(msg);
+            }
+        });
     });
 });       
  
