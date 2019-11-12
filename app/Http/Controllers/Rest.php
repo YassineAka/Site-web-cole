@@ -45,6 +45,11 @@ class Rest extends Controller {
         $cat = array_unique($cat);
         return view('missions',compact('missions','cat'));
     }
+
+    function groupes() {
+        $listGroups = Model::getAllGroupes();
+        return view('groupes',compact('listGroups'));
+    }
     function addMission($title,$nbHours,$cat){
         return Model::addMission($title,$nbHours,$cat);
     }
