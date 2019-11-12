@@ -63,7 +63,7 @@
       let url = "./groupes/add/" + id ;
       $.get(url, function(jsData, status) {});
       location.reload();
-      $("#MyTable").load( "listGroups #MyTable" );
+      $("#MyTable").load( "group #MyTable" );
     });
 });       
  

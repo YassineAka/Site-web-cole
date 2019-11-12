@@ -15,7 +15,7 @@ class DuskTests extends DuskTestCase
     *
     * @return void
     */
-   
+  
     public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
@@ -156,7 +156,7 @@ class DuskTests extends DuskTestCase
                    ->value('#id', 'test')
                    ->pause(1000)
                    ->press('#btn')
-                   ->pause(1000)
+                   ->pause(2000)
                    ->assertSee("test");
        });
        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
