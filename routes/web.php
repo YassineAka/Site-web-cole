@@ -25,6 +25,7 @@ Route::get('/courses/add','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');
 
+
 Route::get('/missions/add','Rest@addMission');
 
 Route::get('/courses/delete/{id}','Rest@deleteCourse');
