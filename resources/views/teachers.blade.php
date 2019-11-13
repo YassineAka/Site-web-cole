@@ -36,7 +36,7 @@
                     <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button><button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
+                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}">X</button> <button type="button" class="btn btn-secondary ">✎</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
 
                </tr>
 
