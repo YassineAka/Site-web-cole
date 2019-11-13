@@ -9,17 +9,17 @@
 @section('content')
 
 
-<div class="row">
-    <div class="col"style="margin-left: 2%;"> 
+<div class="row ">
+    <div class="col emp-profile"style="margin: 2%;"> 
+            <h1>List Of Teachers</h1>
         <div class="row">
             <div class="col-9">
             </div>
             <div class="col">
-                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un prof</button>
+                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter un prof</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="tableau" >
-            <h1>List Of Teachers</h1>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -36,7 +36,7 @@
                     <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}">X</button> <button type="button" class="btn btn-secondary ">✎</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
+                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}">X</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
 
                </tr>
 

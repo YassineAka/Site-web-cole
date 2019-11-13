@@ -4,18 +4,19 @@
 
 
    <div class="row">
-    <div class="col"style="margin-left: 2%;" id="listMissions"> 
+    <div class="col emp-profile"style="margin: 2%;"id="listMissions">
+         <h1>List Of Missions</h1>
         <div class="row">
             <div class="col-9">
             </div>
             <div class="col">
-                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter une mission</button>
+                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter une mission</button>
             </div>
         </div> 
    
       @foreach ($cat as $c)
          <table class="table table-striped table-hover " >
-            <h1 id="{{$c->getCat()}}"> {{$c->getCat()}}</h1>
+            <h2 id="{{$c->getCat()}}"> {{$c->getCat()}}</h2>
             <thead>
                 <tr>
                     <th scope="col">#</th>

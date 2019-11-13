@@ -3,16 +3,16 @@
 @section('content')
 
 <div class="row">
-    <div class="col"style="margin-left: 2%;"> 
+    <div class="col emp-profile"style="margin: 2%;"> 
+        <h1>List Of Courses</h1>
         <div class="row">
             <div class="col-9">
             </div>
             <div class="col">
-                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Ajouter un cours</button>
+                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter un cours</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="MyTable">
-            <h1>List Of Courses </h1>
             <thead>
                 <tr>
                     <th scope="col">#</th>
