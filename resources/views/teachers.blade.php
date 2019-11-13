@@ -1,3 +1,9 @@
+
+
+
+
+
+
 @extends('template')
 @section('title','List Of Teachers')
 @section('content')
@@ -25,14 +31,17 @@
             </thead>
             <tbody>
                 @foreach($listTeachers as $teacher)
-                <tr>
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td> {{$teacher->id}} </td>
+                 <tr class="akachar" id="{{$teacher->id}}" >
+                    <th scope="row" value="{{ $loop->iteration }}">{{ $loop->iteration }}</th>
+                    <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
-                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button></td>
+                    <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}"> X</button> <button type="button" class="btn btn-secondary ">✎</button><button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
 
-                </tr>
+               </tr>
+
+
+               
                 @endforeach
             </tbody>
         </table>
@@ -96,5 +105,28 @@
          });
       });
     }); 
+
+
+
+
+    $(document).ready(function() {
+        
+        $(".btn").click(function() {
+        let value = $(this).val();
+        if(value=="info"){
+            console.log("info");
+            //let url = "./teacher/info/"+this.id;
+            $.get("./teacher/info/"+this.id, function (data, status) {});
+            $(location).attr('href', './teacher/info/'+this.id)
+
+        }else if(value=="suppr"){
+            console.log("suppr");
+        }else{
+            console.log("modif");
+        }
+
+
+    });
+        });  
 </script>
 @endsection
