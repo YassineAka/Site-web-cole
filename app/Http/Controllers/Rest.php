@@ -89,6 +89,10 @@ class Rest extends Controller {
     function deleteProf($id){
         return Model::deleteProf($id);
     }
+    
+    function deleteGroup($id){
+        return Model::deleteGroup($id);
+    }
 
 }
 ?>
