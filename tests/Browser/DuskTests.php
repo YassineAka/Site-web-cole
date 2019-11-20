@@ -184,6 +184,24 @@ class DuskTests extends DuskTestCase
        $pdo = null;
    }
 
+   public function testDeleteGroupSuccesfull()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $id="XXX";
+        $removeGroup="DELETE FROM groupe WHERE id='XXX'";
+        $pdo->query($removeGroup);
+        $addGroup="INSERT INTO groupe (`id`) VALUES ('$id')";
+        $pdo->query($addGroup);
+        $pdo = null;
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                    ->press('#XXXtest')
+                    ->pause(1000)
+                    ->assertDontSee("XXX");
+        });
+       
+    }
+
 } 
    
 
