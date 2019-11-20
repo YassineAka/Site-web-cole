@@ -24,8 +24,7 @@
                     @foreach($listGroups as $group)
                     <tr>
                         <td> {{$group->getId()}} </td>
-                        <td><button type="button" class="btn btn-danger"> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
-
+                        <td><button type="button" id="{{$group->getId()}}test" value="{{$group->getId()}}" class="del btn btn-danger "> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -72,6 +71,14 @@
                 $("#answer").html(msg);
             }
         });
+    });   
+    $(".del").click(function() {
+        let sigle = $(this).val();
+        let url ="./groupes/delete/"+sigle;
+        $.get(url, function(data, status) {
+            location.reload();
+        });
+        
     });
 });       
  

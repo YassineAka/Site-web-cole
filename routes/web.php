@@ -41,3 +41,5 @@ Route::get('/groupes','Rest@groupes');
 
 Route::get('/groupes/add','Rest@addGroup');
 
+Route::get('/groupes/delete/{id}','Rest@deleteGroup');
+

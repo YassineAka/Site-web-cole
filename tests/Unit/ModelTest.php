@@ -199,6 +199,22 @@ class ModelTest extends TestCase
     }
 
     
+    public function testDeleteGroup()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="A000";
+        $addGroup = " INSERT INTO groupe VALUES ('$id') ";
+        $resultQ = $pdo->query($addGroup);
+        Model::deleteGroup($id);
+        $this->assertTrue($resultQ->rowCount()<=1);
+        $requete="SELECT * FROM groupe WHERE id='$id'";
+        $result = $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
+
+    }
+
+    
 
     public function testCourseExist()
     {
