@@ -45,6 +45,28 @@
         border-bottom: solid rgba(255, 255, 255,0.3);
       }
 
+      a:hover{
+          text-decoration:none;
+      }
+      .section-padding {
+        padding: 60px 0;
+      }
+      .bottom .copyright {
+          color: #e5e5e5;
+          font-weight: 600;
+      }
+      .copyright a {
+          color: #ffffff;
+          margin-left: 3px;
+          padding-right: 3px;
+      }
+      .bottom p {
+          margin-bottom: 0;
+          line-height: 50px;
+          font-size: 16px;
+          font-weight: 400;
+      }
+
     </style>
   </head>
 
@@ -80,39 +102,24 @@
             </ul>
         </div>
     </nav>
-
-
-        <!--MDB Navbars
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ url('') }}">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('teachers') }}">List Of Teachers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('courses') }}">List Of Courses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('groupes') }}">List Of Groups</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('version') }}">Version</a>
-          </li>
-        </ul>
-      </div>
-    </nav>-->
   </header>
   <h1> @yield('littletitle')</h1>
   <main>
     @yield('content')
   </main>
+  <footer>
+    <div class="bottom section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="copyright">
+							<p>© <span>2019</span> <a href="#" class="transition">ServaisRiderDu93</a> All rights reserved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </footer>
 </body>
 
 
