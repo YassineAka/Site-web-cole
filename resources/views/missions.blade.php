@@ -3,7 +3,7 @@
 @section('content')
 
 
-   <div class="row">
+   <div class="row" >
     <div class="col emp-profile"style="margin: 2%;"id="listMissions">
          <h1>List Of Missions</h1>
         <div class="row">
@@ -124,13 +124,14 @@
          });
       });
       $("#buttonCat").click(function () {
+
          let title = $("#titleCat").val();
          $.get("category/add?titleCat="+title, function (data, status) {
             if(data == "true"){
                let msg = "<div class='alert alert-success' role='alert'>The category has been registered !</div>"
                $("#answerCat").html(msg);
                $("#titleCat").val('');
-               $("#listMissions").load("missions #listMissions");
+               location.reload();
             } else{
                let msg = "<div class='alert alert-danger' role='alert'>The category has not been registered !</div>"
                $("#answer").html(msg);
@@ -138,23 +139,6 @@
          });
 
       });
-      $("#btnAdd").click(function(){
-               let url = "./category/json";
-               $.get(url, function(data, status){
-                   let variable = JSON.parse(data);
-                        //Create and append select list
-                        var selectList = document.getElementById("selector");
-                        //Create and append the options
-                        for (var i = 0; i <  Object.keys(variable).length; i++) {
-                            const element = variable[i];
-                            var option = document.createElement("option");
-                            option.value = element['id'];
-                            option.text = element['id'];
-                            selectList.appendChild(option);
-                        }
-               });
-      });
-
       $(".del").click(function() {
          let id = $(this).val();
          let url ="./mission/delete/"+id;
