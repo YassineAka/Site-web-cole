@@ -71,8 +71,8 @@
 <script>
 $(document).ready(function() {
     $("#bou").click(function() {
-      let id = $("#id").val();
-      let name = $("#name").val();
+      let id = $("#id").val().toUpperCase();
+      let name = $("#name").val().charAt(0).toUpperCase()+ $("#name").val().substr(1).toLowerCase();
       let nbHours = $("#nbHours").val();
       $.get("courses/add?id="+id+"&name="+name+"&nbHours="+nbHours, function(data, status) {
         if(data == "true"){

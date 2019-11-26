@@ -59,7 +59,7 @@
 <script>
   $(document).ready(function() {
     $("#inscription").click(function() {
-        let id = $("#id").val();
+        let id = $("#id").val().toUpperCase();
         $.get("groupes/add?id="+id, function(data, status) {
             if(data == "true"){
                 let msg = "<div class='alert alert-success' role='alert'>The groupe has been registered !</div>"

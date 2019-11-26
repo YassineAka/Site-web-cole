@@ -79,9 +79,9 @@
  <script>
   $(document).ready(function(){
        $("#inscription").click(function(){
-            let id = $("#id").val();
-            let nom = $("#nom").val();
-            let prenom = $("#prenom").val();
+            let id = $("#id").val().toUpperCase();
+            let nom = $("#nom").val().charAt(0).toUpperCase()+ $("#nom").val().substr(1).toLowerCase();
+            let prenom = $("#prenom").val().charAt(0).toUpperCase()+ $("#prenom").val().substr(1).toLowerCase();
             $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
@@ -104,12 +104,6 @@
             location.reload();
          });
       });
-    }); 
-
-
-
-
-    $(document).ready(function() {
         
         $(".btn").click(function() {
         let value = $(this).val();
@@ -127,6 +121,6 @@
 
 
     });
-        });  
+});  
 </script>
 @endsection
