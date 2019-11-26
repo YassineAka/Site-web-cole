@@ -183,6 +183,14 @@ class DuskTests extends DuskTestCase
        $pdo->query($removeIdCourse);
        $pdo = null;
    }
+   public function testConsultTeacher(){
+    $this->browse(function (Browser $browser) {
+        $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
+                ->press('#ABS')
+                ->pause(1000)
+                ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/teacher/info/ABS');
+    });
+}
 
 } 
    
