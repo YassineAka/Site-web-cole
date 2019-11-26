@@ -5,13 +5,13 @@
 
 
 @extends('template')
-@section('title','List Of Teachers')
+@section('title','Teachers')
 @section('content')
 
 
 <div class="row ">
     <div class="col emp-profile"style="margin: 2%;"> 
-            <h1>List Of Teachers</h1>
+            <h1>Teachers</h1>
         <div class="row">
             <div class="col-9">
             </div>
