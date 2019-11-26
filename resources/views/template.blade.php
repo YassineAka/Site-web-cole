@@ -53,7 +53,7 @@
   <header>
     <!--Navbar blue-->
     <nav class="mb-4 navbar navbar-expand-lg navbar-dark unique-color-dark">
-        <a class="navbar-brand" href="#">ESI</a>
+        <a class="navbar-brand" href="{{ url('') }}">ESI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,16 +63,16 @@
                     <a class="nav-link" href="{{ url('') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{{ url('teachers') }}">List Of Teachers</a>
+                        <a class="nav-link" href="{{ url('teachers') }}">Teachers</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{{ url('courses') }}">List Of Courses</a>
+                        <a class="nav-link" href="{{ url('courses') }}">Courses</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
+                        <a class="nav-link" href="{{ url('missions') }}">Missions</a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{{ url('groupes') }}">List Of Groups</a>
+                        <a class="nav-link" href="{{ url('groupes') }}">Groups</a>
                 </li>
                 <li class="nav-item">
                         <a class="nav-link" href="{{ url('version') }}">Version</a>

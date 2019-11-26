@@ -1,10 +1,10 @@
 @extends('template')
-@section('title','List Of Courses')
+@section('title','Courses')
 @section('content')
 
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
-        <h1>List Of Courses</h1>
+        <h1>Courses</h1>
         <div class="row">
             <div class="col-9">
             </div>

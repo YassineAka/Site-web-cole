@@ -1,11 +1,11 @@
 @extends('template')
-@section('title','List Of Missions')
+@section('title','Missions')
 @section('content')
 
 
    <div class="row">
     <div class="col emp-profile"style="margin: 2%;"id="listMissions">
-         <h1>List Of Missions</h1>
+         <h1>Missions</h1>
         <div class="row">
             <div class="col-9">
             </div>
@@ -29,7 +29,6 @@
                @foreach ($missions as $mission)
                   @if ($c->getCat()==$mission->getCat())
                      <tr>
-                        <th scope="row"></th>
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
