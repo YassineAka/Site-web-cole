@@ -2,23 +2,6 @@
 @section('title','List Of a teacher')
 @section('content')
 
-<!---
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="../../../resources/Images/photoprofil.jpg" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"> </h5>
-    <p class="card-text"></p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">{{$teacher->id}}</li>
-    <li class="list-group-item">{{$teacher->name}}</li>
-    <li class="list-group-item">{{$teacher->firstName}}</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
-  </div>
-</div> -->
 
 <style>
   .profile-img{
@@ -117,7 +100,7 @@
         </div>
     </div>
     <div class="col-md-6">
-      <div class="profile-head">
+      <div class="profile-head" id="info_teacher">
         <h5>{{$teacher->name}} {{$teacher->firstName}}</h5>
         <h6>Teacher</h6>
         <p class="proile-rating"> </p>
@@ -129,7 +112,7 @@
       </div>
     </div>
     <div class="col-md-2">
-      <button id= "btnEdit"class="profile-edit-btn" type="button" >Edit Teacher</button>
+        <button id= "btnEdit"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Edit Teacher</button>
     </div>
   </div>
   <div class="row">
@@ -143,7 +126,7 @@
                         <label>Teacher Id</label>
                     </div>
                     <div class="col-md-6">
-                        <p>{{$teacher->id}}</p>
+                        <p id="teacher_id" >{{$teacher->id}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -173,8 +156,60 @@
               </div>
           </div>
       </div>
-  </div>        
+    </div>
+    <div class="col collapse multi-collapse" id="multiCollapseExample2">
+        <div style="padding:2%;margin-right:5%;" >
+            <div class="row">
+               <div class="col-10">
+               </div>
+               <div class="col">
+                  <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
+                  </div>
+            </div> 
+            <h1>Edit</h1>
+            <p>Veuillez entrer les nouvelles cordonnées du professeur.</p>
+            
+            <div class="form-group" id="answer"></div>
+            <div class="form-group">
+                <label><b>Acronyme</b></label>
+                <input type="text" value="{{$teacher->id}}" class="form-control" name="id" id="id" required maxlength="3" size="3">
+            </div>
+            <div class="form-group">
+                <label><b>Nom</b></label>
+                <input type="text" value="{{$teacher->name}}"  class="form-control" name="nom" id="nom" required>
+            </div>
+            <div class="form-group">
+                <label><b>Prenom</b></label>
+                <input type="text" value="{{$teacher->firstName}}"   class="form-control" name="prenom" id="prenom" required>
+            </div>
+            <button id="modif"type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>        
 </div>
+
+ <script>
+    $(document).ready(function(){
+       $("#modif").click(function(){
+            let id = $("#teacher_id").text();
+            let id2 = $("#id").val().toUpperCase();
+            let nom = $("#nom").val().charAt(0).toUpperCase()+ $("#nom").val().substr(1).toLowerCase();
+            let prenom = $("#prenom").val().charAt(0).toUpperCase()+ $("#prenom").val().substr(1).toLowerCase();
+            $.get("modif?id="+id+"&id2="+id2+"&nom="+nom+"&prenom="+prenom, function(data, status){
+                if(data == "true"){
+                    let msg = "<div class='alert alert-success' role='alert'>The teacher has been modified !</div>"
+                    $("#answer").html(msg);
+                    $("#id").val('');
+                    $("#nom").val('');
+                    $("#prenom").val('');
+                    window.location.replace("./"+id2);
+                } else{
+                    let msg = "<div class='alert alert-danger' role='alert'>The teacher has not been modified !</div>"
+                    $("#answer").html(msg);
+                }
+            }); 
+        });
+    });  
+</script>
 
 
 @endsection

@@ -34,6 +34,17 @@ class Rest extends Controller {
             return "false";
         }
     }
+    function modificationProf(){
+        $id=$_GET['id'];
+        $id2=$_GET['id2'];
+        $nom=$_GET['nom'];
+        $prenom=$_GET['prenom'];
+        if(!empty($id2) && !empty($nom) && !empty($prenom)){
+            return Model::modificationProf($id,$id2,$nom,$prenom);
+        }else{
+            return "false";
+        }
+    }
     
 
     function addCourse(){

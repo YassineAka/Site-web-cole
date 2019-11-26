@@ -81,8 +81,7 @@
 <script>
    $(document).ready(function () {
       $("#button").click(function () {
-         let title = $("#title").val();
-         let nbHours = $("#nbHours").val();
+         let title = $("#title").val().charAt(0).toUpperCase()+ $("#title").val().substr(1).toLowerCase();
          let selector = document.getElementById("selector");
          let strCat = selector.options[selector.selectedIndex].value;
          $.get("missions/add?title="+title+"&nbHours="+nbHours+"&strCat="+strCat, function (data, status) {
