@@ -21,6 +21,7 @@
       font-size: 15px;
       background: #212529b8;
   }
+  
   .profile-img .file input {
       position: absolute;
       opacity: 0;
