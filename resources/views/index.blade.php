@@ -13,7 +13,7 @@
                     <a href="{{ url('teachers') }}" class="text-body">
                         <div class="card bg-light mb-3">
                             <div class="card-body">
-                                <img  src="../resources/Images/ic_teacher.png" width="100" height="100"></br></br>
+                                <img  src="/resources/Images/ic_teacher.png" width="100" height="100"></br></br>
                                 <small class="text-secondary"></small>
                                 <h5>Teachers</h5>
                             </div>
@@ -24,7 +24,7 @@
                     <a href="{{ url('courses') }}" class="text-body">
                         <div class="card bg-light mb-3">
                             <div class="card-body">
-                                <img  src="../resources/Images/ic_courses.png" width="100" height="100"></br></br>
+                                <img  src="resources/Images/ic_courses.png" width="100" height="100"></br></br>
                                 <small class="text-secondary"></small>
                                 <h5>Courses</h5>
                             </div>
@@ -36,7 +36,7 @@
                         <a href="{{ url('missions') }}" class="text-body">
                             <div class="card bg-light mb-3">
                                 <div class="card-body">
-                                <img  src="../resources/Images/ic_missions.png" width="100" height="100"></br></br>
+                                <img  src="../../resources/Images/ic_missions.png" width="100" height="100"></br></br>
                                     <small class="text-secondary"></small>
                                     <h5>Missions</h5>
                                 </div>
@@ -47,7 +47,7 @@
                         <a href="{{ url('groupes') }}" class="text-body">
                             <div class="card bg-light mb-3">
                                 <div class="card-body">
-                                <img  src="../resources/Images/ic_groups.png" width="100" height="100"></br></br>
+                                <img  src="./resources/Images/ic_groups.png" width="100" height="100"></br></br>
                                     <small class="text-secondary"></small>
                                     <h5>Groups</h5>
                                 </div>

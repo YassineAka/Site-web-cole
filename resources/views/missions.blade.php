@@ -3,8 +3,8 @@
 @section('content')
 
 
-   <div class="row">
-    <div class="col emp-profile"style="margin: 2%;"id="listMissions">
+   <div class="row" >
+    <div class="col emp-profile"style="margin: 2%;">
          <h1>Missions</h1>
         <div class="row">
             <div class="col-9">
@@ -90,6 +90,7 @@
                $("#answer").html(msg);
                $("#title").val('');
                $("#nbHours").val('');
+               $("#listMissions").load("missions #listMissions");
                $("#listMissions").load("missions #listMissions");
             } else{
                let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
