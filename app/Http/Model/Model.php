@@ -116,6 +116,37 @@ class Model
         return $tabgroupes;
      }
 
+     public static function catJson() {
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT category.id FROM category";
+        $cate = $pdo->query($requetes);
+        $tabcat = array ();
+        foreach ($cate as $row) {
+            array_push($tabcat,new Categorie($row["id"]));
+        }
+        $pdo = NULL;
+        return json_encode($tabcat);
+
+    }
+
+     public static function addCategory($title)                                                                                                                            
+     {                     
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
+        $requetes = "SELECT * FROM category WHERE id like '$title' ";                                                                                                      
+        $result = $pdo->query($requetes);
+        if ($result->rowCount() < 1) {                                                                                                                                                                                     
+            $addCat = "INSERT INTO category (`id`) VALUES ('$title')";                                                                                
+            $pdo->query($addCat); 
+            $pdo = NULL;
+            return "true";                                                                                                       
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }                                                                                                                                                           
+     }
      public static function addMission($title,$nbHours,$cat)                                                                                                                            
      {                     
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
@@ -137,13 +168,11 @@ class Model
      public static function getCategorie() {
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
-        $requetes = "SELECT mission.cat
-        FROM mission";
-
+        $requetes = "SELECT category.id FROM category";
         $cate = $pdo->query($requetes);
         $tabcat = array ();
         foreach ($cate as $row) {
-            array_push($tabcat,new Categorie($row["cat"]));
+            array_push($tabcat,new Categorie($row["id"]));
         }
         $pdo = NULL;
         return $tabcat;

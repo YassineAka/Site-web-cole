@@ -46,7 +46,19 @@ class Rest extends Controller {
             return "false";
         }
     }
-  
+    
+    function addCategory(){
+        $title=$_GET['titleCat'];
+        if(!empty($title)){
+            return Model::addCategory($title);
+        }else{
+            return "false";
+        }
+    }
+    function catJson(){
+        return Model::catJson();
+    }
+
     function missions() {
         $missions = Model::getAllMissions();
         $cat=Model::getCategorie();

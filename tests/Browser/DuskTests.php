@@ -110,10 +110,30 @@ class DuskTests extends DuskTestCase
                     ->press('#button')
                     ->pause(1000)
                     ->assertSee("ceciEstUnTest");
+                    ->press('#closeAddMission')
+
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $removeIdMission="DELETE FROM mission WHERE title='ceciEstUnTest'";
         $pdo->query($removeIdMission);
+        $pdo = null;
+    }
+    public function testAddCatSuccesfull()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('#btnAddCat')
+                    ->value('#titleCat', 'testosterone')
+                    ->pause(1000)
+                    ->press('#buttonCat')
+                    ->pause(1000)
+                    ->assertSee("testosterone");
+                    ->press('#closeAddCat')
+
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeIdCat="DELETE FROM category WHERE id='testosterone'";
+        $pdo->query($removeIdCat);
         $pdo = null;
     }
     public function testDeleteCourseSuccesfull()
