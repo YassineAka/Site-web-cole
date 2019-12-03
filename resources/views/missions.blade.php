@@ -4,7 +4,7 @@
 
 
    <div class="row" >
-    <div class="col emp-profile"style="margin: 2%;">
+    <div class="col emp-profile"style="margin: 2%;"id="listMissions">
          <h1>Missions</h1>
         <div class="row">
             <div class="col-9">
@@ -61,7 +61,7 @@
             </div>
             <div class="form-group">
                <label for="name">Hours</label>
-               <input type="number" id="nbHours" class="form-control" placeholder="Hours...">
+               <input type="number" id="nbHours" class="form-control" placeholder="Hours..." max="500">
             </div>
             <div class="form-group">
                <label for="name">Catégorie</label>
@@ -82,6 +82,7 @@
    $(document).ready(function () {
       $("#button").click(function () {
          let title = $("#title").val().charAt(0).toUpperCase()+ $("#title").val().substr(1).toLowerCase();
+         let nbHours = $("#nbHours").val();
          let selector = document.getElementById("selector");
          let strCat = selector.options[selector.selectedIndex].value;
          $.get("missions/add?title="+title+"&nbHours="+nbHours+"&strCat="+strCat, function (data, status) {
@@ -90,7 +91,6 @@
                $("#answer").html(msg);
                $("#title").val('');
                $("#nbHours").val('');
-               $("#listMissions").load("missions #listMissions");
                $("#listMissions").load("missions #listMissions");
             } else{
                let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
