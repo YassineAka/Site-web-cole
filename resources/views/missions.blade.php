@@ -1,11 +1,11 @@
 @extends('template')
-@section('title','List Of Missions')
+@section('title','Missions')
 @section('content')
 
 
    <div class="row" >
     <div class="col emp-profile"style="margin: 2%;"id="listMissions">
-         <h1>List Of Missions</h1>
+         <h1>Missions</h1>
         <div class="row">
             <div class="col-9">
             </div>
@@ -30,11 +30,10 @@
                @foreach ($missions as $mission)
                   @if ($c->getCat()==$mission->getCat())
                      <tr>
-                        <th scope="row"></th>
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="del btn btn-danger">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
                   @endif
                @endforeach
             </tbody>
@@ -63,7 +62,7 @@
             </div>
             <div class="form-group">
                <label for="name">Hours</label>
-               <input type="number" id="nbHours" class="form-control" placeholder="Hours...">
+               <input type="number" id="nbHours" class="form-control" placeholder="Hours..." max="500">
             </div>
             <div class="form-group">
                <label for="name">Catégorie</label>
@@ -106,7 +105,7 @@
 <script>
    $(document).ready(function () {
       $("#button").click(function () {
-         let title = $("#title").val();
+         let title = $("#title").val().charAt(0).toUpperCase()+ $("#title").val().substr(1).toLowerCase();
          let nbHours = $("#nbHours").val();
          let selector = document.getElementById("selector");
          let strCat = selector.options[selector.selectedIndex].value;
@@ -116,7 +115,7 @@
                $("#answer").html(msg);
                $("#title").val('');
                $("#nbHours").val('');
-               $("#listMissions").load("missions #listMissions");
+               location.reload();
             } else{
                let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
                $("#answer").html(msg);
@@ -140,6 +139,7 @@
 
       });
       $(".del").click(function() {
+         console.log("del:teste");
          let id = $(this).val();
          let url ="./mission/delete/"+id;
          $.get(url, function(jsData, status) {

@@ -1,11 +1,11 @@
 @extends('template')
-@section('title','List Of Groups')
+@section('title','Groups')
 @section('content')
 
 
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
-        <h1>List Of Groups</h1>
+        <h1>Groups</h1>
         <div class="row">
                 <div class="col-9">
                 </div>
@@ -59,13 +59,13 @@
 <script>
   $(document).ready(function() {
     $("#inscription").click(function() {
-        let id = $("#id").val();
+        let id = $("#id").val().toUpperCase();
         $.get("groupes/add?id="+id, function(data, status) {
             if(data == "true"){
                 let msg = "<div class='alert alert-success' role='alert'>The groupe has been registered !</div>"
                 $("#answer").html(msg);
                 $("#id").val('');
-                $("#MyTable").load( "groupes #MyTable" );
+                location.reload();
             } else{
                 let msg = "<div class='alert alert-danger' role='alert'>The groupe has not been registered !</div>"
                 $("#answer").html(msg);

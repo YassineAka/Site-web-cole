@@ -21,6 +21,8 @@ Route::get('/courses','Rest@courses');
 
 Route::get('/teachers/add','Rest@inscriptionProf');
 
+Route::get('teacher/info/modif','Rest@modificationProf');
+
 Route::get('/courses/add','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');

@@ -5,13 +5,13 @@
 
 
 @extends('template')
-@section('title','List Of Teachers')
+@section('title','Teachers')
 @section('content')
 
 
 <div class="row ">
     <div class="col emp-profile"style="margin: 2%;"> 
-            <h1>List Of Teachers</h1>
+            <h1>Teachers</h1>
         <div class="row">
             <div class="col-9">
             </div>
@@ -79,9 +79,9 @@
  <script>
   $(document).ready(function(){
        $("#inscription").click(function(){
-            let id = $("#id").val();
-            let nom = $("#nom").val();
-            let prenom = $("#prenom").val();
+            let id = $("#id").val().toUpperCase();
+            let nom = $("#nom").val().charAt(0).toUpperCase()+ $("#nom").val().substr(1).toLowerCase();
+            let prenom = $("#prenom").val().charAt(0).toUpperCase()+ $("#prenom").val().substr(1).toLowerCase();
             $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
                 if(data == "true"){
                     let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
@@ -89,7 +89,7 @@
                     $("#id").val('');
                     $("#nom").val('');
                     $("#prenom").val('');
-                    $("#tableau").load( "teachers #tableau" );
+                    location.reload();
                 } else{
                     let msg = "<div class='alert alert-danger' role='alert'>The teacher has not been registered !</div>"
                     $("#answer").html(msg);
@@ -104,12 +104,6 @@
             location.reload();
          });
       });
-    }); 
-
-
-
-
-    $(document).ready(function() {
         
         $(".btn").click(function() {
         let value = $(this).val();
@@ -127,6 +121,6 @@
 
 
     });
-        });  
+});  
 </script>
 @endsection

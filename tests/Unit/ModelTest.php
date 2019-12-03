@@ -29,7 +29,7 @@ class ModelTest extends TestCase
         $pdo = null;
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
     }
-    public function testAddTeacher(){
+    /*public function testAddTeacher(){
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
 
@@ -45,7 +45,7 @@ class ModelTest extends TestCase
         Model::inscriptionProf($id,$nom,$prenom);
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
         
-    }
+    }*/
 
     public function testAddCourse()
     {

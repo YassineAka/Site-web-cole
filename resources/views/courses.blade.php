@@ -1,10 +1,10 @@
 @extends('template')
-@section('title','List Of Courses')
+@section('title','Courses')
 @section('content')
 
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
-        <h1>List Of Courses</h1>
+        <h1>Courses</h1>
         <div class="row">
             <div class="col-9">
             </div>
@@ -71,8 +71,8 @@
 <script>
 $(document).ready(function() {
     $("#bou").click(function() {
-      let id = $("#id").val();
-      let name = $("#name").val();
+      let id = $("#id").val().toUpperCase();
+      let name = $("#name").val().charAt(0).toUpperCase()+ $("#name").val().substr(1).toLowerCase();
       let nbHours = $("#nbHours").val();
       $.get("courses/add?id="+id+"&name="+name+"&nbHours="+nbHours, function(data, status) {
         if(data == "true"){
@@ -81,7 +81,7 @@ $(document).ready(function() {
             $("#id").val('');
             $("#name").val('');
             $("#nbHours").val('');
-            $("#MyTable").load( "courses #MyTable" );
+            location.reload();
         } else{
             let msg = "<div class='alert alert-danger' role='alert'>The course has not been registered !</div>"
             $("#answer").html(msg);

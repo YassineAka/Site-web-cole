@@ -51,7 +51,7 @@ class DuskTests extends DuskTestCase
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-                    ->clickLink("List Of Teachers")
+                    ->clickLink("Teachers")
                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/teachers');
                });
    }
@@ -82,7 +82,7 @@ class DuskTests extends DuskTestCase
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-                    ->clickLink("List Of Courses")
+                    ->clickLink("Courses")
                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/courses');
                });
    }
@@ -91,7 +91,7 @@ class DuskTests extends DuskTestCase
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-                    ->clickLink("List Of Missions")
+                    ->clickLink("Missions")
                    ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/missions');
                });
    }
@@ -180,7 +180,7 @@ class DuskTests extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-                     ->clickLink("List Of Groups")
+                     ->clickLink("Groups")
                     ->assertPathIs('/Projet-Attributions-Groupe-LesCerveaux/public/groupes');
                 });
     }
