@@ -55,16 +55,27 @@
                         </a>
                     </div>
                     
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <a href="{{ url('version') }}" class="text-body">
-                                <div class="card bg-light mb-3">
-                                    <div class="card-body">
-                                        <img  src="../resources/Images/ic_versions.png" width="100" height="100"></br></br>
-                                        <small class="text-secondary"></small>
-                                        <h5>Version</h5>
-                                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <a href="{{ url('attributions') }}" class="text-body">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <img  src="../resources/Images/ic_attributions.png" width="100" height="100"></br></br>
+                                    <small class="text-secondary"></small>
+                                    <h5>Attributions</h5>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <a href="{{ url('version') }}" class="text-body">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <img  src="../resources/Images/ic_versions.png" width="100" height="100"></br></br>
+                                    <small class="text-secondary"></small>
+                                    <h5>Version</h5>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>

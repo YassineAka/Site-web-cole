@@ -64,6 +64,13 @@ class Rest extends Controller {
         $cat = array_unique($cat);
         return view('missions',compact('missions','cat'));
     }
+    function attributions(){
+        $courses_groups = Model::getAllCoursesGroups();
+        $courses = Model::getAllCourses();
+        $groups = Model::getAllGroupes();
+        return view('attributions',compact('courses_groups','courses','groups'));
+    }
+
     function addMission(){
         $title=$_GET['title'];
         $strCat=$_GET['strCat'];

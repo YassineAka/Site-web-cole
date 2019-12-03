@@ -1,7 +1,6 @@
 @extends('template')
 @section('title','Courses')
 @section('content')
-
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
         <h1>Courses</h1>
@@ -61,6 +60,11 @@
                 <label for="nbHours">Hours</label>
                 <input type="number"  id="nbHours"class="form-control" placeholder="Hours...">
             </div>
+            <div class="form-group">
+                
+
+            </div>
+
             
             <button id="bou"type="submit" class="btn btn-primary">Add</button>
 
@@ -70,6 +74,7 @@
 
 <script>
 $(document).ready(function() {
+    
     $("#bou").click(function() {
       let id = $("#id").val().toUpperCase();
       let name = $("#name").val().charAt(0).toUpperCase()+ $("#name").val().substr(1).toLowerCase();
@@ -96,10 +101,8 @@ $(document).ready(function() {
         });
         
     });
+    
 });
-
-
-
 </script>
 
  

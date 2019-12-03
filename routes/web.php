@@ -17,6 +17,8 @@ Route::get('/teachers','Rest@teachers');
 
 Route::get('/version','Rest@version');
 
+Route::get('/attributions','Rest@attributions');
+
 Route::get('/courses','Rest@courses');
 
 Route::get('/teachers/add','Rest@inscriptionProf');

@@ -6,7 +6,6 @@
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
- 
   
   <title> @yield('title') </title>
   <!doctype html>
@@ -73,6 +72,9 @@
                 </li>
                 <li class="nav-item">
                         <a class="nav-link" href="{{ url('groupes') }}">Groups</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="{{ url('attributions') }}">Attributions</a>
                 </li>
                 <li class="nav-item">
                         <a class="nav-link" href="{{ url('version') }}">Version</a>

@@ -13,6 +13,8 @@ DROP TABLE IF EXISTS mission;
 
 DROP TABLE IF EXISTS groupe;
 
+DROP TABLE IF EXISTS course_groups;
+
 
 /* Creation des tables */
 
@@ -44,6 +46,22 @@ CREATE TABLE groupe (
      id      VARCHAR(15) NOT NULL,
      CONSTRAINT groupePK PRIMARY KEY (id)
 );
+
+CREATE TABLE course_groups (
+     course      VARCHAR(7) NOT NULL,
+     groupe      VARCHAR(15) NOT NULL,
+   CONSTRAINT PK_course_GROUP PRIMARY KEY (course,groupe)
+);
+ALTER TABLE course_groups
+ADD CONSTRAINT FK_GROUPS
+FOREIGN KEY (groupe)
+REFERENCES groupe(id)
+;
+ALTER TABLE course_groups
+ADD CONSTRAINT FK_COURSES
+FOREIGN KEY (course)
+REFERENCES course(id)
+;
 
 /* Remplissage des tables */
 
@@ -126,3 +144,12 @@ INSERT INTO groupe VALUES ('F111');
 INSERT INTO groupe VALUES ('F112');
 INSERT INTO groupe VALUES ('F211');
 INSERT INTO groupe VALUES ('F212');
+
+INSERT INTO course_groups VALUES ('WEBG4','A111');
+INSERT INTO course_groups VALUES ('WEBG4','A112');
+INSERT INTO course_groups VALUES ('WEBG4','A211');
+INSERT INTO course_groups VALUES ('WEBG5','B111');
+INSERT INTO course_groups VALUES ('WEBG5','B112');
+INSERT INTO course_groups VALUES ('WEBG5','B211');
+
+

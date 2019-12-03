@@ -51,6 +51,21 @@ class Model
         $pdo = NULL;
         return $tabcours;
      }
+     
+
+    public static function getAllCoursesGroups() {
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $requetes = "SELECT course_groups.course, course_groups.groupe
+                    FROM course_groups ";
+        $coursesGroups = $pdo->query($requetes);
+        $tabCoursesGroups = array ();
+        foreach ($coursesGroups as $row) {
+             array_push($tabCoursesGroups,new CourseGroups($row["course"],$row["groupe"]));
+            }
+        $pdo = NULL;
+        return $tabCoursesGroups;
+     }
     public static function inscriptionProf($id,$nom,$prenom){
         $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
         //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);  
