@@ -32,7 +32,7 @@
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="del btn btn-danger">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
                   @endif
                @endforeach
             </tbody>
@@ -91,7 +91,7 @@
                $("#answer").html(msg);
                $("#title").val('');
                $("#nbHours").val('');
-               $("#listMissions").load("missions #listMissions");
+               location.reload();
             } else{
                let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
                $("#answer").html(msg);
@@ -99,6 +99,7 @@
          });
       });
       $(".del").click(function() {
+         console.log("del:teste");
          let id = $(this).val();
          let url ="./mission/delete/"+id;
          $.get(url, function(jsData, status) {

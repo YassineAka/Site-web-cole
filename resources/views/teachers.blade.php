@@ -89,7 +89,7 @@
                     $("#id").val('');
                     $("#nom").val('');
                     $("#prenom").val('');
-                    $("#tableau").load( "teachers #tableau" );
+                    location.reload();
                 } else{
                     let msg = "<div class='alert alert-danger' role='alert'>The teacher has not been registered !</div>"
                     $("#answer").html(msg);
