@@ -27,7 +27,6 @@ Route::get('/courses/add','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');
 
-
 Route::get('/missions/add','Rest@addMission');
 
 Route::get('/courses/delete/{id}','Rest@deleteCourse');
@@ -35,7 +34,10 @@ Route::get('/courses/delete/{id}','Rest@deleteCourse');
 Route::get('/teachers/info/{info}','Rest@teachers');
 
 Route::get('/teacher/info/{info}','Rest@showTeacher');
+
 Route::get('/mission/delete/{id}','Rest@deleteMission');
+
+Route::get('/mission/modify/{id}/{title}/{heure}/{cat}','Rest@modifyMission');
 
 Route::get('/teachers/delete/{id}','Rest@deleteProf');
 
@@ -45,3 +47,6 @@ Route::get('/groupes/add','Rest@addGroup');
 
 Route::get('/groupes/delete/{id}','Rest@deleteGroup');
 
+Route::get('/groupes/delete/{id}','Rest@deleteGroup');
+
+Route::get('/mission/getMissionJson/{id}','Rest@getMissionJson');

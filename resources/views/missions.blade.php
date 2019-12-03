@@ -2,9 +2,43 @@
 @section('title','Missions')
 @section('content')
 
-
    <div class="row">
     <div class="col emp-profile"style="margin: 2%;"id="listMissions">
+    <div class="container">
+    <div class="modal fade" id="formulaire">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Modifier mission</h4>              
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body row">
+            <form id='formModify' class="col">
+              <div class="form-group">
+                <label for="missionForm" class="form-control-label">Mission</label>
+                <input type="text" class="form-control" name ="missionForm" id="missionForm" >
+              </div>
+              <div class="form-group">
+                <label for="heureForm" class="form-control-label">Heures</label>
+                <input type="number" class="form-control" name="heureForm" id="heureForm" >
+              </div>
+              <div class="form-group">
+               <label for="name">Catégorie</label>
+               <select  class="form-control mission id" id="selector">
+                  @foreach ($cat as $categorie)
+                     <option value="{{$categorie->getCat()}}"> {{$categorie->getCat()}}</option>
+                  @endforeach
+               </select>
+            </div>
+              <button  id="bttnModify"  class="btn btn-primary pull-right">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
          <h1>Missions</h1>
         <div class="row">
             <div class="col-9">
@@ -32,7 +66,7 @@
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" class="btn btn-secondary">✎</button></td>                     </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" value="{{$mission->getId()}}" class="btn btn-secondary btnModify" data-toggle="modal" data-target="#formulaire">✎</button></td> </tr>
                   @endif
                @endforeach
             </tbody>
@@ -75,11 +109,14 @@
       </div>
    </div>
 
-</div>
+
+
+
 
 
 <script>
    $(document).ready(function () {
+      $('.container')
       $("#button").click(function () {
          let title = $("#title").val().charAt(0).toUpperCase()+ $("#title").val().substr(1).toLowerCase();
          let selector = document.getElementById("selector");
@@ -104,7 +141,28 @@
             location.reload();
          });
       });
+      $(".btnModify").click(function() {
+         id_globale = $(this).val();
+         let url ="./mission/getMissionJson/"+id_globale;
+         $.get(url, function(data, status) {
+            mission = JSON.parse(data);
+            $('input[name="missionForm"]').val(mission['title']);
+            $('input[name="heureForm"]').val(mission['nbHours']);
+            $(".id").val(mission['cat']);
+            console.log(mission['cat'])
+         });  
+      });
+      $("#bttnModify").click(function(){
+         console.log("ntm");
+           let title = $("#missionForm").val();
+           let heure = $("#heureForm").val();
+           let cat = $(".id").val();
+           let url = "./mission/modify/"+ id_globale +"/"+ title + "/"+ heure + "/" + cat;
+           $.get(url, function(data, status){
+              
+           });
+           location.reload();
+      });
    }); 
 </script>
-
 @endsection
