@@ -10,8 +10,8 @@
             <div class="col-9">
             </div>
             <div class="col">
-                <button id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter une mission</button>
-                <button id= "btnAddCat" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3" style="margin-bottom:2em;">Ajouter une catégorie</button>
+                <button onclick="collapse1()" id= "btnAdd" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter une mission</button>
+                <button onclick="collapse2()" id= "btnAddCat" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3" style="margin-bottom:2em;">Ajouter une catégorie</button>
             </div>
         </div> 
    
@@ -48,12 +48,12 @@
                <div class="col-10">
                </div>
                <div class="col">
-                  <button id="closeAddMission" class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
+                  <button  id="closeAddMission" class="btn btn-danger" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">X</button>
                </div>
             </div> 
 
-            <h1>Inscription</h1>
-            <p>Veuillez entrer les cordonnées de la mission à ajouter dans le formulaire ci-joint.</p>
+            <h1>Ajouter une mission</h1>
+            <p>Veuillez entrer les informations de la mission à ajouter dans le formulaire ci-joint.</p>
             
             <div class="form-group" id="answer"></div>
             
@@ -87,8 +87,8 @@
                </div>
             </div> 
 
-            <h1>Inscription</h1>
-            <p>Veuillez entrer les cordonnées de la categorie à ajouter dans le formulaire ci-joint.</p>
+            <h1>Ajouter une catégorie</h1>
+            <p>Veuillez entrer les informations de la categorie à ajouter dans le formulaire ci-joint.</p>
             
             <div class="form-group" id="answerCat"></div>
             
@@ -146,7 +146,35 @@
             location.reload();
          });
       });
+      
+      $("#closeAddCat").click(function() {
+         var second = document.getElementById("multiCollapseExample3");
+         second.style.display = "none";
+      });
+      $("#closeAddMission").click(function() {
+         var second = document.getElementById("multiCollapseExample2");
+         second.style.display = "none";
+      });
    }); 
+   function collapse1 () {
+      var first= document.getElementById("multiCollapseExample2");
+      var second = document.getElementById("multiCollapseExample3");
+      if (first.style.display === "none"){
+         first.style.display="block";
+      }second.style.display = "none";
+      
+   }
+
+
+   function collapse2 () {
+      var first= document.getElementById("multiCollapseExample2");
+      var second = document.getElementById("multiCollapseExample3");
+      if (second.style.display === "none"){
+         second.style.display="block";
+      }first.style.display = "none";
+   }
+   
+   
 </script>
 
 @endsection
