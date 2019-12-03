@@ -149,7 +149,7 @@
             $('input[name="missionForm"]').val(mission['title']);
             $('input[name="heureForm"]').val(mission['nbHours']);
             $(".id").val(mission['cat']);
-            console.log(mission['cat'])
+            console.log(mission['cat']);
          });  
       });
       $("#bttnModify").click(function(){

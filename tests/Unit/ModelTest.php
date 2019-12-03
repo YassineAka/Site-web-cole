@@ -219,12 +219,34 @@ class ModelTest extends TestCase
     public function testCourseExist()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
-        $requetes = "SELECT course.id, course.title, course.nbHours FROM course ";
+        $requetes = "SELECT course.id, course.title, course.nbHours FROM course";
         $result = $pdo->query($requetes);
         $pdo = NULL;
         $this->assertSame($result->rowCount(),count(Model::getAllCourses()));
     }
 
+    public function testModifyMission(){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $title="salut";
+        $nbHours="3";
+        $cat = "Stage";
+        $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $resultQ = $pdo->query($addMission);
+
+        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours";
+        $idResult = $pdo->query($idMission);
+        $row = $idResult->fetch(); 
+        $nbHours = 45;
+        Model::modifyMission($row['id'],$row['title'],$nbHours,$row['cat']);
+        // arret ici
+
+        $idMission = $row['id'];
+        $requete="SELECT * FROM mission WHERE id= $idMission ";
+        $result = $pdo->query($requete);
+        
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
+    }
 
 
 
