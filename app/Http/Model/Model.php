@@ -208,6 +208,15 @@ class Model
         $mission = $pdo->query($requetes);
         $pdo=null;
     }
+    public static function deleteCat($id){
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetesDeleteCat="DELETE FROM category WHERE id='$id'";
+        $requetesDeleteMission="DELETE FROM mission WHERE mission.cat= '$id'";
+        $categorieDeleteMission = $pdo->query($requetesDeleteMission);
+        $categorie = $pdo->query($requetesDeleteCat);
+        $pdo=null;
+    }
     public static function deleteProf($id){
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        

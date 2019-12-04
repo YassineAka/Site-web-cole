@@ -41,7 +41,7 @@ Route::get('/teacher/info/{info}','Rest@showTeacher');
 
 Route::get('/mission/delete/{id}','Rest@deleteMission');
 
-
+Route::get('/mission/deleteCat/{id}','Rest@deleteCat');
 
 Route::get('/teachers/delete/{id}','Rest@deleteProf');
 
