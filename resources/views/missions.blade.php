@@ -16,7 +16,7 @@
             <button onclick="collapse2()" id="btnAddCat" class="btn btn-primary" type="button" data-toggle="collapse"
                data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3"
                style="margin-bottom:2em;">Ajouter une catégorie</button>
-            <button onclick="collapse3()" id="btnDeleteCat" class="btn btn-primary" type="button" data-toggle="collapse"
+            <button onclick="collapse3()" id="btnDeleteCat" class="btn btn-danger" type="button" data-toggle="collapse"
                data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4"
                style="margin-bottom:2em;">Supprimer une catégorie</button>
          </div>

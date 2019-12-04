@@ -28,8 +28,68 @@ class ModelTest extends TestCase
         $result = $pdo->query($requetes);
         $pdo = null;
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers1()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers2()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers3()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers4()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers5()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+    }public function testGetAllTeachers6()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
+                     From teacher ";        
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
     }
-    /*public function testAddTeacher(){
+    public function testAddTeacher(){
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
 
@@ -43,9 +103,9 @@ class ModelTest extends TestCase
         $prenom="tkt";
         Model::deleteProf($id);
         Model::inscriptionProf($id,$nom,$prenom);
-        $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
+        $this->assertSame($result->rowCount() ,count(Model::getAllTeachers()));
         
-    }*/
+    }
 
     public function testAddCourse()
     {
@@ -119,6 +179,36 @@ class ModelTest extends TestCase
         $this->assertSame($result->rowCount(),count(Model::getCategorie()));
     }
 
+    public function testGetAllCoursesGroups(){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+        $requetes = "SELECT course_groups.course, course_groups.groupe
+        FROM course_groups ";
+ 
+        $result = $pdo->query($requetes);
+        $pdo = null;
+        $this->assertSame($result->rowCount(),count(Model::getAllCoursesGroups()));
+    }
+
+
+    public function testAddAttributionsCourseToGroups()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
+
+        $course="WEBG5";
+        $groups="A111";
+        
+        $removeCourseGroup="DELETE FROM course_groups WHERE course='$course' AND groupe='$groups'";
+        Model::addAttributionsCourseToGroups($course,$groups);
+        $requete="SELECT * FROM course_groups WHERE course='$course' AND groupe='$groups'";
+        $result = $pdo->query($requete);
+        $verif = $result->rowCount();
+        $pdo->query($removeCourseGroup);
+        $pdo = null;
+        $this->assertTrue($verif==1);
+
+    }
     public function testAddMission()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
