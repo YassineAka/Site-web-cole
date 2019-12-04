@@ -70,6 +70,7 @@ class ModelTest extends TestCase
         $this->assertSame($result->rowCount(),count(Model::getAllTeachers()));
     }public function testGetAllTeachers5()
     {
+        
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
 
