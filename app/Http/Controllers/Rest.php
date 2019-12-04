@@ -111,6 +111,16 @@ class Rest extends Controller {
     function deleteGroup($id){
         return Model::deleteGroup($id);
     }
+    
+    function addAttributionsCourseToGroups(){
+        $course=$_GET['course'];
+        $groups=$_GET['groups'];
+        if(!empty($course) && !empty($groups) ){
+            return Model::addAttributionsCourseToGroups($course,$groups);
+        }else{
+            return "false";
+        }
+    }
 
 }
 ?>

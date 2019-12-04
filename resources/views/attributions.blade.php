@@ -35,7 +35,7 @@
                     <label for="groups">Groups</label>
                         @foreach ($groups as $group)
                     <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="{{$group->getId()}}" id="{{$group->getId()}}">
+                            <input class="form-check-input" type="checkbox" name="groups" value="{{$group->getId()}}" id="{{$group->getId()}}">
                             <label class="form-check-label" for="{{$group->getId()}}">
                                 {{$group->getId()}}
                             </label>
@@ -139,21 +139,22 @@
 
 $(document).ready(function(){
     $("#send_cours_to_groups").click(function() {
-        /*
-        let strCourse = slctr_course.options[slctr_course.selectedIndex].value;
-         $.get("attributions/add?course="+strCourse+"&nbHours="+nbHours+"&strCat="+strCat, function (data, status) {
-            if(data == "true"){
-               let msg = "<div class='alert alert-success' role='alert'>The mission has been registered !</div>"
-               $("#answer").html(msg);
-               $("#title").val('');
-               $("#nbHours").val('');
-               location.reload();
-            } else{
-               let msg = "<div class='alert alert-danger' role='alert'>The mission has not been registered !</div>"
-               $("#answer").html(msg);
-            }
-         });*/
-    }
+        let course = $( "#slctr_course" ).val();
+        let groups ="";
+        $.each($("input[name='groups']:checked"), function(){
+                groups = groups  +"_"+ $(this).val() ;
+        });
+        let goodGroups = groups.substring(1);
+        $.get("attributions/course_to_groups/add?course="+course+"&groups="+goodGroups, function(data, status) {
+        if(data == "false"){
+            let msg = "<div class='alert alert-danger' role='alert'>The course has not been attribued !</div>"
+            $("#answer").html(msg);
+        } else{
+            let msg = "<div class='alert alert-success' role='alert'>The course has been attribued !</div>"
+            location.reload();
+        }
+      });
+    });
 
 });
 </script>

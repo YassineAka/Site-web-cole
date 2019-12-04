@@ -99,7 +99,6 @@
          });
       });
       $(".del").click(function() {
-         console.log("del:teste");
          let id = $(this).val();
          let url ="./mission/delete/"+id;
          $.get(url, function(jsData, status) {

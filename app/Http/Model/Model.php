@@ -9,11 +9,14 @@ class Model
 {
     
 
+    public static function connection(){
+        return new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        //return new new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+
     public static function getAllTeachers()
     {
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
-
+        $pdo = Model::connection();
         $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
                      From teacher ";        
         $result = $pdo->query($requetes);
@@ -39,8 +42,7 @@ class Model
     }
 
     public static function getAllCourses() {
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = Model::connection();
         $requetes = "SELECT course.id, course.title, course.nbHours
                     FROM course ";
         $cours = $pdo->query($requetes);
@@ -54,9 +56,8 @@ class Model
      
 
     public static function getAllCoursesGroups() {
-        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $requetes = "SELECT course_groups.course, course_groups.groupe
+        $pdo = Model::connection();
+       $requetes = "SELECT course_groups.course, course_groups.groupe
                     FROM course_groups ";
         $coursesGroups = $pdo->query($requetes);
         $tabCoursesGroups = array ();
@@ -65,10 +66,9 @@ class Model
             }
         $pdo = NULL;
         return $tabCoursesGroups;
-     }
+    }
     public static function inscriptionProf($id,$nom,$prenom){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);  
+        $pdo = Model::connection();
         $sqlTeacher = "SELECT id FROM teacher WHERE id = '$id' ";
         $listTeacher=$pdo->query($sqlTeacher);
 
@@ -83,29 +83,37 @@ class Model
             return "false";
         }
     }
-     public static function addCourse($id,$name,$nbHours)                                                                                                                            
-     {                                                            
-             $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                        
-             //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
-             $requetes = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
-             $result = $pdo->query($requetes);                                                                                                                         
-             if ($result->rowCount() < 1) {                                                                                                                            
-                 $addCours = "INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";                                                                                
-                 $pdo->query($addCours);
-                 $pdo = NULL;
-                 return "true";                                                                                                
-                                                                                                                                      
-             }
-             else{
-                 $pdo = NULL;
-                 return "false";
-             }                                                                                                                                            
-                                                                                                                                                                    
-     }
+    public static function addCourse($id,$name,$nbHours){  
+        $pdo = Model::connection();                                                     
+        $requetes = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
+        $result = $pdo->query($requetes);                                                                                                                         
+        if ($result->rowCount() < 1) {                                                                                                                            
+            $addCours = "INSERT INTO course (`id`,`title`,`nbHours`) VALUES ('$id','$name','$nbHours')";                                                                                
+            $pdo->query($addCours);
+            $pdo = NULL;
+            return "true";                                                                                                                        
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }                                                                                                                                                                                                                                                                                                      
+    }
+
+    public static function addAttributionsCourseToGroups($course,$groups){  
+        $pdo = Model::connection();  
+        $listGroups = explode("_",$groups);
+        foreach($listGroups as $group){
+            $requetes = "SELECT * FROM course_groups WHERE course like '$course' AND groupe like '$group' ";                                                                                                      
+            $result = $pdo->query($requetes);                                                                                                                         
+            if ($result->rowCount() < 1) {                                                                                                                            
+                $addCoursToGroup = "INSERT INTO course_groups (`course`,`groupe`) VALUES ('$course','$group')";                                                                                
+                $pdo->query($addCoursToGroup);                                                                                             
+            }              
+        }                                                                                                                                                                                                                                                                                                     
+    }
      
      public static function getAllMissions() {
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes = "SELECT mission.id,mission.title, mission.nbHours,mission.cat
                   FROM mission";
     
@@ -119,8 +127,7 @@ class Model
      }
 
      public static function getAllGroupes() {
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $pdo = Model::connection();
         $requetes = "SELECT groupe.id FROM groupe ";
         $groupes = $pdo->query($requetes);
         $tabgroupes = array ();
@@ -131,10 +138,8 @@ class Model
         return $tabgroupes;
      }
 
-     public static function addMission($title,$nbHours,$cat)                                                                                                                            
-     {                     
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                         
+     public static function addMission($title,$nbHours,$cat){ 
+        $pdo = Model::connection();                    
         $requetes = "SELECT * FROM mission WHERE title like '$title' ";                                                                                                      
         $result = $pdo->query($requetes);
         if ($result->rowCount() < 1) {                                                                                                                                                                                     
@@ -150,8 +155,7 @@ class Model
      }
 
      public static function getCategorie() {
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes = "SELECT mission.cat
         FROM mission";
 
@@ -164,17 +168,14 @@ class Model
         return $tabcat;
      }
 
-     public static function deleteCourse($id){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+    public static function deleteCourse($id){
+        $pdo = Model::connection();
         $requetes="DELETE FROM course WHERE id='$id'";
         $courses = $pdo->query($requetes);
         $pdo=null;
     }
     public static function showTeacher($id){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
-
+        $pdo = Model::connection();
         $requetes = "SELECT teacher.id, teacher.name,teacher.firstName
                      From teacher
                      where teacher.id='$id' ";        
@@ -188,15 +189,13 @@ class Model
     }
 
     public static function deleteMission($id){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes="DELETE FROM mission WHERE id='$id'";
         $mission = $pdo->query($requetes);
         $pdo=null;
     }
     public static function deleteProf($id){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes="DELETE FROM teacher WHERE id='$id'";
         $prof = $pdo->query($requetes);
         $pdo=null;
@@ -205,8 +204,7 @@ class Model
     
 
     public static function deleteGroup($id){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-       //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes="DELETE FROM groupe WHERE id='$id'";
         $group = $pdo->query($requetes);
         $pdo=null;
@@ -214,11 +212,8 @@ class Model
 
     
 
-    public static function addGroup($id)                                                                                                                            
-    {                     
-       $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-       //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                                                                                                                                  
-                                                                                                                                                             
+    public static function addGroup($id){   
+        $pdo = Model::connection();                  
         $requetes = "SELECT * FROM groupe WHERE id like '$id' ";                                                                                                      
         $result = $pdo->query($requetes);
         if ($result->rowCount() < 1) {                                                                                                                                                                                                                                                                                                                            
@@ -230,13 +225,11 @@ class Model
         else{
             $pdo = NULL;
             return "false";
-        } 
-                                                                                                                                                                   
+        }                                                                                                                                                            
     }
     
     public static function modificationProf($id,$id2,$nom,$prenom){
-        $pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-        //$pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);  
+        $pdo = Model::connection();
         $sqlTeacher = "SELECT id FROM teacher WHERE id = '$id' ";
         $listTeacher=$pdo->query($sqlTeacher);
 

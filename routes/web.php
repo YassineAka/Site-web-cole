@@ -19,6 +19,8 @@ Route::get('/version','Rest@version');
 
 Route::get('/attributions','Rest@attributions');
 
+Route::get('/attributions/course_to_groups/add','Rest@addAttributionsCourseToGroups');
+
 Route::get('/courses','Rest@courses');
 
 Route::get('/teachers/add','Rest@inscriptionProf');
@@ -37,6 +39,7 @@ Route::get('/courses/delete/{id}','Rest@deleteCourse');
 Route::get('/teachers/info/{info}','Rest@teachers');
 
 Route::get('/teacher/info/{info}','Rest@showTeacher');
+
 Route::get('/mission/delete/{id}','Rest@deleteMission');
 
 Route::get('/teachers/delete/{id}','Rest@deleteProf');
