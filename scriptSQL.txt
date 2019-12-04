@@ -5,6 +5,8 @@
  
 /* Suppression des tables si BD existe deja */
 
+DROP TABLE IF EXISTS course_groups;
+
 DROP TABLE IF EXISTS course;
 
 DROP TABLE IF EXISTS teacher;
@@ -15,7 +17,6 @@ DROP TABLE IF EXISTS category;
 
 DROP TABLE IF EXISTS groupe;
 
-DROP TABLE IF EXISTS course_groups;
 
 
 
