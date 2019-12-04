@@ -16,7 +16,7 @@ class DuskTests extends DuskTestCase
     * @return void
     */
   
-  /*  public function testAcceuil()
+   public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
@@ -201,7 +201,6 @@ class DuskTests extends DuskTestCase
         });
        
     }
-*/
     
     public function testModifyMission()
     {
