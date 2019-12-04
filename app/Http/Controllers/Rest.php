@@ -57,7 +57,19 @@ class Rest extends Controller {
             return "false";
         }
     }
-  
+    
+    function addCategory(){
+        $title=$_GET['titleCat'];
+        if(!empty($title)){
+            return Model::addCategory($title);
+        }else{
+            return "false";
+        }
+    }
+    function catJson(){
+        return Model::catJson();
+    }
+
     function missions() {
         $missions = Model::getAllMissions();
         $cat=Model::getCategorie();
@@ -96,6 +108,9 @@ class Rest extends Controller {
         return Model::getMissionJson($id);
     } 
     
+    function deleteCat($id){
+        return Model::deleteCat($id);
+    }
     
     function addGroup(){
         $id=$_GET['id'];

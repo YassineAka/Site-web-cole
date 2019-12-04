@@ -81,7 +81,7 @@ $(document).ready(function() {
             $("#id").val('');
             $("#name").val('');
             $("#nbHours").val('');
-            $("#MyTable").load( "courses #MyTable" );
+            location.reload();
         } else{
             let msg = "<div class='alert alert-danger' role='alert'>The course has not been registered !</div>"
             $("#answer").html(msg);

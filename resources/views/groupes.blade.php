@@ -65,7 +65,7 @@
                 let msg = "<div class='alert alert-success' role='alert'>The groupe has been registered !</div>"
                 $("#answer").html(msg);
                 $("#id").val('');
-                $("#MyTable").load( "groupes #MyTable" );
+                location.reload();
             } else{
                 let msg = "<div class='alert alert-danger' role='alert'>The groupe has not been registered !</div>"
                 $("#answer").html(msg);
