@@ -108,6 +108,13 @@ class Rest extends Controller {
         return Model::deleteMission($id);
     }
 
+    function modifyMission($id,$title,$heure,$cat){
+        return Model::modifyMission($id,$title,$heure,$cat);
+    }
+    function getMissionJson($id){
+        return Model::getMissionJson($id);
+    } 
+    
     function deleteCat($id){
         return Model::deleteCat($id);
     }

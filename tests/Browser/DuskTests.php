@@ -15,30 +15,40 @@ class DuskTests extends DuskTestCase
     *
     * @return void
     */
-    public function testAddMissionSuccesfull()
-    {
-        
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')    
-                     
-                    ->press('#btnAdd')
-                    ->value('#title', 'TESTA')
-                    ->pause(1000)
-                    ->value('#nbHours', '10')
-                    ->pause(1000)
-                    ->select('#selector', 'Stage')
-                    ->pause(1000)
-                    ->press('#button')
-                    ->pause(1000)
-                    ->press('#btnAdd')
-                    ->assertSee("Testa");
+  
+   public function testAcceuil()
+   {
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
+            ->assertSee('Home');
+       });
+       
+   }
+   public function testAddMissionSuccesfull()
+   {
+       
+       $this->browse(function (Browser $browser) {
+           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')    
+                    
+                   ->press('#btnAdd')
+                   ->value('#title', 'TESTA')
+                   ->pause(1000)
+                   ->value('#nbHours', '10')
+                   ->pause(1000)
+                   ->select('#selector', 'Stage')
+                   ->pause(1000)
+                   ->press('#button')
+                   ->pause(1000)
+                   ->press('#btnAdd')
+                   ->assertSee("Testa");
 
-        });
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdMission="DELETE FROM mission WHERE title='TESTA'";
-        $pdo->query($removeIdMission);
-        $pdo = null;
-    }
+       });
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+       $removeIdMission="DELETE FROM mission WHERE title='TESTA'";
+       $pdo->query($removeIdMission);
+       $pdo = null;
+   }
+
     public function testDeleteCatSuccesfull()
     {
         
@@ -232,6 +242,34 @@ class DuskTests extends DuskTestCase
                     ->assertDontSee("XXX");
         });
        
+    }
+    
+    public function testModifyMission()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('.selenium')
+                    ->pause(2000)
+                    ->assertSee("Modifier mission")
+                    ->assertSee("Mission")
+                    ->assertSee("Heures")
+                    ->assertSee("Catégorie");
+        
+        });
+    }
+
+    public function testModifyMissionByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('.selenium')
+                    ->pause(2000)
+                    ->value("#missionForm","testSelenium")
+                    ->value("#heureForm","-1")
+                    ->press("#bttnModify")
+                    ->assertSee("testSelenium")
+                    ->assertSee("-1");
+        });
     }
 
     

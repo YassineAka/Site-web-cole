@@ -245,6 +245,9 @@ class ModelTest extends TestCase
     }
     
 
+
+
+
     public function testDelMission()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
@@ -308,7 +311,7 @@ class ModelTest extends TestCase
     public function testCourseExist()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
-        $requetes = "SELECT course.id, course.title, course.nbHours FROM course ";
+        $requetes = "SELECT course.id, course.title, course.nbHours FROM course";
         $result = $pdo->query($requetes);
         $pdo = NULL;
         $this->assertSame($result->rowCount(),count(Model::getAllCourses()));
@@ -316,8 +319,7 @@ class ModelTest extends TestCase
     public function testAddCat()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
-        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
-
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
         $title="Testosterone";
         $removeIdCat="DELETE FROM category WHERE id='$title'";
         Model::addCategory($title);
@@ -327,8 +329,55 @@ class ModelTest extends TestCase
         $pdo->query($removeIdCat);
         $pdo = null;
         $this->assertTrue($verif==1);
+    }    
 
+    public function testModifyMission(){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $title="salut";
+        $nbHours= 3;
+        $cat = "Stage";
+        $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $resultQ = $pdo->query($addMission);
+
+        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours=$nbHours";
+        $idResult = $pdo->query($idMission);
+        $row = $idResult->fetch(); 
+        $nbHours = -1;
+        Model::modifyMission($row['id'],$row['title'],$nbHours,$row['cat']);
+        $idMission = $row['id'];
+        $requete="SELECT * FROM mission WHERE nbHours=$nbHours ";
+        $result = $pdo->query($requete);
+        $nbRow = $result->rowCount();
+        $requete = "DELETE FROM mission WHERE id=$idMission ";
+        $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($nbRow==1);
     }
+
+    public function testModifyMissionByTitle(){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $title="aurevoir";
+        $nbHours= 3;
+        $cat = "Stage";
+        $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $resultQ = $pdo->query($addMission);
+
+        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours=$nbHours";
+        $idResult = $pdo->query($idMission);
+        $row = $idResult->fetch(); 
+        $title = "hello men";
+        Model::modifyMission($row['id'],$title,$row['nbHours'],$row['cat']);
+        $idMission = $row['id'];
+        $requete="SELECT * FROM mission WHERE title = '$title' ";
+        $result = $pdo->query($requete);
+        $nbRow = $result->rowCount();
+        $requete = "DELETE FROM mission WHERE id=$idMission ";
+        $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($nbRow==1);
+    }
+
+    
 
     public function testDeleteCat()
     {

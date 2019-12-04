@@ -223,6 +223,22 @@ class Model
         $mission = $pdo->query($requetes);
         $pdo=null;
     }
+
+
+    public static function modifyMission($id,$title,$heure,$cat){
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
+       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes="UPDATE mission
+                    SET title = '$title',
+                    nbHours = '$heure',
+                    cat = '$cat'
+                    WHERE id = $id";
+        $mission = $pdo->query($requetes);
+        $pdo=null;
+    }
+
+
+
     public static function deleteCat($id){
         $pdo = Model::connection();
         $requetesDeleteCat="DELETE FROM category WHERE id='$id'";
@@ -280,6 +296,18 @@ class Model
             $pdo = NULL;
             return "false";
         }
+    }
+
+    public static function getMissionJson($id){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $requetes = "SELECT mission.id,mission.title, mission.nbHours,mission.cat FROM mission WHERE id='$id'";
+        $cate = $pdo->query($requetes);
+        $mission = array();
+        foreach ($cate as $row) {
+            array_push($mission,$row);
+        }
+        $pdo = NULL;
+        return json_encode($row);
     }
 }
 ?>
