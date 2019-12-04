@@ -66,7 +66,7 @@
                         <td >{{$mission->getId()}}</td>
                         <td >{{$mission->getTitle()}}</td>
                         <td> {{$mission->getNbHours()}}</td>
-                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" value="{{$mission->getId()}}" class="btn btn-secondary btnModify" data-toggle="modal" data-target="#formulaire">✎</button></td> </tr>
+                        <td><button type="button" id="{{$mission->getId()}}test" value="{{$mission->getId()}}" class="btn btn-danger del">X</button> <button type="button" value="{{$mission->getId()}}" class="btn btn-secondary btnModify selenium" data-toggle="modal" data-target="#formulaire">✎</button></td> </tr>
                   @endif
                @endforeach
             </tbody>

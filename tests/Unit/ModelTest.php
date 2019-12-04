@@ -228,24 +228,47 @@ class ModelTest extends TestCase
     public function testModifyMission(){
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
         $title="salut";
-        $nbHours="3";
+        $nbHours= 3;
         $cat = "Stage";
         $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
         $resultQ = $pdo->query($addMission);
 
-        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours='$nbHours";
+        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours=$nbHours";
         $idResult = $pdo->query($idMission);
         $row = $idResult->fetch(); 
-        $nbHours = 45;
+        $nbHours = -1;
         Model::modifyMission($row['id'],$row['title'],$nbHours,$row['cat']);
-        // arret ici
-
         $idMission = $row['id'];
-        $requete="SELECT * FROM mission WHERE id= $idMission ";
+        $requete="SELECT * FROM mission WHERE nbHours=$nbHours ";
         $result = $pdo->query($requete);
-        
+        $nbRow = $result->rowCount();
+        $requete = "DELETE FROM mission WHERE id=$idMission ";
+        $pdo->query($requete);
         $pdo = null;
-        $this->assertTrue($result->rowCount()==0);
+        $this->assertTrue($nbRow==1);
+    }
+
+    public function testModifyMissionByTitle(){
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $title="aurevoir";
+        $nbHours= 3;
+        $cat = "Stage";
+        $addMission = "INSERT INTO mission (`title`,`nbHours`,`cat`) VALUES ('$title','$nbHours','$cat')";
+        $resultQ = $pdo->query($addMission);
+
+        $idMission = "SELECT * FROM mission WHERE title='$title' AND nbHours=$nbHours";
+        $idResult = $pdo->query($idMission);
+        $row = $idResult->fetch(); 
+        $title = "hello men";
+        Model::modifyMission($row['id'],$title,$row['nbHours'],$row['cat']);
+        $idMission = $row['id'];
+        $requete="SELECT * FROM mission WHERE title = '$title' ";
+        $result = $pdo->query($requete);
+        $nbRow = $result->rowCount();
+        $requete = "DELETE FROM mission WHERE id=$idMission ";
+        $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($nbRow==1);
     }
 
 

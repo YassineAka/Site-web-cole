@@ -16,7 +16,7 @@ class DuskTests extends DuskTestCase
     * @return void
     */
   
-    public function testAcceuil()
+  /*  public function testAcceuil()
    {
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
@@ -200,6 +200,35 @@ class DuskTests extends DuskTestCase
                     ->assertDontSee("XXX");
         });
        
+    }
+*/
+    
+    public function testModifyMission()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('.selenium')
+                    ->pause(2000)
+                    ->assertSee("Modifier mission")
+                    ->assertSee("Mission")
+                    ->assertSee("Heures")
+                    ->assertSee("Catégorie");
+        
+        });
+    }
+
+    public function testModifyMissionByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
+                    ->press('.selenium')
+                    ->pause(2000)
+                    ->value("#missionForm","testSelenium")
+                    ->value("#heureForm","-1")
+                    ->press("#bttnModify")
+                    ->assertSee("testSelenium")
+                    ->assertSee("-1");
+        });
     }
 
 } 
