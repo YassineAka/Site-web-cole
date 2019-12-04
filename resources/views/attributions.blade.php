@@ -21,7 +21,6 @@
                 <h1>Attributions course to groups</h1>
                 <p>Selectionnez le cours et cochez les groupes dans le formulaire ci-joint.</p>
                 
-                <div class="form-group" id="answer"></div>
                 <div class="form-group">
                     <label for="id">Course</label>
                     <select class="form-control" id="slctr_course">
@@ -43,13 +42,9 @@
                     
                     @endforeach
                 </div>
-                <div class="form-group">
-                    
-
-                </div>
-
-                
+                <div class="form-group" id="answer"></div>
                 <button id="send_cours_to_groups"type="submit" class="btn btn-primary">Add</button>
+                
 
             </div>
         </div>
