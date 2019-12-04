@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                            <label for="name">Catégorie</label>
-                           <select class="form-control mission id" id="selector">
+                           <select class="form-control mission id" id="selectorModifCat">
                               @foreach ($cat as $categorie)
                               <option value="{{$categorie->getCat()}}"> {{$categorie->getCat()}}</option>
                               @endforeach
@@ -46,13 +46,13 @@
          <div class="col">
             <button onclick="collapse1()" id="btnAdd" class="btn btn-primary" type="button" data-toggle="collapse"
                data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"
-               style="margin-bottom:2em;">Ajouter une mission</button>
+               style="margin-bottom:2em;">Add mission</button>
             <button onclick="collapse2()" id="btnAddCat" class="btn btn-primary" type="button" data-toggle="collapse"
                data-target="#multiCollapseExample3" aria-expanded="false" aria-controls="multiCollapseExample3"
-               style="margin-bottom:2em;">Ajouter une catégorie</button>
+               style="margin-bottom:2em;">Add category</button>
             <button onclick="collapse3()" id="btnDeleteCat" class="btn btn-danger" type="button" data-toggle="collapse"
                data-target="#multiCollapseExample4" aria-expanded="false" aria-controls="multiCollapseExample4"
-               style="margin-bottom:2em;">Supprimer une catégorie</button>
+               style="margin-bottom:2em;">Delete category</button>
          </div>
       </div>
 
@@ -243,7 +243,6 @@
          });
       });
       $("#bttnModify").click(function () {
-         console.log("ntm");
          let title = $("#missionForm").val();
          let heure = $("#heureForm").val();
          let cat = $(".id").val();

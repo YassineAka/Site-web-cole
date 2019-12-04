@@ -136,8 +136,12 @@ $(document).ready(function(){
     $("#send_cours_to_groups").click(function() {
         let course = $( "#slctr_course" ).val();
         let groups ="";
+        console.log("coucou");
+        console.log('groups[]');
         $.each($("input[name='groups']:checked"), function(){
-                groups = groups  +"_"+ $(this).val() ;
+   console.log("yoo");
+            groups = groups  +"_"+ $(this).val() ;
+                console.log(groups);
         });
         let goodGroups = groups.substring(1);
         $.get("attributions/course_to_groups/add?course="+course+"&groups="+goodGroups, function(data, status) {

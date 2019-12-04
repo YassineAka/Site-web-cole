@@ -16,7 +16,7 @@
             <div class="col-9">
             </div>
             <div class="col">
-                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Ajouter un prof</button>
+                <button id= "btnAdd"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;"> Add teacher</button>
             </div>
         </div>
         <table class="table table-striped table-hover" id="tableau" >
@@ -37,11 +37,7 @@
                     <td> {{$teacher->name}}</td>
                     <td> {{$teacher->firstName}}</td>
                     <td><button type="button" class="btn btn-danger del" id="{{$teacher->id}}test" value="{{$teacher->id}}">X</button> <button type="button" id="{{$teacher->id}}" class="btn btn-secondary" value="info">⇨</button></td>
-
-               </tr>
-
-
-               
+               </tr> 
                 @endforeach
             </tbody>
         </table>
