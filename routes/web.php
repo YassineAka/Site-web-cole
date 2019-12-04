@@ -31,6 +31,9 @@ Route::get('/courses/add','Rest@addCourse');
 
 Route::get('/missions','Rest@missions');
 
+Route::get("/category/json",'Rest@catJson');
+
+Route::get('/category/add','Rest@addCategory');
 
 Route::get('/missions/add','Rest@addMission');
 

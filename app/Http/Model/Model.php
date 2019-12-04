@@ -138,8 +138,9 @@ class Model
         return $tabgroupes;
      }
 
-     public static function addMission($title,$nbHours,$cat){ 
-        $pdo = Model::connection();                    
+     public static function addMission($title,$nbHours,$cat)                                                                                                                            
+     {  
+        $pdo = Model::connection();
         $requetes = "SELECT * FROM mission WHERE title like '$title' ";                                                                                                      
         $result = $pdo->query($requetes);
         if ($result->rowCount() < 1) {                                                                                                                                                                                     
@@ -152,17 +153,45 @@ class Model
             $pdo = NULL;
             return "false";
         }                                                                                                                                                           
-     }
-
-     public static function getCategorie() {
+     }                  
+     public static function catJson() {
+        
         $pdo = Model::connection();
-        $requetes = "SELECT mission.cat
-        FROM mission";
-
+        $requetes = "SELECT category.id FROM category";
         $cate = $pdo->query($requetes);
         $tabcat = array ();
         foreach ($cate as $row) {
-            array_push($tabcat,new Categorie($row["cat"]));
+            array_push($tabcat,new Categorie($row["id"]));
+        }
+        $pdo = NULL;
+        return json_encode($tabcat);
+
+    }
+
+     public static function addCategory($title)                                                                                                                            
+     {   
+        $pdo = Model::connection();
+        $requetes = "SELECT * FROM category WHERE id like '$title' ";                                                                                                      
+        $result = $pdo->query($requetes);
+        if ($result->rowCount() < 1) {                                                                                                                                                                                     
+            $addCat = "INSERT INTO category (`id`) VALUES ('$title')";                                                                                
+            $pdo->query($addCat); 
+            $pdo = NULL;
+            return "true";                                                                                                       
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }                                                                                                                                                           
+     }
+     
+
+     public static function getCategorie() {
+        $pdo = Model::connection();$requetes = "SELECT category.id FROM category";
+        $cate = $pdo->query($requetes);
+        $tabcat = array ();
+        foreach ($cate as $row) {
+            array_push($tabcat,new Categorie($row["id"]));
         }
         $pdo = NULL;
         return $tabcat;

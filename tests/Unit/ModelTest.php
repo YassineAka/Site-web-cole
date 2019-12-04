@@ -112,8 +112,7 @@ class ModelTest extends TestCase
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
         //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
 
-        $requetes = "SELECT mission.cat
-        FROM mission";
+        $requetes = "SELECT category.id     FROM category";
 
         $result = $pdo->query($requetes);
         $pdo = null;
@@ -224,7 +223,22 @@ class ModelTest extends TestCase
         $pdo = NULL;
         $this->assertSame($result->rowCount(),count(Model::getAllCourses()));
     }
+    public function testAddCat()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);    
 
+        $title="Testosterone";
+        $removeIdCat="DELETE FROM category WHERE id='$title'";
+        Model::addCategory($title);
+        $requete="SELECT * FROM category WHERE id='$title'";
+        $result = $pdo->query($requete);
+        $verif = $result->rowCount();
+        $pdo->query($removeIdCat);
+        $pdo = null;
+        $this->assertTrue($verif==1);
+
+    }
 
 
 
