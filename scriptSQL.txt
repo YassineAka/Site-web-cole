@@ -118,12 +118,11 @@ INSERT INTO course VALUES ('SYSG5','Système exploitation III',40);
 INSERT INTO course VALUES ('PRJG5','Gestion de projet',65);
 
 
-
-INSERT INTO category VALUES ('Stage');
-INSERT INTO category VALUES ('Aide reussite');
-INSERT INTO category VALUES ('Administration Git');
-INSERT INTO category VALUES ('Inscription');
-INSERT INTO category VALUES ('Remediation');
+INSERT INTO category  (`id`) VALUES ('Stage');
+INSERT INTO category  (`id`) VALUES ('Aide reussite');
+INSERT INTO category  (`id`) VALUES ('Administration Git');
+INSERT INTO category  (`id`) VALUES ('Inscription');
+INSERT INTO category  (`id`) VALUES ('Remediation');
 
 
 INSERT INTO `mission` (title,nbHours,cat) VALUES ('Trouver un stage Erasmus',10 ,'Stage');

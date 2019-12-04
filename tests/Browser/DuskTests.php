@@ -15,16 +15,50 @@ class DuskTests extends DuskTestCase
     *
     * @return void
     */
-  
-    public function testAcceuil()
-   {
-       $this->browse(function (Browser $browser) {
-           $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/')
-            ->assertSee('Home');
-       });
-       
-   }
+    public function testAddMissionSuccesfull()
+    {
+        
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')    
+                     
+                    ->press('#btnAdd')
+                    ->value('#title', 'TESTA')
+                    ->pause(1000)
+                    ->value('#nbHours', '10')
+                    ->pause(1000)
+                    ->select('#selector', 'Stage')
+                    ->pause(1000)
+                    ->press('#button')
+                    ->pause(1000)
+                    ->press('#btnAdd')
+                    ->assertSee("Testa");
 
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeIdMission="DELETE FROM mission WHERE title='TESTA'";
+        $pdo->query($removeIdMission);
+        $pdo = null;
+    }
+    public function testDeleteCatSuccesfull()
+    {
+        
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')    
+                     
+                    ->press('#btnDeleteCat')
+                    ->select('#selectorDeleteCat', 'Stage')
+                    ->pause(1000)
+                    ->press('#buttonDeleteCat')
+                    ->pause(1000)
+                    ->press('#btnDeleteCat')
+                    ->assertDontSee('Stage');
+
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeIdCat="DELETE FROM category WHERE id='Stage'";
+        $pdo->query($removeIdCat);
+        $pdo = null;
+    }
 
 
    public function testAddTeachersSuccesfull()
@@ -32,7 +66,7 @@ class DuskTests extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teachers')
                     ->press('#btnAdd')
-                    ->value('#id', 'MOA')
+                    ->value('#id', 'TES')
                     ->pause(1000)
                     ->value('#nom', 'LaSquale')
                     ->pause(1000)
@@ -40,10 +74,10 @@ class DuskTests extends DuskTestCase
                     ->pause(1000)
                     ->press('#inscription')
                     ->pause(1000)
-                    ->assertSee("MOA");
+                    ->assertSee("TES");
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdTeacher="DELETE FROM teacher WHERE id='MOA'";
+        $removeIdTeacher="DELETE FROM teacher WHERE id='TES'";
         $pdo->query($removeIdTeacher);
         $pdo = null;
     }
@@ -62,7 +96,7 @@ class DuskTests extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
                     ->press('#btnAdd')
-                    ->value('#id', 'test')
+                    ->value('#id', 'TESTA')
                     ->pause(1000)
                     ->value('#name', 'title')
                     ->pause(1000)
@@ -70,10 +104,10 @@ class DuskTests extends DuskTestCase
                     ->pause(1000)
                     ->press('#bou')
                     ->pause(1000)
-                    ->assertSee("test");
+                    ->assertSee("TESTA");
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdCourse="DELETE FROM course WHERE id='test'";
+        $removeIdCourse="DELETE FROM course WHERE id='TESTA'";
         $pdo->query($removeIdCourse);
         $pdo = null;
     }
@@ -96,28 +130,7 @@ class DuskTests extends DuskTestCase
                });
    }
 
-   public function testAddMissionSuccesfull()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/missions')             
-                    ->press('#btnAdd')
-                    ->value('#title', 'ceciEstUnTest')
-                    ->pause(1000)
-                    ->value('#nbHours', '10')
-                    ->pause(1000)
-                    ->select('#selector', 'Inscription')
-                    ->pause(1000)
-                    ->press('#button')
-                    ->pause(1000)
-                    ->assertSee("ceciEstUnTest")
-                    ->press('#closeAddMission');
 
-        });
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeIdMission="DELETE FROM mission WHERE title='ceciEstUnTest'";
-        $pdo->query($removeIdMission);
-        $pdo = null;
-    }
     public function testAddCatSuccesfull()
     {
         $this->browse(function (Browser $browser) {
@@ -191,14 +204,14 @@ class DuskTests extends DuskTestCase
        $this->browse(function (Browser $browser) {
            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
                    ->press('#btnAdd')
-                   ->value('#id', 'test')
+                   ->value('#id', 'TESTA')
                    ->pause(1000)
                    ->press('#inscription')
                    ->pause(2000)
-                   ->assertSee("test");
+                   ->assertSee("TESTA");
        });
        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-       $removeIdCourse="DELETE FROM groupe WHERE id='test'";
+       $removeIdCourse="DELETE FROM groupe WHERE id='TESTA'";
        $pdo->query($removeIdCourse);
        $pdo = null;
    }
@@ -220,6 +233,8 @@ class DuskTests extends DuskTestCase
         });
        
     }
+
+    
 
 } 
    

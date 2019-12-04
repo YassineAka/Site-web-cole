@@ -240,6 +240,19 @@ class ModelTest extends TestCase
 
     }
 
+    public function testDeleteCat()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); 
+        $id="test";
+        $addCat = " INSERT INTO category VALUES ('$id') ";
+        $resultQ = $pdo->query($addCat);
+        Model::deleteCat($id);
+        $this->assertTrue($resultQ->rowCount()<=1);
+        $requete="SELECT * FROM category WHERE id='$id'";
+        $result = $pdo->query($requete);
+        $pdo = null;
+        $this->assertTrue($result->rowCount()==0);
 
+    }
 
 }

@@ -107,6 +107,10 @@ class Rest extends Controller {
     function deleteMission($id){
         return Model::deleteMission($id);
     }
+
+    function deleteCat($id){
+        return Model::deleteCat($id);
+    }
     
     function addGroup(){
         $id=$_GET['id'];
