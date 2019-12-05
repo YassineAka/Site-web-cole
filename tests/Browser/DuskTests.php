@@ -319,7 +319,7 @@ class DuskTests extends DuskTestCase
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/attributions')
 
                 ->press('#btn_cours_groups_to_prof')
-                ->select('#slctr_course_group', 'WEBG4_A111')
+                ->select('#slctr_course_group', 'WEBG4_A211')
                 ->pause(1000)
                 ->check('#ABS')
                 ->check('#NRI')
@@ -328,12 +328,12 @@ class DuskTests extends DuskTestCase
                 ->pause(2000)
                 ->clickLink('Course / Group attributed')
                 ->pause(5000)
-                ->assertSee("WEBG4 / A111", "ABS")
-                ->assertSee("WEBG4 / A111", "NRI");
+                ->assertSee("WEBG4 / A211", "ABS")
+                ->assertSee("WEBG4 / A211", "NRI");
 
         });
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-        $removeCourseGroupTeacher = "DELETE FROM course_groups_teachers WHERE course='WEBG4' AND groupe = 'A111' ";
+        $removeCourseGroupTeacher = "DELETE FROM course_groups_teachers WHERE course='WEBG4' AND groupe = 'A211' ";
         $pdo->query($removeCourseGroupTeacher);
         $pdo = null;
     }
