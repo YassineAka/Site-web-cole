@@ -293,6 +293,7 @@ class ModelTest extends TestCase
         $this->assertTrue($nbRow == 1);
     }
 
+    
     public function testModifyMissionByTitle()
     {
         $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
