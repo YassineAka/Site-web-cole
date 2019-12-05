@@ -184,5 +184,3 @@ INSERT INTO course_groups_teachers VALUES ('WEBG5','B111','SRV');
 INSERT INTO course_groups_teachers VALUES ('WEBG5','B112','ABS');
 INSERT INTO course_groups_teachers VALUES ('SYSG5','D211','NVS');
 INSERT INTO course_groups_teachers VALUES ('SYSG5','E212','ABS');
-
-
