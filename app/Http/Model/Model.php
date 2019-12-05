@@ -345,7 +345,7 @@ class Model
     }
 
     public static function getMissionJson($id){
-        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes = "SELECT mission.id,mission.title, mission.nbHours,mission.cat FROM mission WHERE id='$id'";
         $cate = $pdo->query($requetes);
         $mission = array();
