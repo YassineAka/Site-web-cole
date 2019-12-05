@@ -55,10 +55,40 @@ class Model
      }
      
 
-    public static function getAllCoursesGroups() {
+     public static function getAllCoursesGroups() {
+         $pdo = Model::connection();
+        $requetes = "SELECT course_groups.course, course_groups.groupe
+                     FROM course_groups ";
+         $coursesGroups = $pdo->query($requetes);
+         $tabCoursesGroups = array ();
+         foreach ($coursesGroups as $row) {
+              array_push($tabCoursesGroups,new CourseGroups($row["course"],$row["groupe"]));
+             }
+         $pdo = NULL;
+         return $tabCoursesGroups;
+     }
+     
+
+     public static function getAllCoursesGroupsTeachers() {
+         $pdo = Model::connection();
+        $requetes = "SELECT course_groups_teachers.course, course_groups_teachers.groupe, course_groups_teachers.teacher
+                     FROM course_groups_teachers ";
+         $coursesGroupsTeachers = $pdo->query($requetes);
+         $tabCoursesGroupsTeachers = array ();
+         foreach ($coursesGroupsTeachers as $row) {
+              array_push($tabCoursesGroupsTeachers,new CourseGroupsTeachers($row["course"],$row["groupe"],$row["teacher"]));
+             }
+         $pdo = NULL;
+         return $tabCoursesGroupsTeachers;
+     }
+     
+     public static function getAllCoursesGroupsNotAttributed() {
         $pdo = Model::connection();
-       $requetes = "SELECT course_groups.course, course_groups.groupe
-                    FROM course_groups ";
+       $requetes = "SELECT  course_groups.course, course_groups.groupe
+       FROM    course_groups
+                   LEFT JOIN course_groups_teachers 
+                       on course_groups.course = course_groups_teachers.course AND course_groups.groupe = course_groups_teachers.groupe
+       WHERE   course_groups_teachers.course IS NULL AND course_groups_teachers.groupe IS NULL";
         $coursesGroups = $pdo->query($requetes);
         $tabCoursesGroups = array ();
         foreach ($coursesGroups as $row) {
@@ -67,6 +97,7 @@ class Model
         $pdo = NULL;
         return $tabCoursesGroups;
     }
+
     public static function inscriptionProf($id,$nom,$prenom){
         $pdo = Model::connection();
         $sqlTeacher = "SELECT id FROM teacher WHERE id = '$id' ";
@@ -108,6 +139,22 @@ class Model
             if ($result->rowCount() < 1) {                                                                                                                            
                 $addCoursToGroup = "INSERT INTO course_groups (`course`,`groupe`) VALUES ('$course','$group')";                                                                                
                 $pdo->query($addCoursToGroup);                                                                                             
+            }              
+        }                                                                                                                                                                                                                                                                                                     
+    }
+
+    public static function addAttributionsCourseGroupToTeachers($course_group,$teachers){  
+        $pdo = Model::connection();  
+        $courseGroup = explode("_",$course_group);
+        $lisTeachers = explode("_",$teachers);
+        $course = $courseGroup[0];
+        $group = $courseGroup[1];
+        foreach($lisTeachers as $teacher){
+            $requetes = "SELECT * FROM course_groups_teachers WHERE course like '$course' AND groupe like '$group'AND teacher like '$teacher' ";                                                                                                      
+            $result = $pdo->query($requetes);                                                                                                                         
+            if ($result->rowCount() < 1) {                                                                                                                            
+                $addCoursGroupToteacher = "INSERT INTO course_groups_teachers (`course`,`groupe`,`teacher`) VALUES ('$course','$group','$teacher')";                                                                                
+                $pdo->query($addCoursGroupToteacher);                                                                                             
             }              
         }                                                                                                                                                                                                                                                                                                     
     }
@@ -226,8 +273,7 @@ class Model
 
 
     public static function modifyMission($id,$title,$heure,$cat){
-        //$pdo = new PDO("mysql:host=mysql-lescerveaux.alwaysdata.net;dbname=lescerveaux_poc;charset=utf8", "191765", "Cerveaux123", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);                                                                                                                                     
-       $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);        
+        $pdo = Model::connection();
         $requetes="UPDATE mission
                     SET title = '$title',
                     nbHours = '$heure',

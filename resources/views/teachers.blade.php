@@ -31,7 +31,7 @@
             </thead>
             <tbody>
                 @foreach($listTeachers as $teacher)
-                 <tr class="akachar" id="{{$teacher->id}}" >
+                 <tr id="{{$teacher->id}}" >
                     <th scope="row" value="{{ $loop->iteration }}">{{ $loop->iteration }}</th>
                     <td>  {{$teacher->id}} </td>
                     <td> {{$teacher->name}}</td>
@@ -74,45 +74,38 @@
 </div>
  <script>
   $(document).ready(function(){
-       $("#inscription").click(function(){
-            let id = $("#id").val().toUpperCase();
-            let nom = $("#nom").val().charAt(0).toUpperCase()+ $("#nom").val().substr(1).toLowerCase();
-            let prenom = $("#prenom").val().charAt(0).toUpperCase()+ $("#prenom").val().substr(1).toLowerCase();
-            $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
-                if(data == "true"){
-                    let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
-                    $("#answer").html(msg);
-                    $("#id").val('');
-                    $("#nom").val('');
-                    $("#prenom").val('');
-                    location.reload();
-                } else{
-                    let msg = "<div class='alert alert-danger' role='alert'>The teacher has not been registered !</div>"
-                    $("#answer").html(msg);
-                }
-            }); 
-            
-        });
-        $(".del").click(function() {
-         let id = $(this).val();
-         let url ="./teachers/delete/"+id;
-         $.get(url, function(jsData, status) {
-            location.reload();
-         });
-      });
+    $("#inscription").click(function(){
+        let id = $("#id").val().toUpperCase();
+        let nom = $("#nom").val().charAt(0).toUpperCase()+ $("#nom").val().substr(1).toLowerCase();
+        let prenom = $("#prenom").val().charAt(0).toUpperCase()+ $("#prenom").val().substr(1).toLowerCase();
+        $.get("teachers/add?id="+id+"&nom="+nom+"&prenom="+prenom, function(data, status){
+            if(data == "true"){
+                let msg = "<div class='alert alert-success' role='alert'>The teacher has been registered !</div>"
+                $("#answer").html(msg);
+                $("#id").val('');
+                $("#nom").val('');
+                $("#prenom").val('');
+                location.reload();
+            } else{
+                let msg = "<div class='alert alert-danger' role='alert'>The teacher has not been registered !</div>"
+                $("#answer").html(msg);
+            }
+        }); 
         
-        $(".btn").click(function() {
+    });
+    $(".del").click(function() {
+        let id = $(this).val();
+        let url ="./teachers/delete/"+id;
+        $.get(url, function(jsData, status) {
+        location.reload();
+        });
+    });
+    
+    $(".btn").click(function() {
         let value = $(this).val();
         if(value=="info"){
-            console.log("info");
-            //let url = "./teacher/info/"+this.id;
             $.get("./teacher/info/"+this.id, function (data, status) {});
             $(location).attr('href', './teacher/info/'+this.id)
-
-        }else if(value=="suppr"){
-            console.log("suppr");
-        }else{
-            console.log("modif");
         }
 
 

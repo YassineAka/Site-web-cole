@@ -100,7 +100,7 @@
             <img src="https://picsum.photos/200/200?random=1" alt=""/>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="profile-head" id="info_teacher">
         <h5>{{$teacher->name}} {{$teacher->firstName}}</h5>
         <h6>Teacher</h6>
@@ -112,7 +112,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4" >
         <button id= "btnEdit"class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2" style="margin-bottom:2em;">Edit Teacher</button>
     </div>
   </div>

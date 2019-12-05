@@ -21,6 +21,8 @@ Route::get('/attributions','Rest@attributions');
 
 Route::get('/attributions/course_to_groups/add','Rest@addAttributionsCourseToGroups');
 
+Route::get('/attributions/cours_groups_to_teachers/add','Rest@addAttributionsCourseGroupToTeachers');
+
 Route::get('/courses','Rest@courses');
 
 Route::get('/teachers/add','Rest@inscriptionProf');

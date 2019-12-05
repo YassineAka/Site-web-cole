@@ -4,8 +4,12 @@
 <head>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" id="dataTables-css">
+  
+
   
   <title> @yield('title') </title>
   <!doctype html>
@@ -83,33 +87,6 @@
         </div>
     </nav>
 
-
-        <!--MDB Navbars
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ url('') }}">Home </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('teachers') }}">List Of Teachers</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('courses') }}">List Of Courses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('missions') }}">List Of Missions</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('groupes') }}">List Of Groups</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('version') }}">Version</a>
-          </li>
-        </ul>
-      </div>
-    </nav>-->
   </header>
   <h1> @yield('littletitle')</h1>
   <main>

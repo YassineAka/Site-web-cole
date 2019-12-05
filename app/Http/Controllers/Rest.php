@@ -78,9 +78,12 @@ class Rest extends Controller {
     }
     function attributions(){
         $courses_groups = Model::getAllCoursesGroups();
+        $courses_groups_teachers = Model::getAllCoursesGroupsTeachers();
         $courses = Model::getAllCourses();
         $groups = Model::getAllGroupes();
-        return view('attributions',compact('courses_groups','courses','groups'));
+        $teachers = Model::getAllTeachers();
+        $cours_groups_not_attributed = Model::getAllCoursesGroupsNotAttributed();
+        return view('attributions',compact('courses_groups','courses_groups_teachers','courses','groups','teachers','cours_groups_not_attributed'));
     }
 
     function addMission(){
@@ -140,6 +143,16 @@ class Rest extends Controller {
         $groups=$_GET['groups'];
         if(!empty($course) && !empty($groups) ){
             return Model::addAttributionsCourseToGroups($course,$groups);
+        }else{
+            return "false";
+        }
+    }
+    
+    function addAttributionsCourseGroupToTeachers(){
+        $course_group=$_GET['course_group'];
+        $teachers=$_GET['teachers'];
+        if(!empty($course_group) && !empty($teachers) ){
+            return Model::addAttributionsCourseGroupToTeachers($course_group,$teachers);
         }else{
             return "false";
         }

@@ -74,7 +74,6 @@
 
 <script>
 $(document).ready(function() {
-    
     $("#bou").click(function() {
       let id = $("#id").val().toUpperCase();
       let name = $("#name").val().charAt(0).toUpperCase()+ $("#name").val().substr(1).toLowerCase();

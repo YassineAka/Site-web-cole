@@ -41,7 +41,7 @@
       </div>
       <h1>Missions</h1>
       <div class="row">
-         <div class="col-9">
+         <div class="col-8">
          </div>
          <div class="col">
             <button onclick="collapse1()" id="btnAdd" class="btn btn-primary" type="button" data-toggle="collapse"
@@ -239,7 +239,6 @@
             $('input[name="missionForm"]').val(mission['title']);
             $('input[name="heureForm"]').val(mission['nbHours']);
             $(".id").val(mission['cat']);
-            console.log(mission['cat']);
          });
       });
       $("#bttnModify").click(function () {
@@ -248,17 +247,14 @@
          let cat = $(".id").val();
          let url = "./mission/modify/" + id_globale + "/" + title + "/" + heure + "/" + cat;
          $.get(url, function (data, status) {
-
+            location.reload();
          });
-         location.reload();
       });
 
       $("#buttonDeleteCat").click(function () {
          let selector = document.getElementById("selectorDeleteCat");
          let id = selector.options[selector.selectedIndex].value;
-         console.log();
          let url = "./mission/deleteCat/" + id;
-         console.log(url);
          $.get(url, function (jsData, status) {
             location.reload();
          });

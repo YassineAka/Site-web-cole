@@ -5,6 +5,8 @@
  
 /* Suppression des tables si BD existe deja */
 
+DROP TABLE IF EXISTS course_groups_teachers;
+
 DROP TABLE IF EXISTS course_groups;
 
 DROP TABLE IF EXISTS course;
@@ -60,18 +62,22 @@ CREATE TABLE groupe (
 CREATE TABLE course_groups (
      course      VARCHAR(7) NOT NULL,
      groupe      VARCHAR(15) NOT NULL,
-   CONSTRAINT PK_course_GROUP PRIMARY KEY (course,groupe)
+     CONSTRAINT PK_COURSE_GROUP PRIMARY KEY (course,groupe),
+     CONSTRAINT FK_GROUPS FOREIGN KEY (groupe) REFERENCES groupe(id) ON DELETE CASCADE ON UPDATE CASCADE,
+     CONSTRAINT FK_COURSE FOREIGN KEY (course) REFERENCES course(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-ALTER TABLE course_groups
-ADD CONSTRAINT FK_GROUPS
-FOREIGN KEY (groupe)
-REFERENCES groupe(id)
 ;
-ALTER TABLE course_groups
-ADD CONSTRAINT FK_COURSES
-FOREIGN KEY (course)
-REFERENCES course(id)
-;
+
+CREATE TABLE course_groups_teachers (
+     course      VARCHAR(7) NOT NULL,
+     groupe      VARCHAR(15) NOT NULL,
+     teacher      VARCHAR(3) NOT NULL,
+     CONSTRAINT PK_COURSE_GROUP_TEACHER PRIMARY KEY (course,groupe,teacher),
+     CONSTRAINT FK_GROUP FOREIGN KEY (groupe) REFERENCES groupe(id) ON DELETE CASCADE ON UPDATE CASCADE,
+     CONSTRAINT FK_COURSES FOREIGN KEY (course) REFERENCES course(id) ON DELETE CASCADE ON UPDATE CASCADE,
+     CONSTRAINT FK_TEACHER FOREIGN KEY (teacher) REFERENCES teacher(id) ON DELETE CASCADE ON UPDATE CASCADE,
+     CONSTRAINT FK_COURSE_GROUP FOREIGN KEY (course,groupe) REFERENCES course_groups(course,groupe) ON DELETE CASCADE
+);
 
 /* Remplissage des tables */
 
@@ -159,11 +165,24 @@ INSERT INTO groupe VALUES ('F112');
 INSERT INTO groupe VALUES ('F211');
 INSERT INTO groupe VALUES ('F212');
 
+
 INSERT INTO course_groups VALUES ('WEBG4','A111');
 INSERT INTO course_groups VALUES ('WEBG4','A112');
 INSERT INTO course_groups VALUES ('WEBG4','A211');
 INSERT INTO course_groups VALUES ('WEBG5','B111');
 INSERT INTO course_groups VALUES ('WEBG5','B112');
-INSERT INTO course_groups VALUES ('WEBG5','B211');
+INSERT INTO course_groups VALUES ('SYSG5','D211');
+INSERT INTO course_groups VALUES ('SYSG5','E212');
+INSERT INTO course_groups VALUES ('SYSG5','B112');
+INSERT INTO course_groups VALUES ('SYSG5','F211');
+
+
+INSERT INTO course_groups_teachers VALUES ('WEBG4','A111','APA');
+INSERT INTO course_groups_teachers VALUES ('WEBG4','A112','APA');
+INSERT INTO course_groups_teachers VALUES ('WEBG4','A211','ABS');
+INSERT INTO course_groups_teachers VALUES ('WEBG5','B111','SRV');
+INSERT INTO course_groups_teachers VALUES ('WEBG5','B112','ABS');
+INSERT INTO course_groups_teachers VALUES ('SYSG5','D211','NVS');
+INSERT INTO course_groups_teachers VALUES ('SYSG5','E212','ABS');
 
 
