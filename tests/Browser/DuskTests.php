@@ -138,6 +138,31 @@ class DuskTests extends DuskTestCase
                 ->assertDontSee("XXX");
         });
 
+    }public function testModifyCourse()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                ->press('.selenium')
+                ->pause(2000)
+                ->assertSee("Modify course")
+                ->assertSee("Sigle")
+                ->assertSee("Heures")
+                ->assertSee("Title");
+        });
+    }
+
+    public function testModifyCourseByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                ->press('.selenium')
+                ->pause(2000)
+                ->value("#titleForm", "testSelenium")
+                ->value("#heureForm", "-1")
+                ->press("#bttnSaveModify")
+                ->assertSee("testSelenium")
+                ->assertSee("-1");
+        });
     }
 
     public function testGoToServiceMissions()
@@ -197,6 +222,8 @@ class DuskTests extends DuskTestCase
                 ->assertSee("-1");
         });
     }
+    
+    
     public function testAddCatSuccesfull()
     {
         $this->browse(function (Browser $browser) {
@@ -275,6 +302,28 @@ class DuskTests extends DuskTestCase
                 ->press('#XXXtest')
                 ->pause(1000)
                 ->assertDontSee("XXX");
+        });
+    }
+    public function testModifyGroup()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                ->press('.selenium')
+                ->pause(2000)
+                ->assertSee("Modify group")
+                ->assertSee("Group");
+        });
+    }
+
+    public function testModifyGroupByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                ->press('.selenium')
+                ->pause(2000)
+                ->value("#groupForm", "abc")
+                ->press("#bttnSaveModify")
+                ->assertSee("abc");
         });
     }
 
