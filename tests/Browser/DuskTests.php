@@ -315,6 +315,7 @@ class DuskTests extends DuskTestCase
         });
     }
 
+    
     public function testModifyGroupByTitle()
     {
         $this->browse(function (Browser $browser) {
