@@ -70,15 +70,15 @@ class DuskTests extends DuskTestCase
         });
     }
 
-   public function testEditInfoTeacher()
+    public function testEditInfoTeacher()
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/teacher/info/ABS')
-            ->press('#btnEdit')
-            ->value('#id', 'TES')
-            ->value('#nom', 'Test')
-            ->value('#prenom', 'Coucou')
-            ->press('#modif')
+                ->press('#btnEdit')
+                ->value('#id', 'TES')
+                ->value('#nom', 'Test')
+                ->value('#prenom', 'Coucou')
+                ->press('#modif')
                 ->pause(1000)
                 ->assertSee("Test Coucou");
         });
@@ -138,6 +138,31 @@ class DuskTests extends DuskTestCase
                 ->assertDontSee("XXX");
         });
 
+    }public function testModifyCourse()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                ->press('.selenium')
+                ->pause(2000)
+                ->assertSee("Modify course")
+                ->assertSee("Sigle")
+                ->assertSee("Heures")
+                ->assertSee("Title");
+        });
+    }
+
+    public function testModifyCourseByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/courses')
+                ->press('.selenium')
+                ->pause(2000)
+                ->value("#titleForm", "testSelenium")
+                ->value("#heureForm", "-1")
+                ->press("#bttnSaveModify")
+                ->assertSee("testSelenium")
+                ->assertSee("-1");
+        });
     }
 
     public function testGoToServiceMissions()
@@ -197,6 +222,8 @@ class DuskTests extends DuskTestCase
                 ->assertSee("-1");
         });
     }
+    
+    
     public function testAddCatSuccesfull()
     {
         $this->browse(function (Browser $browser) {
@@ -277,7 +304,28 @@ class DuskTests extends DuskTestCase
                 ->assertDontSee("XXX");
         });
     }
+    public function testModifyGroup()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                ->press('.selenium')
+                ->pause(2000)
+                ->assertSee("Modify group")
+                ->assertSee("Group");
+        });
+    }
 
+    public function testModifyGroupByTitle()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/groupes')
+                ->press('.selenium')
+                ->pause(2000)
+                ->value("#groupForm", "abc")
+                ->press("#bttnSaveModify")
+                ->assertSee("abc");
+        });
+    }
     public function testGoToServicAttributions()
     {
         $this->browse(function (Browser $browser) {
@@ -300,6 +348,7 @@ class DuskTests extends DuskTestCase
                 ->check('#B111')
 
                 ->press('#send_cours_to_groups')
+                ->clickLink('Courses to groups')
                 ->pause(5000)
                 ->assertSee("SYSG5", "A111")
                 ->assertSee("SYSG5", "A112")
@@ -311,6 +360,70 @@ class DuskTests extends DuskTestCase
         $pdo->query($removeCourseGroup);
         $pdo = null;
     }
-    
-    
+
+    public function testAttributionsCourseGroupsToTeachersWith2teachers()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/attributions')
+
+                ->press('#btn_cours_groups_to_prof')
+                ->select('#slctr_course_group', 'WEBG4_A211')
+                ->pause(1000)
+                ->check('#ABS')
+                ->check('#NRI')
+                ->pause(1000)
+                ->press('#send_cours_groups_to_teachers')
+                ->pause(2000)
+                ->clickLink('Course / Group attributed')
+                ->pause(5000)
+                ->assertSee("WEBG4 / A211", "ABS")
+                ->assertSee("WEBG4 / A211", "NRI");
+
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeCourseGroupTeacher = "DELETE FROM course_groups_teachers WHERE course='WEBG4' AND groupe = 'A211' ";
+        $pdo->query($removeCourseGroupTeacher);
+        $pdo = null;
+    }
+
+    public function testAttributionsCourseGroupsToTeachersWith4teachers()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/attributions')
+
+                ->press('#btn_cours_groups_to_prof')
+                ->select('#slctr_course_group', 'WEBG5_B111')
+                ->pause(1000)
+                ->check('#ABS')
+                ->check('#NRI')
+                ->check('#SRV')
+                ->check('#JLC')
+                ->pause(1000)
+                ->press('#send_cours_groups_to_teachers')
+
+                ->pause(2000)
+                ->clickLink('Course / Group attributed')
+
+                ->pause(5000)
+                ->assertSee("WEBG5 / B111", "ABS")
+                ->assertSee("WEBG5 / B111", "SRV")
+                ->assertSee("WEBG5 / B111", "JLC")
+                ->assertSee("WEBG5 / B111", "NRI");
+
+        });
+        $pdo = new PDO("mysql:host=localhost;dbname=test;charset=utf8", "root", "", [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        $removeCourseGroupTeacher = "DELETE FROM course_groups_teachers WHERE course='WEBG5' AND groupe = 'B111' ";
+        $pdo->query($removeCourseGroupTeacher);
+        $pdo = null;
+    }
+
+    public function testCheckAllCoursesGroupsNotAttributed()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/Projet-Attributions-Groupe-LesCerveaux/public/attributions')
+                ->pause(2000)
+                ->clickLink('Course / Group not attributed')
+                ->pause(2000);
+        });
+    }
 }

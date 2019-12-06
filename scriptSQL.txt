@@ -51,12 +51,12 @@ CREATE TABLE mission (
      nbHours NUMERIC(2) NOT NULL,
      cat     VARCHAR(50) NOT NULL,
      CONSTRAINT missionPK PRIMARY KEY (id),
-     CONSTRAINT missionFK FOREIGN KEY (cat) REFERENCES category(id)
+     CONSTRAINT FK_CATEGORY FOREIGN KEY (cat) REFERENCES category(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE groupe (
      id      VARCHAR(15) NOT NULL,
-     CONSTRAINT groupePK PRIMARY KEY (id)
+     CONSTRAINT groupePK PRIMARY KEY (id) 
 );
 
 CREATE TABLE course_groups (
@@ -75,8 +75,7 @@ CREATE TABLE course_groups_teachers (
      CONSTRAINT PK_COURSE_GROUP_TEACHER PRIMARY KEY (course,groupe,teacher),
      CONSTRAINT FK_GROUP FOREIGN KEY (groupe) REFERENCES groupe(id) ON DELETE CASCADE ON UPDATE CASCADE,
      CONSTRAINT FK_COURSES FOREIGN KEY (course) REFERENCES course(id) ON DELETE CASCADE ON UPDATE CASCADE,
-     CONSTRAINT FK_TEACHER FOREIGN KEY (teacher) REFERENCES teacher(id) ON DELETE CASCADE ON UPDATE CASCADE,
-     CONSTRAINT FK_COURSE_GROUP FOREIGN KEY (course,groupe) REFERENCES course_groups(course,groupe) ON DELETE CASCADE
+     CONSTRAINT FK_TEACHER FOREIGN KEY (teacher) REFERENCES teacher(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /* Remplissage des tables */
@@ -184,5 +183,3 @@ INSERT INTO course_groups_teachers VALUES ('WEBG5','B111','SRV');
 INSERT INTO course_groups_teachers VALUES ('WEBG5','B112','ABS');
 INSERT INTO course_groups_teachers VALUES ('SYSG5','D211','NVS');
 INSERT INTO course_groups_teachers VALUES ('SYSG5','E212','ABS');
-
-
