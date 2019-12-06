@@ -3,6 +3,37 @@
 @section('content')
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
+        <div class="container">
+            <div class="modal fade" id="formulaire">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modify course </h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body row">
+                            <form id='formModify' class="col">
+                                <div class="form-group">
+                                    <label for="courseForm" class="form-control-label">Sigle</label>
+                                    <input type="text" class="form-control" name="courseForm" id="courseForm">
+                                </div>
+                                <div class="form-group">
+                                    <label for="titleForm" class="form-control-label">Title</label>
+                                    <input type="text" class="form-control" name="titleForm" id="titleForm">
+                                </div>
+                                <div class="form-group">
+                                    <label for="heureForm" class="form-control-label">Heures</label>
+                                    <input type="number" class="form-control" name="heureForm" id="heureForm">
+                                </div>
+                                <button id="bttnSaveModify" class="btn btn-primary pull-right">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <h1>Courses</h1>
         <div class="row">
             <div class="col-9">
@@ -28,7 +59,9 @@
                     <td class ="courses" id="{{$course->getId()}}">{{$course->getId()}}</td>
                     <td> {{$course->getTitle()}}</td>
                     <td> {{$course->getNbHours()}}</td>
-                    <td><button type="button" id="{{$course->getId()}}test" value="{{$course->getId()}}" class="del btn btn-danger "> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                    <td><button type="button" id="{{$course->getId()}}test" value="{{$course->getId()}}" class="del btn btn-danger "> X</button> 
+                        <button type="button" value="{{$course->getId()}}" class="btn btn-secondary btnModify selenium" data-toggle="modal" data-target="#formulaire">✎</button>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -100,6 +133,27 @@ $(document).ready(function() {
         });
         
     });
+    
+    $(".btnModify").click(function () {
+         id_globale = $(this).val();
+         let url = "./courses/getCourseJson/" + id_globale;
+         $.get(url, function (data, status) {
+            course = JSON.parse(data);
+            $('input[name="courseForm"]').val(course['id']);
+            $('input[name="titleForm"]').val(course['title']);
+            $('input[name="heureForm"]').val(course['nbHours']);
+         });
+      });
+      $("#bttnSaveModify").click(function () {
+        let id = id_globale;
+        let id2 = $("#courseForm").val().toUpperCase();
+        let title = $("#titleForm").val();
+        let heure = $("#heureForm").val();
+        let url = "./courses/modify?id="+id+"&id2="+id2+"&name="+title+"&nbHours="+heure;
+        $.get(url, function (data, status) {
+            location.reload();
+        });
+      });
     
 });
 </script>

@@ -5,6 +5,29 @@
 
 <div class="row">
     <div class="col emp-profile"style="margin: 2%;"> 
+        <div class="container">
+            <div class="modal fade" id="formulaire">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modify group </h4>
+                            <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body row">
+                            <form id='formModify' class="col">
+                                <div class="form-group">
+                                    <label for="groupForm" class="form-control-label">Group</label>
+                                    <input type="text" class="form-control" name="groupForm" id="groupForm">
+                                </div>
+                                <button id="bttnSaveModify" class="btn btn-primary pull-right">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <h1>Groups</h1>
         <div class="row">
                 <div class="col-9">
@@ -24,7 +47,10 @@
                     @foreach($listGroups as $group)
                     <tr>
                         <td> {{$group->getId()}} </td>
-                        <td><button type="button" id="{{$group->getId()}}test" value="{{$group->getId()}}" class="del btn btn-danger "> X</button> <button type="button" class="btn btn-secondary">✎</button></td>
+                        <td>
+                            <button type="button" id="{{$group->getId()}}test" value="{{$group->getId()}}" class="del btn btn-danger "> X</button> 
+                            <button type="button" value="{{$group->getId()}}" class="btn btn-secondary btnModify selenium" data-toggle="modal" data-target="#formulaire">✎</button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -80,6 +106,23 @@
         });
         
     });
+    
+    
+    $(".btnModify").click(function () {
+         id_globale = $(this).val();
+         let url = "./groupes/getGroupJson/" + id_globale;
+         $.get(url, function (data, status) {
+            group = JSON.parse(data);
+            $('input[name="groupForm"]').val(group['id']);
+         });
+      });
+      $("#bttnSaveModify").click(function () {
+        let id = id_globale;
+        let id2 = $("#groupForm").val().toUpperCase();
+        let url = "./groupes/modify?id="+id+"&id2="+id2;
+        $.get(url, function (data, status) {
+        });
+      });
 });       
  
 </script>

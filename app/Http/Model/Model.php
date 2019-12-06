@@ -284,12 +284,9 @@ class Model
     }
 
 
-
     public static function deleteCat($id){
         $pdo = Model::connection();
         $requetesDeleteCat="DELETE FROM category WHERE id='$id'";
-        $requetesDeleteMission="DELETE FROM mission WHERE mission.cat= '$id'";
-        $categorieDeleteMission = $pdo->query($requetesDeleteMission);
         $categorie = $pdo->query($requetesDeleteCat);
         $pdo=null;
     }
@@ -343,6 +340,38 @@ class Model
             return "false";
         }
     }
+    
+    public static function modifyCourse($id,$id2,$name,$nbHours){  
+        $pdo = Model::connection();                                                     
+        $sqlCourse = "SELECT * FROM course WHERE id like '$id' ";                                                                                                      
+        $listCourses = $pdo->query($sqlCourse);   
+        if($listCourses->rowCount() != 0){                                                                
+            $requetes="UPDATE course SET id = '$id2', title = '$name', nbHours = '$nbHours' WHERE id = '$id' ";
+            $course = $pdo->query($requetes);
+            $pdo=null;
+            return "true";
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }
+    }
+    
+    public static function modifyGroup($id,$id2){  
+        $pdo = Model::connection();                                                     
+        $sqlGroup = "SELECT * FROM groupe WHERE id like '$id' ";                                                                                                      
+        $listGroups = $pdo->query($sqlGroup);   
+        if($listGroups->rowCount() != 0){                                                                
+            $requetes="UPDATE groupe SET id = '$id2' WHERE id = '$id' ";
+            $groupe = $pdo->query($requetes);
+            $pdo=null;
+            return "true";
+        }
+        else{
+            $pdo = NULL;
+            return "false";
+        }
+    }
 
     public static function getMissionJson($id){
         $pdo = Model::connection();
@@ -351,6 +380,32 @@ class Model
         $mission = array();
         foreach ($cate as $row) {
             array_push($mission,$row);
+        }
+        $pdo = NULL;
+        return json_encode($row);
+    }
+    
+
+    public static function getCourseJson($id){
+        $pdo = Model::connection();
+        $requetes = "SELECT course.id,course.title, course.nbHours FROM course WHERE id='$id'";
+        $courses = $pdo->query($requetes);
+        $course = array();
+        foreach ($courses as $row) {
+            array_push($course,$row);
+        }
+        $pdo = NULL;
+        return json_encode($row);
+    }
+    
+
+    public static function getGroupJson($id){
+        $pdo = Model::connection();
+        $requetes = "SELECT groupe.id FROM groupe WHERE id='$id'";
+        $groupes = $pdo->query($requetes);
+        $groupe = array();
+        foreach ($groupes as $row) {
+            array_push($groupe,$row);
         }
         $pdo = NULL;
         return json_encode($row);

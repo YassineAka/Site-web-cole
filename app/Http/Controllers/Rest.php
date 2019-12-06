@@ -46,6 +46,28 @@ class Rest extends Controller {
         }
     }
     
+    function modifyCourse(){
+        $id=$_GET['id'];
+        $id2=$_GET['id2'];
+        $name=$_GET['name'];
+        $nbHours=$_GET['nbHours'];
+        if(!empty($id2) && !empty($name) && !empty($nbHours)){
+            return Model::modifyCourse($id,$id2,$name,$nbHours);
+        }else{
+            return "false";
+        }
+    }
+    
+    function modifyGroup(){
+        $id=$_GET['id'];
+        $id2=$_GET['id2'];
+        if(!empty($id2) ){
+            return Model::modifyGroup($id,$id2);
+        }else{
+            return "false";
+        }
+    }
+    
 
     function addCourse(){
         $id=$_GET['id'];
@@ -116,6 +138,14 @@ class Rest extends Controller {
     }
     function getMissionJson($id){
         return Model::getMissionJson($id);
+    } 
+    
+    function getCourseJson($id){
+        return Model::getCourseJson($id);
+    } 
+    
+    function getGroupJson($id){
+        return Model::getGroupJson($id);
     } 
     
     function deleteCat($id){
