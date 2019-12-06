@@ -326,7 +326,6 @@ class DuskTests extends DuskTestCase
                 ->assertSee("abc");
         });
     }
-
     public function testGoToServicAttributions()
     {
         $this->browse(function (Browser $browser) {
