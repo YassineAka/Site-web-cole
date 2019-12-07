@@ -117,10 +117,42 @@ INSERT INTO teacher VALUES ('NVS','Vansteenkiste','Nicolas');
 INSERT INTO teacher VALUES ('MWA','Wahid','Moussa');
 
 
+INSERT INTO course VALUES ('INT1','Introduction à l'informatique',110);
+INSERT INTO course VALUES ('MAT1','Mathématique contextualisée',72);
+INSERT INTO course VALUES ('CAI1','Communication anglophone contextualisée I',24);
+INSERT INTO course VALUES ('CPT1','Comptabilité contextualisée I',24);
+INSERT INTO course VALUES ('DEV1','Développement I',114);
+INSERT INTO course VALUES ('STA2','Statistique contextualisée',48);
+INSERT INTO course VALUES ('CAI2','Communication anglophone contextualisée II',24);
+INSERT INTO course VALUES ('DEV2','Développement II',108);
+INSERT INTO course VALUES ('DON2','Persistance des données I',48);
+INSERT INTO course VALUES ('SYS2','Systèmes d'exploitation I',72);
+INSERT INTO course VALUES ('WEBG2','Développement Web I',60);
+INSERT INTO course VALUES ('CAIG3','Communication anglophone contextualisée',48);
+INSERT INTO course VALUES ('DRTG3','Droit et philosophie contextualisés',24);
+INSERT INTO course VALUES ('ALG3','Algorithmique',48);
+INSERT INTO course VALUES ('DEV3','Développement III',72);
+INSERT INTO course VALUES ('ATLG3','Atelier Logiciel I',48);
+INSERT INTO course VALUES ('ANA3','Analyse II',72);
+INSERT INTO course VALUES ('DONG3','Persistance des données II',48);
+INSERT INTO course VALUES ('CPTG4','Comptabilité contextualisée II',24);
+INSERT INTO course VALUES ('ECOG4','Economie contextualisée',36);
+INSERT INTO course VALUES ('DEV4','Développement IV',24);
+INSERT INTO course VALUES ('ATLG4','Atelier Logiciel II',48);
+INSERT INTO course VALUES ('WEBG4','Développement Web II',48);
+INSERT INTO course VALUES ('DONG4','Persistance des données III',48);
+INSERT INTO course VALUES ('SYSG4','Systèmes d'exploitation II',72);
+INSERT INTO course VALUES ('RESG4','Réseaux et sécurité informatique',48);
+INSERT INTO course VALUES ('TEX5','Expression et communication',30);
+INSERT INTO course VALUES ('VEI5','Veilles technologiques',48);
+INSERT INTO course VALUES ('ORGG5','Organisation et entreprise',36);
+INSERT INTO course VALUES ('PRJG5','Gestion de projet',72);
+INSERT INTO course VALUES ('MOBG5','Développement mobile',48);
 INSERT INTO course VALUES ('WEBG5','Développement web III',50);
-INSERT INTO course VALUES ('WEBG4','Développement web II',25);
-INSERT INTO course VALUES ('SYSG5','Système exploitation III',40);
-INSERT INTO course VALUES ('PRJG5','Gestion de projet',65);
+INSERT INTO course VALUES ('DONG5','Persistance des données IV',24);
+INSERT INTO course VALUES ('ERPG5','Progiciel de gestion intégré',48);
+INSERT INTO course VALUES ('SYSG5','Systèmes d'exploitation III',36);
+INSERT INTO course VALUES ('ETE6','Stage et Travaux de fin d'étude',450);
 
 
 INSERT INTO category  (`id`) VALUES ('Stage');
